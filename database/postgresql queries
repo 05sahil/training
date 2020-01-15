@@ -365,6 +365,47 @@ laptop_store=# alter table shipping_details add constraint fk_ship_id foreign ke
 ALTER TABLE
 
 
+select sum(quantity) total_purchase from order_details;
+ total_purchase 
+----------------
+             11
+(1 row)
+
+
+laptop_store=# select name from user_info where user_id in (select user_id from order_details where model_id = 12);
+ name  
+-------
+ John
+ Berta
+(2 rows)
+
+
+laptop_store=# select l.model_id,brand,model from laptops l inner join order_details o using (model_id);  
+ model_id | brand  |      model      
+----------+--------+-----------------
+       11 | lenovo | v130
+       12 | lenovo | ideapad s145
+       12 | lenovo | ideapad s145
+       14 | HP     | notebook 245-G6
+       16 | dell   | vostro 14
+       18 | dell   | inspiron-5567
+       19 | HP     | pavilion x15
+       20 | HP     | pavilion x360
+(8 rows)
+
+
+orders placed by John:
+
+laptop_store=# select count(order_id) from order_details where user_id in (select user_id from user_info where name = 'John');
+ count 
+-------
+     2
+(1 row)
+
+
+
+
+
 
 
 
