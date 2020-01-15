@@ -139,6 +139,47 @@ student=# select * from student_info;
 
 
 
+student=# select id,name from student_info order by id desc limit 1;
+ id | name 
+----+------
+  4 | c
+(1 row)
+
+
+student=# select sum(id) sum_id from student_info;
+ sum_id 
+--------
+     10
+(1 row)
+
+
+student=# select min(id) min_id from student_info;
+ min_id 
+--------
+      1
+(1 row)
+
+
+student=# select max(id) max_id from student_info;
+ max_id 
+--------
+      4
+(1 row)
+
+
+student=# select avg(id) avg_id from student_info;
+       avg_id       
+--------------------
+ 2.5000000000000000
+(1 row)
+
+
+student=# select round(avg(id)) avg_id from student_info;
+ avg_id 
+--------
+      3
+(1 row)
+
 
 
 
