@@ -109,6 +109,42 @@ student=# select * from s1;
 
 
 
+\d+ student_info;
+                                                     Table "public.student_info"
+ Column  |         Type          |                         Modifiers                         | Storage  | Stats target | Description 
+---------+-----------------------+-----------------------------------------------------------+----------+--------------+-------------
+ id      | integer               | not null default nextval('student_info_id_seq'::regclass) | plain    |              | 
+ name    | character varying(30) | not null                                                  | extended |              | 
+ class   | integer               | not null                                                  | plain    |              | 
+ stream  | character varying(20) | not null                                                  | extended |              | 
+ address | character varying(50) |                                                           | extended |              | 
+ phoneno | numeric               |                                                           | main     |              | 
+Indexes:
+    "student_info_pkey" PRIMARY KEY, btree (id)
+
+
+alter table student_info add constraint unique_phone unique (phoneno);
+ALTER TABLE
+
+alter table student_info drop constraint unique_phone;
+ALTER TABLE
+student=# select * from student_info;
+ id | name | class | stream  | address | phoneno 
+----+------+-------+---------+---------+---------
+  1 | a    |    11 | med     |         |        
+  2 | d    |    11 | med     |         |        
+  3 | b    |    12 | med     |         |        
+  4 | c    |    11 | non-med |         |        
+(4 rows)
+
+
+
+
+
+
+
+
+
 
 
 
