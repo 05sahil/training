@@ -78,6 +78,39 @@ student=# select * from s2;
  f    |    11 | math
 
 
+delete from s2 where class = 10;
+DELETE 1
+student=# select * from s2;
+ name | class | subject 
+------+-------+---------
+ b    |    11 | sci
+ c    |    11 | sci
+ d    |    12 | eng
+ e    |    12 | eng
+ f    |    11 | math
+
+
+ insert into s1 values ('a',11,'sci');
+INSERT 0 1
+student=# select * from s1;
+ name | class | subject 
+------+-------+---------
+ a    |    11 | sci
+(1 row)
+
+
+ delete from s1 using s2 where s1.class = s2.class;
+DELETE 1
+student=# select * from s1;
+ name | class | subject 
+------+-------+---------
+(0 rows)
+
+
+
+
+
+
 
 
 
