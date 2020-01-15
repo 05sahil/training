@@ -1,0 +1,83 @@
+
+\c student
+You are now connected to database "student" as user "postgres".
+
+
+\dt;
+            List of relations
+ Schema |     Name     | Type  |  Owner   
+--------+--------------+-------+----------
+ public | s1           | table | postgres
+ public | s2           | table | postgres
+ public | student_info | table | postgres
+
+ 
+select * from s2;
+
+name | class | subject 
+------+-------+---------
+ b    |    11 | sci
+ c    |    11 | sci
+ d    |    12 | eng
+ e    |    12 | eng
+ f    |    11 | math
+
+
+alter table s2 add column email text;
+ALTER TABLE
+student=# select * from s2;
+ name | class | subject | email 
+------+-------+---------+-------
+ b    |    11 | sci     | 
+ c    |    11 | sci     | 
+ d    |    12 | eng     | 
+ e    |    12 | eng     | 
+ f    |    11 | math    |
+
+
+alter table s2 add constraint unique_values unique(name,email);
+ALTER TABLE
+
+
+alter table student_info add column phoneno numeric;
+ALTER TABLE
+student=# select * from student_info;
+ id | name | class | stream  | address | phoneno 
+----+------+-------+---------+---------+---------
+  1 | a    |    11 | med     |         |        
+  2 | d    |    11 | med     |         |        
+  3 | b    |    12 | med     |         |        
+  4 | c    |    11 | non-med |         |       
+
+
+
+alter table s2 add column rollno int; 
+ALTER TABLE
+student=# select * from s2;
+ name | class | subject | rollno 
+------+-------+---------+--------
+ a    |    10 | math    |       
+ b    |    11 | sci     |       
+ c    |    11 | sci     |       
+ d    |    12 | eng     |       
+ e    |    12 | eng     |       
+ f    |    11 | math    |      
+
+
+
+alter table s2 drop column rollno;
+ALTER TABLE
+student=# select * from s2;
+ name | class | subject 
+------+-------+---------
+ a    |    10 | math
+ b    |    11 | sci
+ c    |    11 | sci
+ d    |    12 | eng
+ e    |    12 | eng
+ f    |    11 | math
+
+
+
+
+
