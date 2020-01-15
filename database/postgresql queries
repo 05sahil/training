@@ -275,6 +275,36 @@ model_id | ram |  hdd  | processor  |     os     | screensize |     color      |
 
 
 
+laptop_store=# create table order_details (order_id varchar (30) not null, user_id varchar (30) not null, model_id varchar (30) not null,quantity smallint not null, payment_status varchar (20)not null, ship_id varchar(30) not null);
+CREATE TABLE
+
+laptop_store=# select * from order_details;
+
+ order_id | user_id | model_id | quantity | payment_status | ship_id 
+----------+---------+----------+----------+----------------+---------
+(0 rows)
+
+
+
+laptop_store=# create table order_details (order_id varchar (30) not null, user_id integer not null, model_id integer not null,quantity smallint not null, payment_status varchar (20)not null, ship_id varchar(30) not null);
+CREATE TABLE
+
+laptop_store=# alter table order_details add constraint fk_user_id foreign key (user_id) references user_info (user_id);
+ALTER TABLE
+
+laptop_store=# alter table order_details add constraint fk_model_id foreign key (model_id) references laptops (model_id);
+ALTER TABLE
+
+laptop_store=# create table shipping_details(ship_id varchar(30), shipped_by text, status text);
+
+
+
+
+
+
+
+
+
 
 
 
