@@ -300,6 +300,70 @@ laptop_store=# create table shipping_details(ship_id varchar(30), shipped_by tex
 
 
 
+laptop_store=# insert into order_details values ('20201_1',20201,11,1,'received','20201_1_s'),('20202_1',20202,14,2,'received','20202_1_s'); 
+INSERT 0 2
+
+laptop_store=# insert into order_details values ('20201_2',20201,12,1,'received','20201_2_s'),('20203_1',20203,16,1,'received','20203_1_s'); 
+INSERT 0 2
+
+laptop_store=# insert into order_details values ('20204_1',20204,18,2,'received','20204_1_s'),('20203_2',20203,19,1,'received','20203_2_s'); 
+INSERT 0 2
+
+laptop_store=# insert into order_details values ('20204_2',20204,20,1,'received','20204_2_s'),('20205_1',20205,12,2,'received','20205_1_s'); 
+INSERT 0 2
+
+laptop_store=# select * from order_details;
+
+ order_id | user_id | model_id | quantity | payment_status |  ship_id  
+----------+---------+----------+----------+----------------+-----------
+ 20201_1  |   20201 |       11 |        1 | received       | 20201_1_s
+ 20202_1  |   20202 |       14 |        2 | received       | 20202_1_s
+ 20201_2  |   20201 |       12 |        1 | received       | 20201_2_s
+ 20203_1  |   20203 |       16 |        1 | received       | 20203_1_s
+ 20204_1  |   20204 |       18 |        2 | received       | 20204_1_s
+ 20203_2  |   20203 |       19 |        1 | received       | 20203_2_s
+ 20204_2  |   20204 |       20 |        1 | received       | 20204_2_s
+ 20205_1  |   20205 |       12 |        2 | received       | 20205_1_s
+(8 rows)
+
+
+laptop_store=# select * from order_details;
+
+ order_id | user_id | model_id | quantity | payment_status |  ship_id  
+----------+---------+----------+----------+----------------+-----------
+ 20201_1  |   20201 |       11 |        1 | received       | 20201_1_s
+ 20202_1  |   20202 |       14 |        2 | received       | 20202_1_s
+ 20201_2  |   20201 |       12 |        1 | received       | 20201_2_s
+ 20203_1  |   20203 |       16 |        1 | received       | 20203_1_s
+ 20204_1  |   20204 |       18 |        2 | received       | 20204_1_s
+ 20203_2  |   20203 |       19 |        1 | received       | 20203_2_s
+ 20204_2  |   20204 |       20 |        1 | received       | 20204_2_s
+ 20205_1  |   20205 |       12 |        2 | received       | 20205_1_s
+(8 rows)
+
+laptop_store=# select * from shipping_details;
+ ship_id | shipped_by | status 
+---------+------------+--------
+(0 rows)
+
+laptop_store=# insert into shipping_details values ('20201_1_s','delhivery','shipped'),('20202_1_s','DTDC','shipped');
+INSERT 0 2
+
+laptop_store=# insert into shipping_details values ('20201_2_s','delhivery','received'),('20203_1_s','DTDC','received');
+INSERT 0 2
+
+laptop_store=# insert into shipping_details values ('20204_1_s','bluedart','shipped'),('20203_2_s','DTDC','at warehouse');
+INSERT 0 2
+
+laptop_store=# insert into shipping_details values ('20204_2_s','bluedart','at warehouse'),('20205_1_s','DTDC','received');
+INSERT 0 2
+
+laptop_store=# alter table order_details add constraint unique_ship_id unique (ship_id);
+ALTER TABLE
+
+laptop_store=# alter table shipping_details add constraint fk_ship_id foreign key (ship_id) references order_details(ship_id);
+ALTER TABLE
+
 
 
 
