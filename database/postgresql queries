@@ -501,6 +501,31 @@ test=# update test set name = 'alaric' where id = 4;
 
 
 
+select top selling model:
+select model_id,sum(quantity) max_quantity from order_details group by model_id order by max_quantity desc limit 1;
+
+
+laptop with highest price:
+select model_id,model from laptops order by price desc limit 1;
+ model_id |     model     
+----------+---------------
+       20 | pavilion x360
+(1 row)
+
+
+users who have received their products:
+
+select name from user_info where user_id in (select user_id from order_details where ship_id in(select ship_id from shipping_details where status = 'received'));
+
+ name  
+-------
+ John
+ Jose
+ Berta
+(3 rows)
+
+
+
 
 
 
