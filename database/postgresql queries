@@ -444,6 +444,46 @@ test=# select * from t1;
 (7 rows)
 
 
+
+test=# create table tarray (id smallserial, marks integer[3]);
+CREATE TABLE
+
+insert into tarray(marks) values ('{11,23,34}'),('{45,56,67}'),('{78,65,54}'),('{32,21,43}');
+INSERT 0 4
+
+test=# select * from tarray;
+ id |   marks    
+----+------------
+  1 | {11,23,34}
+  2 | {45,56,67}
+  3 | {78,65,54}
+  4 | {32,21,43}
+(4 rows)
+
+
+test=# select marks[2] from tarray where id in (1,2,3,4);
+ marks 
+-------
+    23
+    56
+    65
+    21
+(4 rows)
+
+test=# select max(marks[1]) from tarray;
+ max 
+-----
+  78
+(1 row)
+
+
+
+
+
+
+
+
+
 test=# select * from t1 order by id;
  id | name  | days 
 ----+-------+------
