@@ -404,6 +404,64 @@ laptop_store=# select count(order_id) from order_details where user_id in (selec
 
 
 
+*********************
+
+test=# create type week as enum('mon','tue','wed','thu','fri');
+CREATE TYPE
+
+test=# alter table t1 add column days week;
+ALTER TABLE
+
+test=# insert into t1 values (7,'kk','wed'),(6,'john','tue');
+INSERT 0 2
+
+test=# select * from t1;
+ id | name | days 
+----+------+------
+  1 | asd  | 
+  2 | dfg  | 
+  3 | hjk  | 
+  4 | xyz  | 
+  5 | ddcc | mon
+  7 | kk   | wed
+  6 | john | tue
+(7 rows)
+
+
+test=# update t1 as t set name = c.name from (values (1,'jimmy'),(2,'joe')) as
+c(id,name) where c.id = t.id;
+UPDATE 2
+test=# select * from t1;
+ id | name  | days 
+----+-------+------
+  3 | hjk   | 
+  4 | xyz   | 
+  5 | ddcc  | mon
+  7 | kk    | wed
+  6 | john  | tue
+  1 | jimmy | 
+  2 | joe   | 
+(7 rows)
+
+
+test=# select * from t1 order by id;
+ id | name  | days 
+----+-------+------
+  1 | jimmy | 
+  2 | joe   | 
+  3 | hjk   | 
+  4 | xyz   | 
+  5 | ddcc  | mon
+  6 | john  | tue
+  7 | kk    | wed
+(7 rows)
+
+
+test=# update test set name = 'alaric' where id = 4;
+
+
+
+
 
 
 
