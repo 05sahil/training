@@ -155,6 +155,14 @@ xyz_airlines=# select x.aname, round(avg(y.salary)) as avg_salary from (select a
 
 
 
+e. Find the names of pilots certified for some Boeing aircraft.
+xyz_airlines=# select distinct y.ename from (select aid from aircrafts where aname like 'Boeing%') as x inner join pilots as y using (aid);  ename   
+----------
+ Caroline
+ Matt
+(2 rows)
+
+
 
 
 
