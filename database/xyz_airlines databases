@@ -19,3 +19,10 @@ CREATE TABLE
 xyz_airlines=# create table employees (eid integer primary key,ename text not null, salary integer not null);
 CREATE TABLE
 
+
+xyz_airlines=# alter table certified add constraint fk_aid foreign key (aid) references aircrafts (aid);
+ALTER TABLE
+
+xyz_airlines=# alter table certified add constraint fk_eid foreign key (eid) references employees (eid);
+ALTER TABLE
+
