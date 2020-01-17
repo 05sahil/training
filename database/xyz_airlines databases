@@ -44,5 +44,19 @@ xyz_airlines=# insert into flights values (20106,'Los Angeles','Chicago',2000,'1
 INSERT 0 2
 
 
+***********ADDED DATA IN AIRCRAFTS TABLE*************
+
+xyz_airlines=# insert into aircrafts values (22101,'Boeing 747',4400),(22102,'Boeing 540',4200),(22103,'Boeing 640',5500);
+INSERT 0 3
+
+xyz_airlines=# insert into aircrafts values (22104,'Airbus 350',4300),(22105,'Airbus 720',3200),(22106,'Airbus 650',1400);
+INSERT 0 3
+
+xyz_airlines=# insert into aircrafts values (22107,'Airbus 450',5200),(22108,'Embraer 175',1100),(22109,'Embraer 245',1200);
+INSERT 0 3
+
+xyz_airlines=# insert into aircrafts values (22110,'Embraer 345',4100);
+INSERT 0 1
+
 
 
