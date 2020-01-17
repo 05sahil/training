@@ -87,3 +87,66 @@ xyz_airlines=# insert into certified values (11208,22105),(11208,22102);
 INSERT 0 2
 
 
+***************Querying database*****************
+
+eid of pilots whose salary is greater than 80000
+
+xyz_airlines=# select eid from certified where eid in (select eid from employees where salary > 80000); 
+
+  eid  
+-------
+ 11212
+ 11211
+ 11208
+ 11212
+ 11212
+ 11208
+ 11208
+ 11208
+
+
+
+a. Find the names of aircraft such that all pilots certified to operate them earn
+more than $80,000.
+
+xyz_airlines=# select aname from aircrafts where aid in(select aid from certified where eid in (select eid from employees where salary > 80000)); 
+
+    aname    
+-------------
+ Boeing 747
+ Boeing 540
+ Boeing 640
+ Airbus 350
+ Airbus 720
+ Embraer 175
+ Embraer 345
+(7 rows)
+
+
+
+creating view for pilots:
+
+xyz_airlines=# create view pilots as select c.eid,c.aid,e.ename,e.salary from certified c inner join employees e using (eid);
+CREATE VIEW
+
+
+c. Find the names of pilots whose salary is less than the price of the cheapest route from Los Angeles to Honolulu.
+
+xyz_airlines=# select ename from pilots where salary < (select min(price) minprice from flights where flno in (select flno from flights where from_ = 'Los Angeles' and to_ = 'Honolulu'));
+ ename 
+-------
+ Enzo
+(1 row)
+
+
+
+
+
+
+
+
+
+
+
+
+
