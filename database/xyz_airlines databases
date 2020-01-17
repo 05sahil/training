@@ -139,6 +139,20 @@ xyz_airlines=# select ename from pilots where salary < (select min(price) minpri
 (1 row)
 
 
+d. For all aircraft with cruisingrange over 1000 miles, find the name of theaircraft and the average salary of all pilots certified for this aircraft.
+xyz_airlines=# select x.aname, round(avg(y.salary)) as avg_salary from (select aname,aid from aircrafts where cruising_range>1000) as x inner join pilots as y using (aid) group by x.aname;
+    aname    | avg_salary 
+-------------+------------
+ Airbus 350  |      93000
+ Boeing 540  |     125000
+ Embraer 245 |      58000
+ Airbus 720  |     125000
+ Embraer 345 |     125000
+ Boeing 747  |      81000
+ Boeing 640  |      81000
+ Embraer 175 |     125000
+(8 rows)
+
 
 
 
