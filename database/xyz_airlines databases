@@ -75,3 +75,15 @@ INSERT 0 4
 
 
 
+***********ADDED DATA IN CERTIFIED TABLE*************
+
+xyz_airlines=# insert into certified values (11212,22101),(11211,22104),(11208,22110);
+INSERT 0 3
+
+xyz_airlines=# insert into certified values (11212,22103),(11212,22104),(11208,22108);
+INSERT 0 3
+
+xyz_airlines=# insert into certified values (11208,22105),(11208,22102);
+INSERT 0 2
+
+
