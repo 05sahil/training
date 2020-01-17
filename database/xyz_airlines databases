@@ -60,3 +60,18 @@ INSERT 0 1
 
 
 
+***********ADDED DATA IN EMPLOYEES TABLE*************
+xyz_airlines=# insert into employees values (11201,'Andrew',85000),(11202,'Berta',90000),(11203,'Drake',110000),(11204,'Adam',120000);
+INSERT 0 4
+
+xyz_airlines=# insert into employees values (11205,'Jake',75000),(11206,'Alaric',92000),(11207,'Damon',78000),(11208,'Caroline',125000);
+INSERT 0 4
+
+xyz_airlines=# insert into employees values (11209,'Jonas',65000),(11210,'Mindy',98000),(11211,'Bryan',105000),(11212,'Matt',81000);
+INSERT 0 4
+
+xyz_airlines=# insert into employees values (11213,'Hermini',55000),(11214,'Ron',52000),(11215,'Enzo',58000),(11216,'Martha',69000);
+INSERT 0 4
+
+
+
