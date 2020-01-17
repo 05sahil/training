@@ -1,0 +1,21 @@
+
+
+postgres=# create database xyz_airlines;
+CREATE DATABASE
+
+
+xyz_airlines=# create table flights(flno int primary key,from_ text not null, to_ text not null, distance int not null, departs time not null, arrives time not null, price integer not null); 
+CREATE TABLE
+
+
+xyz_airlines=# create table aircrafts (aid integer primary key, aname text not null, cruising_range integer not null);
+CREATE TABLE
+
+
+xyz_airlines=# create table certified (eid integer primary key, aid integer not null);
+CREATE TABLE
+
+
+xyz_airlines=# create table employees (eid integer primary key,ename text not null, salary integer not null);
+CREATE TABLE
+
