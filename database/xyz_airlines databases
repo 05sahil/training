@@ -163,9 +163,12 @@ xyz_airlines=# select distinct y.ename from (select aid from aircrafts where ana
 (2 rows)
 
 
-
-
-
+b.For each pilot who is certified for more than three aircraft, find the eid and the maximum cruisingrange of the aircraft for which she or he is certified.
+xyz_airlines=# select y.eid, max(x.cruising_range) max_cruising_range from (select eid,aid from certified where eid in (select eid from certified group by eid having count(aid)>3))as y inner join aircrafts x using(aid)group by y.eid;
+  eid  | max_cruising_range 
+-------+--------------------
+ 11208 |               4200
+(1 row)
 
 
 
