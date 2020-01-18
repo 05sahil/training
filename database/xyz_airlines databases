@@ -180,7 +180,31 @@ select departs from flights where to_ in(select from_ from flights where to_='Ne
 (1 row)
 
 
-f.f. Find the aids of all aircraft that can be used on routes from Los Angeles to Chicago.
+f. Find the aids of all aircraft that can be used on routes from Los Angeles to Chicago.
 xyz_airlines=# select aid from aircrafts where cruising_range > (select distance*2 from flights where from_ = 'Los Angeles' and to_ = 'Chicago');
+ aid  
+-------
+ 22101
+ 22102
+ 22103
+ 22104
+ 22107
+ 22110
+(6 rows)
+
+
+g.Identify the routes that can be piloted by every pilot who makes more than $100,000.
+xyz_airlines=# select from_,to_ from flights as x inner join (select cruising_range from aircrafts where aid in (select aid from pilots where salary > 100000) ) as y on (x.distance*2<y.cruising_range) group by from_,to_;
+    from_    |     to_     
+-------------+-------------
+ New York    | Los Angeles
+ Madison     | San
+ Los Angeles | Honolulu
+ Los Angeles | Chicago
+ San         | New York
+ Chicago     | San
+(6 rows)
+
+
 
 
