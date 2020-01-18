@@ -218,5 +218,31 @@ xyz_airlines=# select ename from (select ename,aid from pilots) as x inner join 
 
 
 
+select (avgs - x.salary)as difference from pilots x inner join (select eid,round(avg(salary)) avgs from employees group by eid) as y on (x.eid = y.eid);
 
+
+J. mydb1=# select(select avg(salary) from employees where eid in (select distinct eid from certified))-(select avg(salary) from employees) as diff;
+
+
+
+
+
+k. 
+
+mydb1=# select ename,salary from employees where salary > (select avg(salary) from employees where eid in (select distinct eid from certified)) and eid not in (select distinct eid from certified);
+
+
+l. 
+mydb1=# select distinct e.ename from employees e join certified c on e.eid=c.eid join aircrafts a on c.aid=a.aid where cruising_range>1000; 
+ ename  
+
+
+m. 
+mydb1=# select e.ename from employees e join certified c on e.eid=c.eid join aircrafts a on c.aid=a.aid group by e.ename,e.eid having every (cruising_range>1000) and count(a.aid)>1 ;
+
+
+
+
+n.
+mydb1=# select e.ename from employees e join certified c on e.eid=c.eid join aircrafts a on c.aid=a.aid where cruising_range>1000 and a.aname like 'boeing%';
 
