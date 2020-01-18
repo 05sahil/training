@@ -180,5 +180,7 @@ select departs from flights where to_ in(select from_ from flights where to_='Ne
 (1 row)
 
 
+f.f. Find the aids of all aircraft that can be used on routes from Los Angeles to Chicago.
+xyz_airlines=# select aid from aircrafts where cruising_range > (select distance*2 from flights where from_ = 'Los Angeles' and to_ = 'Chicago');
 
 
