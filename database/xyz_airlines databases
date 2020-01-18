@@ -206,5 +206,17 @@ xyz_airlines=# select from_,to_ from flights as x inner join (select cruising_ra
 (6 rows)
 
 
+h.Print the enames of pilots who can operate planes with cruisingrange greater than 3000 miles but are not certified on any Boeing aircraft.
+xyz_airlines=# select ename from (select ename,aid from pilots) as x inner join aircrafts as y on (x.aid = y.aid and y.cruising_range > 3000) group by ename;
+  ename   
+----------
+ Bryan
+ Caroline
+ Matt
+(3 rows)
+
+
+
+
 
 
