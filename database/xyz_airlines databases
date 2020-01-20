@@ -104,6 +104,10 @@ xyz_airlines=# select eid from certified where eid in (select eid from employees
  11208
  11208
 
+creating view for pilots:
+
+xyz_airlines=# create view pilots as select c.eid,c.aid,e.ename,e.salary from certified c inner join employees e using (eid);
+CREATE VIEW
 
 
 a. Find the names of aircraft such that all pilots certified to operate them earn
@@ -123,11 +127,15 @@ xyz_airlines=# select aname from aircrafts where aid in(select aid from certifie
 (7 rows)
 
 
+b.For each pilot who is certified for more than three aircraft, find the eid and the maximum cruisingrange of the aircraft for which she or he is certified.
 
-creating view for pilots:
+xyz_airlines=# select y.eid, max(x.cruising_range) max_cruising_range from (select eid,aid from certified where eid in (select eid from certified group by eid having count(aid)>3))as y inner join aircrafts x using(aid)group by y.eid;
+  eid  | max_cruising_range 
+-------+--------------------
+ 11208 |               4200
+(1 row)
 
-xyz_airlines=# create view pilots as select c.eid,c.aid,e.ename,e.salary from certified c inner join employees e using (eid);
-CREATE VIEW
+
 
 
 c. Find the names of pilots whose salary is less than the price of the cheapest route from Los Angeles to Honolulu.
@@ -139,7 +147,9 @@ xyz_airlines=# select ename from pilots where salary < (select min(price) minpri
 (1 row)
 
 
+
 d. For all aircraft with cruisingrange over 1000 miles, find the name of theaircraft and the average salary of all pilots certified for this aircraft.
+
 xyz_airlines=# select x.aname, round(avg(y.salary)) as avg_salary from (select aname,aid from aircrafts where cruising_range>1000) as x inner join pilots as y using (aid) group by x.aname;
     aname    | avg_salary 
 -------------+------------
@@ -155,7 +165,9 @@ xyz_airlines=# select x.aname, round(avg(y.salary)) as avg_salary from (select a
 
 
 
+
 e. Find the names of pilots certified for some Boeing aircraft.
+
 xyz_airlines=# select distinct y.ename from (select aid from aircrafts where aname like 'Boeing%') as x inner join pilots as y using (aid);  ename   
 ----------
  Caroline
@@ -163,24 +175,9 @@ xyz_airlines=# select distinct y.ename from (select aid from aircrafts where ana
 (2 rows)
 
 
-b.For each pilot who is certified for more than three aircraft, find the eid and the maximum cruisingrange of the aircraft for which she or he is certified.
-xyz_airlines=# select y.eid, max(x.cruising_range) max_cruising_range from (select eid,aid from certified where eid in (select eid from certified group by eid having count(aid)>3))as y inner join aircrafts x using(aid)group by y.eid;
-  eid  | max_cruising_range 
--------+--------------------
- 11208 |               4200
-(1 row)
-
-
-i.A customer wants to travel from Madison to New York with no more than twochanges of flight. List the choice of departure times from Madison if the customer wants to arrive in New York by 6 p.m.
-
-select departs from flights where to_ in(select from_ from flights where to_='New York') and from_ = 'Madison' and arrives < '18:00';
- departs  
-----------
- 08:00:00
-(1 row)
-
 
 f. Find the aids of all aircraft that can be used on routes from Los Angeles to Chicago.
+
 xyz_airlines=# select aid from aircrafts where cruising_range > (select distance*2 from flights where from_ = 'Los Angeles' and to_ = 'Chicago');
  aid  
 -------
@@ -193,7 +190,11 @@ xyz_airlines=# select aid from aircrafts where cruising_range > (select distance
 (6 rows)
 
 
+
+
+
 g.Identify the routes that can be piloted by every pilot who makes more than $100,000.
+
 xyz_airlines=# select from_,to_ from flights as x inner join (select cruising_range from aircrafts where aid in (select aid from pilots where salary > 100000) ) as y on (x.distance*2<y.cruising_range) group by from_,to_;
     from_    |     to_     
 -------------+-------------
@@ -206,7 +207,9 @@ xyz_airlines=# select from_,to_ from flights as x inner join (select cruising_ra
 (6 rows)
 
 
+
 h.Print the enames of pilots who can operate planes with cruisingrange greater than 3000 miles but are not certified on any Boeing aircraft.
+
 xyz_airlines=# select ename from (select ename,aid from pilots) as x inner join aircrafts as y on (x.aid = y.aid and y.cruising_range > 3000 and y.aname not like 'Boeing%') group by ename;
   ename   
 ----------
@@ -218,7 +221,14 @@ xyz_airlines=# select ename from (select ename,aid from pilots) as x inner join 
 
 
 
-select (avgs - x.salary)as difference from pilots x inner join (select eid,round(avg(salary)) avgs from employees group by eid) as y on (x.eid = y.eid);
+i.A customer wants to travel from Madison to New York with no more than two changes of flight. List the choice of departure times from Madison if the customer wants to arrive in New York by 6 p.m.
+
+xyz_airlines=#select departs from flights where to_ in(select from_ from flights where to_='New York') and from_ = 'Madison' and arrives < '18:00';
+ departs  
+----------
+ 08:00:00
+(1 row)
+
 
 
 J. Compute the difference between the average salary of a pilot and the average salary of all employees (including pilots).
@@ -233,6 +243,7 @@ xyz_airlines=# select(select avg(salary) from pilots)-(select avg(salary) from e
 
 
 k.Print the name and salary of every nonpilot whose salary is more than the average salary for pilots.
+
 xyz_airlines=# select ename,salary from employees where eid in (select eid from employees where eid not in (select eid from certified)) and salary > (select round(avg(salary))from pilots);  
  ename | salary 
 -------+--------
@@ -244,6 +255,7 @@ xyz_airlines=# select ename,salary from employees where eid in (select eid from 
 
 
 l. Print the names of employees who are certified only on aircrafts with cruising range longer than 1000 miles.
+
 xyz_airlines=# select distinct ename from pilots where aid in (select aid from aircrafts where cruising_range > 1000);
   ename   
 ----------
@@ -256,6 +268,7 @@ xyz_airlines=# select distinct ename from pilots where aid in (select aid from a
 
 
 m.Print the names of employees who are certified only on aircrafts with cruising range longer than 1000 miles, but on at least two such aircrafts.
+
 xyz_airlines=# select ename from (select ename from pilots where aid in (select aid from aircrafts where cruising_range > 1000) ) as x group by ename having count(ename)>=2;
   ename   
 ----------
@@ -265,6 +278,7 @@ xyz_airlines=# select ename from (select ename from pilots where aid in (select 
 
 
 n.Print the names of employees who are certified only on aircrafts with cruising range longer than 1000 miles and who are certified on some Boeing aircraft.
+
 xyz_airlines=# select distinct ename from pilots where aid in (select aid from aircrafts where cruising_range>1000 and aname like 'Boeing%');
   ename   
 ----------
