@@ -293,11 +293,6 @@ xyz_airlines=# select distinct ename from pilots where aid in (select aid from a
 (2 rows)
 
 
-xyz_airlines=# select departs from flight_NY where from_ = 'Madison' or from_ in (select x.from_ from flight_NY x inner join flights y on (x.from_ = y.to_ and y.from_ ='Madison'));
- departs  
-----------
- 15:00:00
- 10:00:00
-(2 rows)
+
 
 
