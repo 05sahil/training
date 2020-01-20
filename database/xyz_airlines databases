@@ -221,28 +221,55 @@ xyz_airlines=# select ename from (select ename,aid from pilots) as x inner join 
 select (avgs - x.salary)as difference from pilots x inner join (select eid,round(avg(salary)) avgs from employees group by eid) as y on (x.eid = y.eid);
 
 
-J. mydb1=# select(select avg(salary) from employees where eid in (select distinct eid from certified))-(select avg(salary) from employees) as diff;
+J. Compute the difference between the average salary of a pilot and the average salary of all employees (including pilots).
+
+xyz_airlines=# select(select avg(salary) from pilots)-(select avg(salary) from employees) as difference;
+     difference     
+--------------------
+ 15791.666666666667
+(1 row)
 
 
 
 
-
-k. 
-
-mydb1=# select ename,salary from employees where salary > (select avg(salary) from employees where eid in (select distinct eid from certified)) and eid not in (select distinct eid from certified);
-
-
-l. 
-mydb1=# select distinct e.ename from employees e join certified c on e.eid=c.eid join aircrafts a on c.aid=a.aid where cruising_range>1000; 
- ename  
-
-
-m. 
-mydb1=# select e.ename from employees e join certified c on e.eid=c.eid join aircrafts a on c.aid=a.aid group by e.ename,e.eid having every (cruising_range>1000) and count(a.aid)>1 ;
+k.Print the name and salary of every nonpilot whose salary is more than the average salary for pilots.
+xyz_airlines=# select ename,salary from employees where eid in (select eid from employees where eid not in (select eid from certified)) and salary > (select round(avg(salary))from pilots);  
+ ename | salary 
+-------+--------
+ Drake | 110000
+ Adam  | 120000
+(2 rows)
 
 
 
 
-n.
-mydb1=# select e.ename from employees e join certified c on e.eid=c.eid join aircrafts a on c.aid=a.aid where cruising_range>1000 and a.aname like 'boeing%';
+l. Print the names of employees who are certified only on aircrafts with cruising range longer than 1000 miles.
+xyz_airlines=# select distinct ename from pilots where aid in (select aid from aircrafts where cruising_range > 1000);
+  ename   
+----------
+ Bryan
+ Enzo
+ Caroline
+ Matt
+(4 rows)
+
+
+
+m.Print the names of employees who are certified only on aircrafts with cruising range longer than 1000 miles, but on at least two such aircrafts.
+xyz_airlines=# select ename from (select ename from pilots where aid in (select aid from aircrafts where cruising_range > 1000) ) as x group by ename having count(ename)>=2;
+  ename   
+----------
+ Caroline
+ Matt
+(2 rows)
+
+
+n.Print the names of employees who are certified only on aircrafts with cruising range longer than 1000 miles and who are certified on some Boeing aircraft.
+xyz_airlines=# select distinct ename from pilots where aid in (select aid from aircrafts where cruising_range>1000 and aname like 'Boeing%');
+  ename   
+----------
+ Caroline
+ Matt
+(2 rows)
+
 
