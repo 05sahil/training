@@ -223,11 +223,17 @@ xyz_airlines=# select ename from (select ename,aid from pilots) as x inner join 
 
 i.A customer wants to travel from Madison to New York with no more than two changes of flight. List the choice of departure times from Madison if the customer wants to arrive in New York by 6 p.m.
 
-xyz_airlines=#select departs from flights where to_ in(select from_ from flights where to_='New York') and from_ = 'Madison' and arrives < '18:00';
+xyz_airlines=# create view flight_NY as select from_,departs from flights where to_ = 'New York' and arrives < '18:00';
+CREATE VIEW
+
+xyz_airlines=# select departs from flight_NY where from_ = 'Madison' or from_ in (select x.from_ from flight_NY x inner join flights y on (x.from_ = y.to_ and y.from_ ='Madison')) or from_ in (select a.to_ from (select x.from_,x.to_ from flights x inner join flight_NY y on (y.from_ = x.to_)) a inner join flights b on (a.from_ = b.to_ and b.from_ = 'Madison'));
  departs  
 ----------
- 08:00:00
-(1 row)
+ 15:00:00
+ 10:00:00
+ 16:00:00
+(3 rows)
+
 
 
 
@@ -284,6 +290,14 @@ xyz_airlines=# select distinct ename from pilots where aid in (select aid from a
 ----------
  Caroline
  Matt
+(2 rows)
+
+
+xyz_airlines=# select departs from flight_NY where from_ = 'Madison' or from_ in (select x.from_ from flight_NY x inner join flights y on (x.from_ = y.to_ and y.from_ ='Madison'));
+ departs  
+----------
+ 15:00:00
+ 10:00:00
 (2 rows)
 
 
