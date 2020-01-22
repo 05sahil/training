@@ -1,0 +1,543 @@
+
+\c student
+You are now connected to database "student" as user "postgres".
+
+
+\dt;
+            List of relations
+ Schema |     Name     | Type  |  Owner   
+--------+--------------+-------+----------
+ public | s1           | table | postgres
+ public | s2           | table | postgres
+ public | student_info | table | postgres
+
+ 
+select * from s2;
+
+name | class | subject 
+------+-------+---------
+ b    |    11 | sci
+ c    |    11 | sci
+ d    |    12 | eng
+ e    |    12 | eng
+ f    |    11 | math
+
+
+alter table s2 add column email text;
+ALTER TABLE
+student=# select * from s2;
+ name | class | subject | email 
+------+-------+---------+-------
+ b    |    11 | sci     | 
+ c    |    11 | sci     | 
+ d    |    12 | eng     | 
+ e    |    12 | eng     | 
+ f    |    11 | math    |
+
+
+alter table s2 add constraint unique_values unique(name,email);
+ALTER TABLE
+
+
+alter table student_info add column phoneno numeric;
+ALTER TABLE
+student=# select * from student_info;
+ id | name | class | stream  | address | phoneno 
+----+------+-------+---------+---------+---------
+  1 | a    |    11 | med     |         |        
+  2 | d    |    11 | med     |         |        
+  3 | b    |    12 | med     |         |        
+  4 | c    |    11 | non-med |         |       
+
+
+
+alter table s2 add column rollno int; 
+ALTER TABLE
+student=# select * from s2;
+ name | class | subject | rollno 
+------+-------+---------+--------
+ a    |    10 | math    |       
+ b    |    11 | sci     |       
+ c    |    11 | sci     |       
+ d    |    12 | eng     |       
+ e    |    12 | eng     |       
+ f    |    11 | math    |      
+
+
+
+alter table s2 drop column rollno;
+ALTER TABLE
+student=# select * from s2;
+ name | class | subject 
+------+-------+---------
+ a    |    10 | math
+ b    |    11 | sci
+ c    |    11 | sci
+ d    |    12 | eng
+ e    |    12 | eng
+ f    |    11 | math
+
+
+delete from s2 where class = 10;
+DELETE 1
+student=# select * from s2;
+ name | class | subject 
+------+-------+---------
+ b    |    11 | sci
+ c    |    11 | sci
+ d    |    12 | eng
+ e    |    12 | eng
+ f    |    11 | math
+
+
+ insert into s1 values ('a',11,'sci');
+INSERT 0 1
+student=# select * from s1;
+ name | class | subject 
+------+-------+---------
+ a    |    11 | sci
+(1 row)
+
+
+ delete from s1 using s2 where s1.class = s2.class;
+DELETE 1
+student=# select * from s1;
+ name | class | subject 
+------+-------+---------
+(0 rows)
+
+
+
+
+\d+ student_info;
+                                                     Table "public.student_info"
+ Column  |         Type          |                         Modifiers                         | Storage  | Stats target | Description 
+---------+-----------------------+-----------------------------------------------------------+----------+--------------+-------------
+ id      | integer               | not null default nextval('student_info_id_seq'::regclass) | plain    |              | 
+ name    | character varying(30) | not null                                                  | extended |              | 
+ class   | integer               | not null                                                  | plain    |              | 
+ stream  | character varying(20) | not null                                                  | extended |              | 
+ address | character varying(50) |                                                           | extended |              | 
+ phoneno | numeric               |                                                           | main     |              | 
+Indexes:
+    "student_info_pkey" PRIMARY KEY, btree (id)
+
+
+alter table student_info add constraint unique_phone unique (phoneno);
+ALTER TABLE
+
+alter table student_info drop constraint unique_phone;
+ALTER TABLE
+student=# select * from student_info;
+ id | name | class | stream  | address | phoneno 
+----+------+-------+---------+---------+---------
+  1 | a    |    11 | med     |         |        
+  2 | d    |    11 | med     |         |        
+  3 | b    |    12 | med     |         |        
+  4 | c    |    11 | non-med |         |        
+(4 rows)
+
+
+
+student=# select id,name from student_info order by id desc limit 1;
+ id | name 
+----+------
+  4 | c
+(1 row)
+
+
+student=# select sum(id) sum_id from student_info;
+ sum_id 
+--------
+     10
+(1 row)
+
+
+student=# select min(id) min_id from student_info;
+ min_id 
+--------
+      1
+(1 row)
+
+
+student=# select max(id) max_id from student_info;
+ max_id 
+--------
+      4
+(1 row)
+
+
+student=# select avg(id) avg_id from student_info;
+       avg_id       
+--------------------
+ 2.5000000000000000
+(1 row)
+
+
+student=# select round(avg(id)) avg_id from student_info;
+ avg_id 
+--------
+      3
+(1 row)
+
+
+
+
+alter table laptops alter column model set not null;
+ALTER TABLE
+
+laptop_store=# alter table laptops alter column price set not null;
+ALTER TABLE
+
+laptop_store=# alter table laptops alter column quantity set not null;
+ALTER TABLE
+
+laptop_store=# \d+ laptops
+                                Table "public.laptops"
+  Column  |         Type          | Modifiers | Storage  | Stats target | Description 
+----------+-----------------------+-----------+----------+--------------+-------------
+ model_id | integer               | not null  | plain    |              | 
+ brand    | character varying(30) | not null  | extended |              | 
+ model    | text                  | not null  | extended |              | 
+ price    | integer               | not null  | plain    |              | 
+ quantity | integer               | not null  | plain    |              | 
+Indexes:
+    "pk_laptops" PRIMARY KEY, btree (model_id)
+
+
+laptop_store=# select * from laptops
+laptop_store-# ;
+ model_id | brand  |      model      | price | quantity 
+----------+--------+-----------------+-------+----------
+       11 | lenovo | v130            | 36188 |       10
+       12 | lenovo | ideapad s145    | 33498 |       18
+       13 | acer   | aspire 3 thin   | 17300 |       24
+       14 | HP     | notebook 245-G6 | 18949 |       20
+       15 | acer   | one AO-Z422     | 17999 |       18
+       16 | dell   | vostro 14       | 27789 |        9
+       17 | dell   | inspiron 15     | 22350 |       26
+       18 | dell   | inspiron-5567   | 38646 |       23
+       19 | HP     | pavilion x15    | 32278 |       11
+       20 | HP     | pavilion x360   | 42990 |       16
+(10 rows)
+
+
+laptop_store=# insert into laptop_specs values (12,'4gb','1tb','AMD A6','windows 10','15.6-inch','grey','1.85 kg');
+INSERT 0 1
+
+laptop_store=# insert into laptop_specs values (13,'8gb','500gb','AMD A4','windows 10','15.6-inch','charcoal black','1.5 kg');
+INSERT 0 1
+
+laptop_store=# insert into laptop_specs values (14,'4gb','1Tb','AMD A9','DOS','14-inch','black','1.4 kg');
+INSERT 0 1
+
+laptop_store=# insert into laptop_specs values (15,'3gb','500gb','i3 6th gen','linux','14-inch','black','1.6 kg');
+INSERT 0 1
+
+laptop_store=# insert into laptop_specs values (16,'2gb','500gb','AMD A4','DOS','14-inch','grey','1.2 kg');
+INSERT 0 1
+
+laptop_store=# insert into laptop_specs values (17,'4gb','1tb','celeron','DOS','15.6-inch','silver','1.9 kg');
+INSERT 0 1
+
+laptop_store=# insert into laptop_specs values (18,'8gb','2tb','i5 7th grn','windows 10','15.6-inch','blue','2.04 kg');
+INSERT 0 1
+
+laptop_store=# insert into laptop_specs values (19,'4gb','1tb','i3 7th gen','windows 10','15.6-inch','silver','2.04 kg');
+INSERT 0 1
+
+laptop_store=# delete from laptop_specs where model_id=18;
+DELETE 1
+
+laptop_store=# insert into laptop_specs values (18,'8gb','2tb','i5 7th gen','windows 10','15.6-inch','blue','2.04 kg');
+INSERT 0 1
+
+laptop_store=# insert into laptop_specs values (20,'4gb','1tb','i3 8th gen','linux','14-inch','silver','1.59 kg');
+INSERT 0 1
+
+laptop_store=# select * from laptop_specs;
+
+
+model_id | ram |  hdd  | processor  |     os     | screensize |     color      | weight  
+----------+-----+-------+------------+------------+------------+----------------+---------
+       11 | 4gb | 1tb   | i3 7th gen | DOS        | 14-inch    | grey           | 1.55 kg
+       12 | 4gb | 1tb   | AMD A6     | windows 10 | 15.6-inch  | grey           | 1.85 kg
+       13 | 8gb | 500gb | AMD A4     | windows 10 | 15.6-inch  | charcoal black | 1.5 kg
+       14 | 4gb | 1Tb   | AMD A9     | DOS        | 14-inch    | black          | 1.4 kg
+       15 | 3gb | 500gb | i3 6th gen | linux      | 14-inch    | black          | 1.6 kg
+       16 | 2gb | 500gb | AMD A4     | DOS        | 14-inch    | grey           | 1.2 kg
+       17 | 4gb | 1tb   | celeron    | DOS        | 15.6-inch  | silver         | 1.9 kg
+       19 | 4gb | 1tb   | i3 7th gen | windows 10 | 15.6-inch  | silver         | 2.04 kg
+       18 | 8gb | 2tb   | i5 7th gen | windows 10 | 15.6-inch  | blue           | 2.04 kg
+       20 | 4gb | 1tb   | i3 8th gen | linux      | 14-inch    | silver         | 1.59 kg
+(10 rows)
+
+
+
+
+laptop_store=# create table order_details (order_id varchar (30) not null, user_id varchar (30) not null, model_id varchar (30) not null,quantity smallint not null, payment_status varchar (20)not null, ship_id varchar(30) not null);
+CREATE TABLE
+
+laptop_store=# select * from order_details;
+
+ order_id | user_id | model_id | quantity | payment_status | ship_id 
+----------+---------+----------+----------+----------------+---------
+(0 rows)
+
+
+
+laptop_store=# create table order_details (order_id varchar (30) not null, user_id integer not null, model_id integer not null,quantity smallint not null, payment_status varchar (20)not null, ship_id varchar(30) not null);
+CREATE TABLE
+
+laptop_store=# alter table order_details add constraint fk_user_id foreign key (user_id) references user_info (user_id);
+ALTER TABLE
+
+laptop_store=# alter table order_details add constraint fk_model_id foreign key (model_id) references laptops (model_id);
+ALTER TABLE
+
+laptop_store=# create table shipping_details(ship_id varchar(30), shipped_by text, status text);
+
+
+
+
+laptop_store=# insert into order_details values ('20201_1',20201,11,1,'received','20201_1_s'),('20202_1',20202,14,2,'received','20202_1_s'); 
+INSERT 0 2
+
+laptop_store=# insert into order_details values ('20201_2',20201,12,1,'received','20201_2_s'),('20203_1',20203,16,1,'received','20203_1_s'); 
+INSERT 0 2
+
+laptop_store=# insert into order_details values ('20204_1',20204,18,2,'received','20204_1_s'),('20203_2',20203,19,1,'received','20203_2_s'); 
+INSERT 0 2
+
+laptop_store=# insert into order_details values ('20204_2',20204,20,1,'received','20204_2_s'),('20205_1',20205,12,2,'received','20205_1_s'); 
+INSERT 0 2
+
+laptop_store=# select * from order_details;
+
+ order_id | user_id | model_id | quantity | payment_status |  ship_id  
+----------+---------+----------+----------+----------------+-----------
+ 20201_1  |   20201 |       11 |        1 | received       | 20201_1_s
+ 20202_1  |   20202 |       14 |        2 | received       | 20202_1_s
+ 20201_2  |   20201 |       12 |        1 | received       | 20201_2_s
+ 20203_1  |   20203 |       16 |        1 | received       | 20203_1_s
+ 20204_1  |   20204 |       18 |        2 | received       | 20204_1_s
+ 20203_2  |   20203 |       19 |        1 | received       | 20203_2_s
+ 20204_2  |   20204 |       20 |        1 | received       | 20204_2_s
+ 20205_1  |   20205 |       12 |        2 | received       | 20205_1_s
+(8 rows)
+
+
+laptop_store=# select * from order_details;
+
+ order_id | user_id | model_id | quantity | payment_status |  ship_id  
+----------+---------+----------+----------+----------------+-----------
+ 20201_1  |   20201 |       11 |        1 | received       | 20201_1_s
+ 20202_1  |   20202 |       14 |        2 | received       | 20202_1_s
+ 20201_2  |   20201 |       12 |        1 | received       | 20201_2_s
+ 20203_1  |   20203 |       16 |        1 | received       | 20203_1_s
+ 20204_1  |   20204 |       18 |        2 | received       | 20204_1_s
+ 20203_2  |   20203 |       19 |        1 | received       | 20203_2_s
+ 20204_2  |   20204 |       20 |        1 | received       | 20204_2_s
+ 20205_1  |   20205 |       12 |        2 | received       | 20205_1_s
+(8 rows)
+
+laptop_store=# select * from shipping_details;
+ ship_id | shipped_by | status 
+---------+------------+--------
+(0 rows)
+
+laptop_store=# insert into shipping_details values ('20201_1_s','delhivery','shipped'),('20202_1_s','DTDC','shipped');
+INSERT 0 2
+
+laptop_store=# insert into shipping_details values ('20201_2_s','delhivery','received'),('20203_1_s','DTDC','received');
+INSERT 0 2
+
+laptop_store=# insert into shipping_details values ('20204_1_s','bluedart','shipped'),('20203_2_s','DTDC','at warehouse');
+INSERT 0 2
+
+laptop_store=# insert into shipping_details values ('20204_2_s','bluedart','at warehouse'),('20205_1_s','DTDC','received');
+INSERT 0 2
+
+laptop_store=# alter table order_details add constraint unique_ship_id unique (ship_id);
+ALTER TABLE
+
+laptop_store=# alter table shipping_details add constraint fk_ship_id foreign key (ship_id) references order_details(ship_id);
+ALTER TABLE
+
+
+select sum(quantity) total_purchase from order_details;
+ total_purchase 
+----------------
+             11
+(1 row)
+
+
+laptop_store=# select name from user_info where user_id in (select user_id from order_details where model_id = 12);
+ name  
+-------
+ John
+ Berta
+(2 rows)
+
+
+laptop_store=# select l.model_id,brand,model from laptops l inner join order_details o using (model_id);  
+ model_id | brand  |      model      
+----------+--------+-----------------
+       11 | lenovo | v130
+       12 | lenovo | ideapad s145
+       12 | lenovo | ideapad s145
+       14 | HP     | notebook 245-G6
+       16 | dell   | vostro 14
+       18 | dell   | inspiron-5567
+       19 | HP     | pavilion x15
+       20 | HP     | pavilion x360
+(8 rows)
+
+
+orders placed by John:
+
+laptop_store=# select count(order_id) from order_details where user_id in (select user_id from user_info where name = 'John');
+ count 
+-------
+     2
+(1 row)
+
+
+
+*********************
+
+test=# create type week as enum('mon','tue','wed','thu','fri');
+CREATE TYPE
+
+test=# alter table t1 add column days week;
+ALTER TABLE
+
+test=# insert into t1 values (7,'kk','wed'),(6,'john','tue');
+INSERT 0 2
+
+test=# select * from t1;
+ id | name | days 
+----+------+------
+  1 | asd  | 
+  2 | dfg  | 
+  3 | hjk  | 
+  4 | xyz  | 
+  5 | ddcc | mon
+  7 | kk   | wed
+  6 | john | tue
+(7 rows)
+
+
+test=# update t1 as t set name = c.name from (values (1,'jimmy'),(2,'joe')) as
+c(id,name) where c.id = t.id;
+UPDATE 2
+test=# select * from t1;
+ id | name  | days 
+----+-------+------
+  3 | hjk   | 
+  4 | xyz   | 
+  5 | ddcc  | mon
+  7 | kk    | wed
+  6 | john  | tue
+  1 | jimmy | 
+  2 | joe   | 
+(7 rows)
+
+
+
+test=# create table tarray (id smallserial, marks integer[3]);
+CREATE TABLE
+
+insert into tarray(marks) values ('{11,23,34}'),('{45,56,67}'),('{78,65,54}'),('{32,21,43}');
+INSERT 0 4
+
+test=# select * from tarray;
+ id |   marks    
+----+------------
+  1 | {11,23,34}
+  2 | {45,56,67}
+  3 | {78,65,54}
+  4 | {32,21,43}
+(4 rows)
+
+
+test=# select marks[2] from tarray where id in (1,2,3,4);
+ marks 
+-------
+    23
+    56
+    65
+    21
+(4 rows)
+
+test=# select max(marks[1]) from tarray;
+ max 
+-----
+  78
+(1 row)
+
+
+
+
+
+
+
+
+
+test=# select * from t1 order by id;
+ id | name  | days 
+----+-------+------
+  1 | jimmy | 
+  2 | joe   | 
+  3 | hjk   | 
+  4 | xyz   | 
+  5 | ddcc  | mon
+  6 | john  | tue
+  7 | kk    | wed
+(7 rows)
+
+
+test=# update test set name = 'alaric' where id = 4;
+
+
+
+select top selling model:
+select model_id,sum(quantity) max_quantity from order_details group by model_id order by max_quantity desc limit 1;
+
+
+laptop with highest price:
+select model_id,model from laptops order by price desc limit 1;
+ model_id |     model     
+----------+---------------
+       20 | pavilion x360
+(1 row)
+
+
+users who have received their products:
+
+select name from user_info where user_id in (select user_id from order_details where ship_id in(select ship_id from shipping_details where status = 'received'));
+
+ name  
+-------
+ John
+ Jose
+ Berta
+(3 rows)
+
+change1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
