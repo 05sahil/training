@@ -43,8 +43,23 @@ def ip_address? (str)
 	return str.match? /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/
 end
 
-puts ip_address?('1.1.1.2')
-puts ip_address?('123.134.156.23')
-puts ip_address?('12.134')
+#puts ip_address?('1.1.1.2')
+#puts ip_address?('123.134.156.23')
+#puts ip_address?('12.134')
+
+
+# exception handling
+begin 
+	puts 'before value of y'
+	puts y
+rescue
+	
+	#retry
+	puts 'rescue block executed'
+else 
+	puts 'No error occured'
+ensure 
+	puts 'Program ends'
+end
 
 
