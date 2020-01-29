@@ -1,16 +1,19 @@
+DATBASE:
 postgres=# create database class_management_system
 postgres-# ;
 
 CREATE DATABASE
 
+TABLE INSTRUCTORS:
 class_management_system=# create table instructors (id smallint primary key, name text not null)
 class_management_system-# ;
 CREATE TABLE
 
+TABLE SUBJECTS:
 class_management_system=# create table subjects (id smallint primary key, name text not null);
 CREATE TABLE
 
-
+TABLE TEACHES:
 class_management_system=# create table teaches (instructor_id smallint, subject_id smallint);CREATE TABLE
 
 class_management_system=# alter table teaches add constraint fkey_ins_id foreign key (instructor_id) references instructors(id);
@@ -18,5 +21,13 @@ ALTER TABLE
 
 class_management_system=# alter table teaches add constraint fkey_sub_id foreign key (subject_id) references subjects(id);
 ALTER TABLE
+
+TABLE CLASSES:
+class_management_system=# create table classes (id smallint primary key, instructor_id smallint references instructors (id), subject_id smallint references subjects (id), time_ time not null, room_no varchar (10) not null, day varchar (15) not null);
+CREATE TABLE
+
+TABLE SUBSTITUTIONS:
+class_management_system=# create table substitutions (id serial primary key,class_id smallint references classes(id), instructor_id smallint references instructors (id));
+CREATE TABLE
 
 
