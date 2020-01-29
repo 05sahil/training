@@ -1,0 +1,22 @@
+postgres=# create database class_management_system
+postgres-# ;
+
+CREATE DATABASE
+
+class_management_system=# create table instructors (id smallint primary key, name text not null)
+class_management_system-# ;
+CREATE TABLE
+
+class_management_system=# create table subjects (id smallint primary key, name text not null);
+CREATE TABLE
+
+
+class_management_system=# create table teaches (instructor_id smallint, subject_id smallint);CREATE TABLE
+
+class_management_system=# alter table teaches add constraint fkey_ins_id foreign key (instructor_id) references instructors(id);
+ALTER TABLE
+
+class_management_system=# alter table teaches add constraint fkey_sub_id foreign key (subject_id) references subjects(id);
+ALTER TABLE
+
+
