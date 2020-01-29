@@ -30,4 +30,30 @@ TABLE SUBSTITUTIONS:
 class_management_system=# create table substitutions (id serial primary key,class_id smallint references classes(id), instructor_id smallint references instructors (id));
 CREATE TABLE
 
+INSERTION:
+class_management_system=# insert into instructors values (1,'John'), (2,'Tim'), (3,'Lucy');
+INSERT 0 3
+
+class_management_system=# select * from instructors
+class_management_system-# ;
+ id | name 
+----+------
+  1 | John
+  2 | Tim
+  3 | Lucy
+(3 rows)
+
+class_management_system=# insert into subjects values (21,'Maths'), (22,'Science'), (23,'English');
+INSERT 0 3
+
+class_management_system=# select * from subjects
+class_management_system-# ;
+ id |  name   
+----+---------
+ 21 | Maths
+ 22 | Science
+ 23 | English
+(3 rows)
+
+
 
