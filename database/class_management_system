@@ -55,5 +55,37 @@ class_management_system-# ;
  23 | English
 (3 rows)
 
+class_management_system=# insert into teaches values (1,21), (1,22), (2,23), (3,23), (3,21), (2,21);
+INSERT 0 6
+
+class_management_system=# select * from teaches;
+
+ instructor_id | subject_id 
+---------------+------------
+             1 |         21
+             1 |         22
+             2 |         23
+             3 |         23
+             3 |         21
+             2 |         21
+(6 rows)
+
+
+class_management_system=# insert into classes values(101,1,22,'9:00','A102','monday');
+INSERT 0 1
+
+class_management_system=# insert into classes values (102,2,23,'10:00','A105','monday'),(103,1,21,'11:00','A101','tuesday'),(104,3,23,'9:00','A102','tuesday'),(105,2,21,'14:00','A108','wednesday');
+INSERT 0 4
+
+class_management_system=# select * from classes;
+
+ id  | instructor_id | subject_id |  time_   | room_no |    day    
+-----+---------------+------------+----------+---------+-----------
+ 101 |             1 |         22 | 09:00:00 | A102    | monday
+ 102 |             2 |         23 | 10:00:00 | A105    | monday
+ 103 |             1 |         21 | 11:00:00 | A101    | tuesday
+ 104 |             3 |         23 | 09:00:00 | A102    | tuesday
+ 105 |             2 |         21 | 14:00:00 | A108    | wednesday
+(5 rows)
 
 
