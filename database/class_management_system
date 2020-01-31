@@ -89,3 +89,26 @@ class_management_system=# select * from classes;
 (5 rows)
 
 
+TABLE REQUESTS:
+
+class_management_system=# create table requests (id serial primary key, by_id smallint references instructors(id), to_id smallint references instructors(id), class_id smallint references classes(id), answer varchar(3), date date not null);
+CREATE TABLE
+
+FUNCTION:
+test=# create or replace function class_changer()
+returns trigger as
+$BODY$
+begin
+if NEW.answer='yes' then
+insert into substitutions (class_id,ins_id) values (OLD.class_id,OLD.to_id);
+end if;
+return NEW;
+end;
+$BODY$
+language plpgsql;
+CREATE FUNCTION
+
+
+
+
+
