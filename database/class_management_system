@@ -235,5 +235,15 @@ class_management_system=# select * from substitutions; id | class_id | instructo
 (1 row)
 
 
+=>query for finding teachers who can take maths class on tuesday at 11:00 
+
+class_management_system=# select t.instructor_id from (select q.instructor_id from teaches q inner join (select a.ins_x as instructor_id from (select x.instructor_id ins_x,y.instructor_id ins_y from (select instructor_id from classes where day!='tuesday' and instructor_id!=1) x inner join (select instructor_id from classes where time_!='11:00' and day='tuesday' and instructor_id!=1)y on (x.instructor_id != y.instructor_id)) as a union all select b.ins_y from (select x.instructor_id ins_x,y.instructor_id ins_y from (select instructor_id from classes where day!='tuesday' and instructor_id!=1) x inner join (select instructor_id from classes where time_!='11:00' and day='tuesday' and instructor_id!=1)y on (x.instructor_id != y.instructor_id)) as b) w on (q.instructor_id=w.instructor_id and q.subject_id = 21)) as t group by instructor_id;
+ 
+instructor_id 
+---------------
+             3
+             2
+(2 rows)
+
 
 
