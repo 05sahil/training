@@ -1,5 +1,76 @@
 ********CLASS MANAGEMENT SYSTEM********
 
+Total no. of tables: 06
+
+*******DB STRUCTURE:*******
+
+1. instructors
+	column-name	data-type	constraint
+	id		smallint	primary key
+	name		text		not null
+
+2. subjects
+	column-name	data-type	constraint
+	id		smallint	primary key
+	name		text		not null	
+
+3. teaches
+	column-name	data-type	constraint
+	instructor_id	smallint	foreign key instructors(id)
+	subject_id	smallint	foreign key classes(id)	
+
+4. classes
+	column-name	data-type	constraint
+	id		smallint	primary key
+	instructor_id	smallint	foreign key instructors(id)
+	subject_id	smallint	foreign key classes(id)
+	time		time		not null
+	roomno.		varchar(10)	not null
+	day		varchar(15)	not null
+
+5.substitutions
+	column-name	data-type	constraint
+	id		serial		primary key
+	class_id	smallint	foreign key classes(id)
+	instructor_id	smallint	foreign key instructors(id)
+	date		date		not null
+
+6.requests
+	column-name	data-type	constraint
+	id		serial		primary key
+	by_id		smallint	foreign key instructors(id)
+	to_id		smallint	foreign key instructors(id)
+	class_id	smallint	foreign key classes(id)
+	answer		varchar(3)	
+	date		date		not null
+
+
+7.FUNCTION class_changer(): 
+
+=> when an instructor accepts the request for substitution then this function will updates the answer column in table requests and adds the respective class into substitutions table.
+
+create or replace function class_changer()
+returns trigger as
+$BODY$
+begin
+if NEW.answer='yes' then
+insert into substitutions (class_id,instructor_id,date) values (OLD.class_id,OLD.to_id,OLD.date);
+end if;
+return NEW;
+end;
+$BODY$
+language plpgsql;
+
+
+8.TRIGGER class_change:
+
+=> Calls the function class_changer whenever update event is being fired on table requests and answer being updated to 'yes'.
+
+create trigger class_change
+before update
+on requests
+for each row
+execute procedure class_changer();
 
 
 ********DATBASE:********
