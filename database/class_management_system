@@ -246,4 +246,38 @@ instructor_id
 (2 rows)
 
 
+=>query for finding teachers who can take maths class of instructor lucy (id=3) on thursday at 15:00 
+
+select c.instructor_id from (select a.instructor_id from teaches a inner join (select x.instructor_id from(select instructor_id from classes where day!='thursday' and instructor_id!=3)x union all select y.instructor_id from (select instructor_id from classes where day ='thursday' and time_!='15:00' and instructor_id!=3) y) b on (a.instructor_id = b.instructor_id and subject_id=21)) c group by instructor_id;
+
+ instructor_id 
+---------------
+             1
+             2
+(2 rows)
+
+
+=>=>query for finding teachers who can take english class of instructor tim (id=2) on tuesday at 10:00 
+
+select c.instructor_id from (select a.instructor_id from teaches a inner join (select x.instructor_id from(select instructor_id from classes where day!='tuesday' and instructor_id!=2)x union all select y.instructor_id from (select instructor_id from classes where day ='tuesday' and time_!='10:00' and instructor_id!=2) y) b on (a.instructor_id = b.instructor_id and subject_id=23)) c group by instructor_id;
+
+ instructor_id 
+---------------
+             3
+
+
+select a.instructor_id from teaches a inner join (select instructor_id from classes where (day = 'thursday' and time_!='11:00' and instructor_id!=3) or (day!='thursday' and instructor_id!=3) group by instructor_id) b on (a.instructor_id = b.instructor_id and subject_id=21); 
+
+
+
+=>query for finding teachers who can take maths class of instructor tim (id=2) on wednesday at 14:00
+
+select a.instructor_id from teaches a inner join (select instructor_id from classes where (day = 'wednesday' and time_!='14:00' and instructor_id!=2) or (day!='wednesday' and instructor_id!=2) group by instructor_id) b on (a.instructor_id = b.instructor_id and subject_id=21);
+
+
+
+
+
+
+
 
