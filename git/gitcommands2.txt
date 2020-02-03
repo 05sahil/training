@@ -33,6 +33,20 @@ git reset --hard HEAD~1
 HEAD is now at 26c7855 added txt files
 
 
+ git revert 0ae1745
+[master 402394d] reverting changes - text.txt
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+
+ git log --oneline
+402394d reverting changes - text.txt
+0ae1745 add versions
+26c7855 added txt files
+
+
+
+
+
 
 
 
