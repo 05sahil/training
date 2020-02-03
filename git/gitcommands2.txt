@@ -1,0 +1,12 @@
+ git log --oneline
+7ffead4 commit 2
+26c7855 added txt files
+
+git checkout text.txt
+
+git reset HEAD text.txt
+Unstaged changes after reset:
+M	text.txt
+
+
+
