@@ -1,5 +1,9 @@
 def url_validate (url)
-  return url.match? (/^(http|https):\/\/.+/)
+  return url.match? (/^(http|https):(\/\/).+/)
 end
 
-puts url_validate('https://localhost:3001')
+if (url_validate('http:/beryl.com'))
+  puts "This is a valid URL."
+else 
+  puts "This is not a valid URL."
+end
