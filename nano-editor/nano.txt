@@ -1,0 +1,12 @@
+
+ctrl + o => save a file
+
+ctrl + x => exit from a file
+
+alt + a => selection
+
+alt + ^ => copy
+
+ctrl + u => paste
+
+
