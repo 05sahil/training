@@ -22,4 +22,11 @@ create    db/migrate/20200204072512_remove_weight_from_laptops.rb
 
 rake db:migrate
 
+rails g migration ChangeLaptops
+class ChangeLaptops < ActiveRecord::Migration[6.0]
+  def change
+  	rename_column :laptops, :model, :name
+  end
+end
+
 
