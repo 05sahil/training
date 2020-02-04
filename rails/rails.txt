@@ -29,4 +29,17 @@ class ChangeLaptops < ActiveRecord::Migration[6.0]
   end
 end
 
+rails g model user name:text email:text
 
+rake db:migrate
+
+
+rails g migration ChangePhoneToBeStringInUsers
+
+class ChangePhoneToBeStringInUsers < ActiveRecord::Migration[6.0]
+  def change
+  	change_column :users, :phoneno, :string
+  end
+end
+
+rake db:migrate
