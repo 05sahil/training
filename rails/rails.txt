@@ -10,3 +10,8 @@ rails generate model laptop
       create      test/models/laptop_test.rb
       create      test/fixtures/laptops.yml
 
+
+rake db:migrate
+20200204051630 CreateLaptops: migrated (0.0504s) 
+
+
