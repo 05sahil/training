@@ -14,4 +14,12 @@ rails generate model laptop
 rake db:migrate
 20200204051630 CreateLaptops: migrated (0.0504s) 
 
+rails generate migration AddWeightToLaptops weight:integer
+create    db/migrate/20200204072243_add_weight_to_laptops.rb
+
+rails generate migration RemoveWeightFromLaptops
+create    db/migrate/20200204072512_remove_weight_from_laptops.rb
+
+rake db:migrate
+
 
