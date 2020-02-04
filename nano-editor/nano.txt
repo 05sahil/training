@@ -9,4 +9,10 @@ alt + ^ => copy
 
 ctrl + u => paste
 
+ctrl + k => cut
 
+alt + \ => moves cursor to top
+
+alt + / => moves cursor to bottom
+
+ctrl + w => search a word 
