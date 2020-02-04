@@ -1,0 +1,12 @@
+rake db:create
+Created database 'laptop_store_man_system'
+
+
+rails generate model laptop
+      invoke  active_record
+      create    db/migrate/20200204051630_create_laptops.rb
+      create    app/models/laptop.rb
+      invoke    test_unit
+      create      test/models/laptop_test.rb
+      create      test/fixtures/laptops.yml
+
