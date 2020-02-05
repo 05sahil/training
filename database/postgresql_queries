@@ -533,6 +533,22 @@ ALTER TABLE
 laptop_store=# alter table laptops drop column created_at;
 ALTER TABLE
 
+laptop_store=# alter table order_details rename to orders;
+ALTER TABLE
+
+laptop_store=# drop table shipping_details;
+DROP TABLE
+
+laptop_store=# drop table orders;
+DROP TABLE
+
+laptop_store=# create table orders (id integer primary key, u_id integer references users(id), ship_id varchar(30), payment_status varchar(30) not null);
+CREATE TABLE
+
+
+
+
+
 
 
 
