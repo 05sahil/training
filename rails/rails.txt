@@ -43,3 +43,17 @@ class ChangePhoneToBeStringInUsers < ActiveRecord::Migration[6.0]
 end
 
 rake db:migrate
+
+ rails g model laptop_spec ram hdd processor os screen color weight
+
+rails g model user name:text username:text password:text email:text phoneno:text address:text
+
+rake db:migrate
+
+
+
+
+
+
+
+
