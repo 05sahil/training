@@ -545,6 +545,24 @@ DROP TABLE
 laptop_store=# create table orders (id integer primary key, u_id integer references users(id), ship_id varchar(30), payment_status varchar(30) not null);
 CREATE TABLE
 
+laptop_store=# create table order_products (order_id integer references orders(id), pro_id integer references laptops(id));
+CREATE TABLE
+
+laptop_store=# alter table orders alter column ship_id set not null;
+ALTER TABLE
+
+laptop_store=# alter table orders add constraint unique_ship_id unique(ship_id); 
+ALTER TABLE
+
+laptop_store=# create table shipment (id varchar(30) references orders(ship_id), status text not null, tracking_id text not null);
+CREATE TABLE
+
+laptop_store=# alter table shipment rename to shipments;
+ALTER TABLE
+
+
+
+
 
 
 
