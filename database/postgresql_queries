@@ -564,6 +564,21 @@ ALTER TABLE
 laptop_store=# insert into orders values (022001,20201,'022001_s','POD'),(022002,20201,'022002_s','POD'),(022003,20202,'022003_s','received'),(022004,20203,'022004_s','received'),(022005,20203,'022005_s','POD');
 INSERT 0 5
 
+laptop_store=# alter table order_products add column quantity integer not null;
+ALTER TABLE
+
+laptop_store=# alter table order_products add column quantity integer not null;
+ALTER TABLE
+
+laptop_store=# insert into order_products values (022001,11,1),(022001,12,1);
+INSERT 0 2
+
+laptop_store=# insert into order_products values (022002,13,2),(022003,20,2),(022003,18,1);
+INSERT 0 3
+
+laptop_store=# insert into order_products values (022004,15,3),(022005,12,1),(022005,16,1),(022005,16,1);
+INSERT 0 4
+
 
 
 
