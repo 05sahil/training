@@ -579,6 +579,25 @@ INSERT 0 3
 laptop_store=# insert into order_products values (022004,15,3),(022005,12,1),(022005,16,1),(022005,16,1);
 INSERT 0 4
 
+laptop_store=# insert into shipments values ('022001_s','shipped','0011');
+INSERT 0 1
+
+laptop_store=# insert into shipments values ('022002_s','shipped','0012'),('022003_s','at warehouse','0013');
+INSERT 0 2
+
+laptop_store=# insert into shipments values ('022004_s','shipped','0014'),('022005_s','at warehouse','0015');
+INSERT 0 2
+
+laptop_store=# select * from shipments;
+    id    |    status    | tracking_id 
+----------+--------------+-------------
+ 022001_s | shipped      | 0011
+ 022002_s | shipped      | 0012
+ 022003_s | at warehouse | 0013
+ 022004_s | shipped      | 0014
+ 022005_s | at warehouse | 0015
+(5 rows)
+
 
 
 
