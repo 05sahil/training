@@ -527,6 +527,13 @@ select name from user_info where user_id in (select user_id from order_details w
 change1
 
 
+laptop_store=# alter table user_info rename to users;
+ALTER TABLE
+
+laptop_store=# alter table laptops drop column created_at;
+ALTER TABLE
+
+
 
 
 
