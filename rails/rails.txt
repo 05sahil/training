@@ -50,6 +50,19 @@ rails g model user name:text username:text password:text email:text phoneno:text
 
 rake db:migrate
 
+rails g model order u_id:bigint ship_id:bigint payment_status:text
+
+ rails g model order_products order_id:bigint pro_id:bigint quantity:integer
+
+rails g model shipment status:text tracking_id
+
+rake db:migrate
+
+
+
+
+
+
 
 
 
