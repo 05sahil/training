@@ -77,6 +77,20 @@ rake db:rollback
 
 
 
+rails g migration RenameUsersToPeople
+
+class RenameUsersToPeople < ActiveRecord::Migration[6.0]
+  def change
+  	reversible do |x|
+  	  	x.up {rename_table :users, :people}
+  	  	x.down {rename_table :people, :users}
+  	end
+  end
+end
+
+rake db:migrtae
+rake db:rollback
+
 
 
 
