@@ -115,5 +115,28 @@ rake db:migrate
 
 
 
+rails g migration AddUserIdtoOrders
+
+class AddUserIdToOrders < ActiveRecord::Migration[6.0]
+  def change
+    add_column :orders, :user_id, :bigint
+  end
+end
+
+
+rails g migration AddFkeyUserIdtoOrders
+
+class AddFkeyUserIdToOrders < ActiveRecord::Migration[6.0]
+  def change
+    add_foreign_key :orders, :users
+  end
+end
+
+rake db:migrate
+
+
+
+
+
 
 
