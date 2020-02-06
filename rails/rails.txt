@@ -174,6 +174,37 @@ end
 rake db:migrate
 
 
+******CHANGING O/P MESSAGES************
+rails g migration AddIndexToLaptops
+
+class AddIndexToLaptops < ActiveRecord::Migration[6.0]
+  def change
+  	reversible do |x|
+  	  x.up do 
+  	  	suppress_messages{add_index :laptops, :brand}
+  	  	say "!!Index Created!!", true
+  	  end
+  	  x.down do
+  	  	suppress_messages{remove_index :laptops, :brand}
+  	  	say "!!Index Removed!!", true
+  	  end
+  	end
+  end
+end
+
+rake db:migrate
+O/P:
+== 20200206124931 AddIndexToLaptops: migrating ================================
+   -> !!Index Created!!
+== 20200206124931 AddIndexToLaptops: migrated (0.0426s) =======================
+
+
+rake db:rollback
+
+== 20200206124931 AddIndexToLaptops: reverting ================================
+   -> !!Index Removed!!
+== 20200206124931 AddIndexToLaptops: reverted (0.0080s) =======================
+
 
 
 
