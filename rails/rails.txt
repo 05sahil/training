@@ -72,7 +72,7 @@ class ChangeUsersPasswordToString < ActiveRecord::Migration[6.0]
   end
 end
 
-rake db:migrtae
+rake db:migrate
 rake db:rollback
 
 
@@ -88,10 +88,18 @@ class RenameUsersToPeople < ActiveRecord::Migration[6.0]
   end
 end
 
-rake db:migrtae
+rake db:migrate
 rake db:rollback
 
 
+rails g migration AddUserRefToOrders
+
+class AddUserRefToOrders < ActiveRecord::Migration[6.0]
+  def change
+  	add_reference :orders, :user, foreign_key: true
+  end
+end
+rake db:migrate
 
 
 
