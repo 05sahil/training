@@ -59,6 +59,7 @@ rails g model shipment status:text tracking_id
 rake db:migrate
 
 
+**********USE OF REVERSIBLE************
  rails g migration ChangeUsersPasswordToString
 
 class ChangeUsersPasswordToString < ActiveRecord::Migration[6.0]
@@ -76,7 +77,7 @@ rake db:migrate
 rake db:rollback
 
 
-
+**********RENAME AND USE OF REVERSIBLE************
 rails g migration RenameUsersToPeople
 
 class RenameUsersToPeople < ActiveRecord::Migration[6.0]
@@ -92,6 +93,7 @@ rake db:migrate
 rake db:rollback
 
 
+**********ADD REFERENCE************
 rails g migration AddUserRefToOrders
 
 class AddUserRefToOrders < ActiveRecord::Migration[6.0]
@@ -102,7 +104,7 @@ end
 rake db:migrate
 
 
-
+**********REMOVE REFERENCE************
 rails g migration RemoveUserRefToOrders
 
 class RemoveUserRefToOrders < ActiveRecord::Migration[6.0]
@@ -114,7 +116,7 @@ end
 rake db:migrate
 
 
-
+**********ADD USERID COLUMN************
 rails g migration AddUserIdtoOrders
 
 class AddUserIdToOrders < ActiveRecord::Migration[6.0]
@@ -124,6 +126,7 @@ class AddUserIdToOrders < ActiveRecord::Migration[6.0]
 end
 
 
+**********FOREIGN KEY************
 rails g migration AddFkeyUserIdtoOrders
 
 class AddFkeyUserIdToOrders < ActiveRecord::Migration[6.0]
@@ -135,7 +138,7 @@ end
 rake db:migrate
 
 
-
+******CHECK CONSTRAINT************
 rails g migration AddCheckConstraintToOrderProducts
 
 class AddCheckConstraintToOrderProducts < ActiveRecord::Migration[6.0]
@@ -152,6 +155,19 @@ class AddCheckConstraintToOrderProducts < ActiveRecord::Migration[6.0]
         SQL
       end	
     end
+  end
+end
+
+rake db:migrate
+
+
+******COLUMN MODIFIERS - default and null************
+rails g migration ChangeDetailsOfLaptopSpecs
+
+class ChangeDetailsOfLaptopSpecs < ActiveRecord::Migration[6.0]
+  def change
+  	change_column :laptop_specs, :os, :string, default: 'DOS'
+  	change_column_null :laptop_specs, :processor, false
   end
 end
 
