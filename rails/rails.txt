@@ -206,5 +206,28 @@ rake db:rollback
 == 20200206124931 AddIndexToLaptops: reverted (0.0080s) =======================
 
 
+******ADDING RECORDS************
+2.6.3 :009 > a = Laptop.new
+ => #<Laptop id: nil, brand: nil, name: nil, price: nil, quantity: nil, created_at: nil, updated_at: nil> 
+2.6.3 :010 > a.id = 21
+ => 21 
+2.6.3 :011 > a.brand = 'HP'
+ => "HP" 
+2.6.3 :012 > a.name = 'Pavilion x-30'
+ => "Pavilion x-30" 
+2.6.3 :013 > a.price = 24999
+ => 24999 
+2.6.3 :014 > a.quantity = 15
+ => 15 
+2.6.3 :015 > a.save
+
+
+2.6.3 :017 > Laptop.create(id:22,brand:'Dell',name:'Vostro 55',price:28649,quantity:25)
+ => #<Laptop id: 22, brand: "Dell", name: "Vostro 55", price: 28649, quantity: 25, created_at: "2020-02-07 13:00:30", updated_at: "2020-02-07 13:00:30"> 
+
+
+
+
+
 
 
