@@ -103,6 +103,36 @@
  => Matrix[[332, 435, 572], [2708, 3458, 4403], [5284, 6991, 9245]] 
 
 
+2.7.0 :067 > x.each{|e| print e*2,' '}
+4 8 10 24 46 86 112 134 156  => Matrix[[2, 4, 5], [12, 23, 43], [56, 67, 78]] 
+
+
+2.7.0 :068 > x.each_with_index{|e,r,c| puts "#{e} is at position [#{r},#{c}]"}
+2 is at position [0,0]
+4 is at position [0,1]
+5 is at position [0,2]
+12 is at position [1,0]
+23 is at position [1,1]
+43 is at position [1,2]
+56 is at position [2,0]
+67 is at position [2,1]
+78 is at position [2,2]
+
+
+2.7.0 :069 > x.empty?
+ => false 
+
+2.7.0 :070 > x.eql?(d)
+ => false 
+
+2.7.0 :071 > x.regular?
+ => true 
+
+2.7.0 :072 > x.zero?
+ => false 
+
+2.7.0 :073 > x.real?
+ => true 
 
 
 
