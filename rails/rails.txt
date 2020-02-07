@@ -247,5 +247,14 @@ rake db:rollback
  => #<Laptop id: 21, brand: "HP", name: "Pavilion x-30", price: 24999, quantity: 15, created_at: "2020-02-07 12:58:35", updated_at: "2020-02-07 12:58:35"> 
 
 
+******UPDATE RECORDS************
+2.6.3 :023 > Laptop.find(21).update(quantity:32)
+  Laptop Load (0.7ms)  SELECT "laptops".* FROM "laptops" WHERE "laptops"."id" = $1 LIMIT $2  [["id", 21], ["LIMIT", 1]]
+   (0.4ms)  BEGIN
+  Laptop Update (0.6ms)  UPDATE "laptops" SET "quantity" = $1, "updated_at" = $2 WHERE "laptops"."id" = $3  [["quantity", 32], ["updated_at", "2020-02-07 13:19:39.901074"], ["id", 21]]
+   (31.6ms)  COMMIT
+ => true 
+
+
 
 
