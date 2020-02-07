@@ -226,7 +226,25 @@ rake db:rollback
  => #<Laptop id: 22, brand: "Dell", name: "Vostro 55", price: 28649, quantity: 25, created_at: "2020-02-07 13:00:30", updated_at: "2020-02-07 13:00:30"> 
 
 
+******FINDING RECORDS************
+2.6.3 :018 > Laptop.first
+  Laptop Load (0.6ms)  SELECT "laptops".* FROM "laptops" ORDER BY "laptops"."id" ASC LIMIT $1  [["LIMIT", 1]]
+ => #<Laptop id: 21, brand: "HP", name: "Pavilion x-30", price: 24999, quantity: 15, created_at: "2020-02-07 12:58:35", updated_at: "2020-02-07 12:58:35"> 
 
+
+2.6.3 :019 > Laptop.last
+  Laptop Load (0.5ms)  SELECT "laptops".* FROM "laptops" ORDER BY "laptops"."id" DESC LIMIT $1  [["LIMIT", 1]]
+ => #<Laptop id: 22, brand: "Dell", name: "Vostro 55", price: 28649, quantity: 25, created_at: "2020-02-07 13:00:30", updated_at: "2020-02-07 13:00:30"> 
+
+
+2.6.3 :020 > Laptop.find(22)
+  Laptop Load (0.5ms)  SELECT "laptops".* FROM "laptops" WHERE "laptops"."id" = $1 LIMIT $2  [["id", 22], ["LIMIT", 1]]
+ => #<Laptop id: 22, brand: "Dell", name: "Vostro 55", price: 28649, quantity: 25, created_at: "2020-02-07 13:00:30", updated_at: "2020-02-07 13:00:30"> 
+
+
+2.6.3 :021 > Laptop.find_by(brand:"HP")
+  Laptop Load (0.6ms)  SELECT "laptops".* FROM "laptops" WHERE "laptops"."brand" = $1 LIMIT $2  [["brand", "HP"], ["LIMIT", 1]]
+ => #<Laptop id: 21, brand: "HP", name: "Pavilion x-30", price: 24999, quantity: 15, created_at: "2020-02-07 12:58:35", updated_at: "2020-02-07 12:58:35"> 
 
 
 
