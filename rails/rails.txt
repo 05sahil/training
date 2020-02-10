@@ -372,7 +372,48 @@ end
 2.6.3 :045 > Order.create(id:105,user_id:2,payment_status:'received')
 
 
+******RETRIEVE RECORDS USING ASSOCIATION (order and shipment)************
+ap Order.first.shipment
+{
+             :id => 1001,
+         :status => "warehouse",
+    :tracking_id => nil,
+     :created_at => Mon, 10 Feb 2020 12:08:00 UTC +00:00,
+     :updated_at => Mon, 10 Feb 2020 12:08:00 UTC +00:00,
+       :order_id => 101
+}
 
+
+2.6.3 :051 > ap Order.last.shipment
+
+{
+             :id => 1005,
+         :status => "shipped",
+    :tracking_id => nil,
+     :created_at => Mon, 10 Feb 2020 12:09:01 UTC +00:00,
+     :updated_at => Mon, 10 Feb 2020 12:09:01 UTC +00:00,
+       :order_id => 105
+}
+
+2.6.3 :052 > Shipment.last.order
+{
+                :id => 105,
+    :payment_status => "received",
+        :created_at => Mon, 10 Feb 2020 12:04:45 UTC +00:00,
+        :updated_at => Mon, 10 Feb 2020 12:04:45 UTC +00:00,
+           :user_id => 2
+}
+
+
+2.6.3 :055 > ap Order.find(105).shipment
+{
+             :id => 1005,
+         :status => "shipped",
+    :tracking_id => nil,
+     :created_at => Mon, 10 Feb 2020 12:09:01 UTC +00:00,
+     :updated_at => Mon, 10 Feb 2020 12:09:01 UTC +00:00,
+       :order_id => 105
+}
 
 
 
