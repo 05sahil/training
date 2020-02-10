@@ -323,6 +323,31 @@ class User < ApplicationRecord
 end
 
 
+******REMOVE COL(ship_id) FROM ORDERS************
+rails g migration RemoveShipIdFromOrder ship_id
+
+class RemoveShipIdFromOrder < ActiveRecord::Migration[6.0]
+  def change
+
+    remove_column :orders, :ship_id, :string
+  end
+end
+
+
+******ADD FOREIGN KEY TO SHIPMENTS REF(ORDERS)************
+rails g migration AddRefToShipments
+
+class AddRefToShipments < ActiveRecord::Migration[6.0]
+  def change
+  	add_column :shipments, :order_id, :bigint
+  	add_foreign_key :shipments, :orders
+  end
+end
+
+rake db:migrate
+
+
+
 
 
 
