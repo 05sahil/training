@@ -256,7 +256,7 @@ rake db:rollback
  => true 
 
 
-******ADDING 1 TO 1 RELATIONSHIP B/W LAPTOP AND LAPTOP_SPEC************
+******ADDING 1 TO 1 CONNECTION B/W LAPTOP AND LAPTOP_SPEC************
 class LaptopSpec < ApplicationRecord
   belongs_to :laptop
 end
@@ -280,6 +280,47 @@ end
 }
 
 
+******ADDING RECORDS TO TABLE USERS************
+2.6.3 :032 > User.create(name:'Berta',username:'Berta123',password:'12345',email:'xyz.com',phoneno:'99887766',address:'12www fbd')
+
+{
+                :id => 2,
+              :name => "Berta",
+          :username => "Berta123",
+          :password => "12345",
+             :email => "xyz.com",
+           :phoneno => "99887766",
+           :address => "12www fbd",
+        :created_at => Mon, 10 Feb 2020 10:30:08 UTC +00:00,
+        :updated_at => Mon, 10 Feb 2020 10:30:08 UTC +00:00
+    }
+
+
+
+2.6.3 :032 > User.create(name:'john',username:'john123',password:'12345',email:'xyz.com',phoneno:'99887766',address:'12www fbd')
+
+{
+                :id => 1,
+              :name => "john",
+          :username => "john123",
+          :password => "12345",
+             :email => "xyz.com",
+           :phoneno => "99887766",
+           :address => "12www fbd",
+        :created_at => Mon, 10 Feb 2020 10:29:28 UTC +00:00,
+        :updated_at => Mon, 10 Feb 2020 10:29:28 UTC +00:00
+    }
+
+
+
+******ADDING 1 TO MANY CONNECTION B/W USER AND ORDERS************
+class Order < ApplicationRecord
+  belongs_to :user
+end
+
+class User < ApplicationRecord
+  has_many :orders
+end
 
 
 
