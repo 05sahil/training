@@ -347,7 +347,13 @@ end
 rake db:migrate
 
 
+******ADDING 1 TO 1 CONNECTION B/W ORDER AND SHIPMENT************
+class Shipment < ApplicationRecord
+  belongs_to :order
+end
 
-
-
+class Order < ApplicationRecord
+  belongs_to :user
+  has_one :shipment
+end
 
