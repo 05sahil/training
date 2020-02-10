@@ -357,3 +357,26 @@ class Order < ApplicationRecord
   has_one :shipment
 end
 
+
+******ADDING RECORDS TO ORDERS AND SHIPMENTS************
+2.6.3 :045 > Shipment.create(id:1005,status:'shipped',order_id:105)
+2.6.3 :045 > Shipment.create(id:1004,status:'delivered',order_id:104)
+2.6.3 :045 > Shipment.create(id:1003,status:'delivered',order_id:103)
+2.6.3 :045 > Shipment.create(id:1002,status:'warehouse',order_id:102)
+2.6.3 :045 > Shipment.create(id:1001,status:'warehouse',order_id:101)
+
+2.6.3 :045 > Order.create(id:101,user_id:1,payment_status:'received')
+2.6.3 :045 > Order.create(id:102,user_id:1,payment_status:'pod')
+2.6.3 :045 > Order.create(id:103,user_id:1,payment_status:'pod')
+2.6.3 :045 > Order.create(id:104,user_id:2,payment_status:'received')
+2.6.3 :045 > Order.create(id:105,user_id:2,payment_status:'received')
+
+
+
+
+
+
+
+
+
+
