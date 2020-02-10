@@ -256,5 +256,32 @@ rake db:rollback
  => true 
 
 
+******ADDING 1 TO 1 RELATIONSHIP B/W LAPTOP AND LAPTOP_SPEC************
+class LaptopSpec < ApplicationRecord
+  belongs_to :laptop
+end
+
+class Laptop < ApplicationRecord
+  has_one :laptop_spec
+end
+
+2.6.3 :023 > l2 = Laptop.find(22)
+2.6.3 :024 > ap l2.laptop_spec
+
+
+ {
+            :id => 2,
+           :ram => "2gb",
+           :hdd => "500gb",
+     :processor => "i3",
+    :created_at => Mon, 10 Feb 2020 09:43:17 UTC +00:00,
+    :updated_at => Mon, 10 Feb 2020 09:43:17 UTC +00:00,
+     :laptop_id => 22
+}
+
+
+
+
+
 
 
