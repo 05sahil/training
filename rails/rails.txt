@@ -421,13 +421,35 @@ ap Order.first.shipment
 rails g migration RemoveProIdFromOrderProducts pro_id
 create    db/migrate/20200211043833_remove_pro_id_from_order_products.rb
 
-rails g migration AddRefLaptopsToOrderProducts laptops:references
-create    db/migrate/20200211044022_add_ref_laptops_to_order_products.rb
-
-rails g migration AddRefOrdersToOrderProducts orders:references
-create    db/migrate/20200211044136_add_ref_orders_to_order_products.rb
+rails g migration AddRefKeyToOrderProducts
+class AddFkeyToOrderProducts < ActiveRecord::Migration[6.0]
+  def change
+  	add_column :order_products, :laptop_id, :bigint
+  	add_column :order_products, :order_id, :bigint
+  	add_foreign_key :order_products, :laptops
+  	add_foreign_key :order_products, :orders
+  end
+end
 
 rails db:migrate
+
+
+
+******ADDING RECORDS TO order_products************
+2.6.3 :049 > OrderProduct.create(order_id:101,laptop_id:22,quantity:2)
+2.6.3 :049 > OrderProduct.create(order_id:102,laptop_id:22,quantity:1)
+2.6.3 :049 > OrderProduct.create(order_id:102,laptop_id:21,quantity:2)
+2.6.3 :049 > OrderProduct.create(order_id:103,laptop_id:21,quantity:4)
+2.6.3 :049 > OrderProduct.create(order_id:104,laptop_id:21,quantity:4)
+2.6.3 :049 > OrderProduct.create(order_id:104,laptop_id:22,quantity:2)
+2.6.3 :049 > OrderProduct.create(order_id:105,laptop_id:21,quantity:1)
+2.6.3 :049 > OrderProduct.create(order_id:105,laptop_id:22,quantity:3)
+
+
+
+
+
+
 
 
 
