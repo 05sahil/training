@@ -417,6 +417,19 @@ ap Order.first.shipment
 
 
 
+******ADDING FOREIGN KEYS TO order_products REF(orders, laptops)************
+rails g migration RemoveProIdFromOrderProducts pro_id
+create    db/migrate/20200211043833_remove_pro_id_from_order_products.rb
+
+rails g migration AddRefLaptopsToOrderProducts laptops:references
+create    db/migrate/20200211044022_add_ref_laptops_to_order_products.rb
+
+rails g migration AddRefOrdersToOrderProducts orders:references
+create    db/migrate/20200211044136_add_ref_orders_to_order_products.rb
+
+rails db:migrate
+
+
 
 
 
