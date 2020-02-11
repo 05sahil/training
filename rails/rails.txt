@@ -481,6 +481,29 @@ class User < ApplicationRecord
   has_one :history, through: :account
 end
 
+2.7.0 :015 > ap User.find(2).account
+ {
+            :id => 102,
+       :user_id => 2,
+    :created_at => Tue, 11 Feb 2020 10:26:23 UTC +00:00,
+    :updated_at => Tue, 11 Feb 2020 10:26:23 UTC +00:00
+}
+
+ap User.find(1).history
+ {
+            :id => 201,
+    :account_id => 101,
+    :created_at => Tue, 11 Feb 2020 10:28:32 UTC +00:00,
+    :updated_at => Tue, 11 Feb 2020 10:28:32 UTC +00:00
+}
+
+2.7.0 :017 > ap Account.find(101).user
+ {
+            :id => 1,
+          :name => "john",
+    :created_at => Tue, 11 Feb 2020 10:21:12 UTC +00:00,
+    :updated_at => Tue, 11 Feb 2020 10:21:12 UTC +00:00
+}
 
 
 
