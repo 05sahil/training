@@ -446,6 +446,27 @@ rails db:migrate
 2.6.3 :049 > OrderProduct.create(order_id:105,laptop_id:22,quantity:3)
 
 
+******ADDING CONNECTIONS TO order_products one-to-many(orders and laptops)************
+class OrderProduct < ApplicationRecord
+   belongs_to :orders
+   belongs_to :laptops
+end
+
+class Order < ApplicationRecord
+  belongs_to :user
+  has_one :shipment
+  has_many :order_products
+  
+end
+
+class Laptop < ApplicationRecord
+  has_one :laptop_spec
+  has_many :order_products
+end
+
+
+
+
 
 
 
