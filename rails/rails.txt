@@ -562,6 +562,22 @@ end
 #<Laptop id: 21, brand: "HP", name: "Pavilion x-30", price: 24999, quantity: 32, created_at: "2020-02-07 12:58:35", updated_at: "2020-02-07 13:19:39">] 
 
 
+**********QUERY INTERFACE: data retrieval (for_each)************
+
+2.6.3 :022 > User.find(1).orders.find_each do |x|
+2.6.3 :023 >     ap x.payment_status
+2.6.3 :024?>   end
+
+"received"
+"pod"
+"pod"
+
+2.6.3 :031 > Laptop.find_each do |x|
+2.6.3 :032 >     puts x.name
+2.6.3 :033?>   end
+
+Pavilion x-30
+Vostro 55
 
 
 
