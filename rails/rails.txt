@@ -593,7 +593,22 @@ Vostro 55
 [#<OrderProduct id: 8, quantity: 4, created_at: "2020-02-11 05:59:01", updated_at: "2020-02-11 05:59:01", laptop_id: 21, order_id: 104>, 
 #<OrderProduct id: 9, quantity: 2, created_at: "2020-02-11 05:59:07", updated_at: "2020-02-11 05:59:07", laptop_id: 22, order_id: 104>]> 
 
+2.6.3 :049 > OrderProduct.where("order_id=:orderid",orderid:val[:key])
+[#<OrderProduct id: 10, quantity: 1, created_at: "2020-02-11 05:59:17", updated_at: "2020-02-11 05:59:17", laptop_id: 21, order_id: 105>, 
+#<OrderProduct id: 11, quantity: 3, created_at: "2020-02-11 05:59:26", updated_at: "2020-02-11 05:59:26", laptop_id: 22, order_id: 105>]
 
+
+**********QUERY INTERFACE: subset conditions************
+
+2.6.3 :064 > OrderProduct.where(order_id:[104,105])
+[#<OrderProduct id: 8, quantity: 4, created_at: "2020-02-11 05:59:01", updated_at: "2020-02-11 05:59:01", laptop_id: 21, order_id: 104>, 
+#<OrderProduct id: 9, quantity: 2, created_at: "2020-02-11 05:59:07", updated_at: "2020-02-11 05:59:07", laptop_id: 22, order_id: 104>, 
+#<OrderProduct id: 10, quantity: 1, created_at: "2020-02-11 05:59:17", updated_at: "2020-02-11 05:59:17", laptop_id: 21, order_id: 105>, 
+#<OrderProduct id: 11, quantity: 3, created_at: "2020-02-11 05:59:26", updated_at: "2020-02-11 05:59:26", laptop_id: 22, order_id: 105>]
+
+2.6.3 :065 > User.find([1,2])
+[#<User id: 1, name: "john", username: "john123", password: [FILTERED], email: "xyz.com", phoneno: "99887766", address: "12www fbd", created_at: "2020-02-10 10:29:28", updated_at: "2020-02-10 10:29:28">, 
+#<User id: 2, name: "Berta", username: "Berta123", password: [FILTERED], email: "xyz.com", phoneno: "99887766", address: "12www fbd", created_at: "2020-02-10 10:30:08", updated_at: "2020-02-10 10:30:08">] 
 
 
 
