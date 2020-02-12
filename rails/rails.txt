@@ -506,8 +506,40 @@ ap User.find(1).history
 }
 
 
+**********Polymorphic Association************
+rails g model laptop 
 
+rails g model desktop 
 
+rails g model parts partable_id:bigint partable_type:string
+rake db:migrate
+
+class Part < ApplicationRecord
+ belongs_to :partable, polymorphic: true
+end
+
+class Desktop < ApplicationRecord
+  has_many :parts, as: :partable
+end
+
+class Laptop < ApplicationRecord
+  has_many :parts, as: :partable
+end
+
+2.7.0 :053 > ap Laptop.find(2).parts
+ :id => 2,
+          :partable_id => 2,
+        :partable_type => "Laptop",
+           :created_at => Wed, 12 Feb 2020 09:26:54 UTC +00:00,
+           :updated_at => Wed, 12 Feb 2020 09:26:54 UTC +00:00
+
+2.7.0 :055 > Part.find(1).partable
+
+{
+            :id => 1,
+    :created_at => Wed, 12 Feb 2020 09:25:03 UTC +00:00,
+    :updated_at => Wed, 12 Feb 2020 09:25:03 UTC +00:00
+}
 
 
 
