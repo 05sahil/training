@@ -637,7 +637,7 @@ Vostro 55
 #<Laptop id: 21, brand: "HP", name: "Pavilion x-30", price: 24999, quantity: 32, created_at: "2020-02-07 12:58:35", updated_at: "2020-02-07 13:19:39">]
 
 
-**********QUERY INTERFACE: selection************
+**********QUERY INTERFACE: selection and distinct************
 2.7.0 :004 > ap User.where("id>1").select("name")
 [#<User id: nil, name: "berta">, #<User id: nil, name: "james">]> 
 
@@ -650,7 +650,15 @@ Vostro 55
 #<OrderProduct id: nil, order_id: 106>]
 
 
+**********QUERY INTERFACE: limit and offset************
+2.6.3 :009 > Order.limit(3)
+[#<Order id: 101, payment_status: "received", created_at: "2020-02-10 12:03:56", updated_at: "2020-02-10 12:03:56", user_id: 1>, 
+#<Order id: 102, payment_status: "pod", created_at: "2020-02-10 12:04:11", updated_at: "2020-02-10 12:04:11", user_id: 1>, 
+#<Order id: 103, payment_status: "pod", created_at: "2020-02-10 12:04:19", updated_at: "2020-02-10 12:04:19", user_id: 1>]
 
+2.6.3 :008 > Order.limit(2).offset(3)
+[#<Order id: 104, payment_status: "received", created_at: "2020-02-10 12:04:37", updated_at: "2020-02-10 12:04:37", user_id: 2>, 
+#<Order id: 105, payment_status: "received", created_at: "2020-02-10 12:04:45", updated_at: "2020-02-10 12:04:45", user_id: 2>]
 
 
 
