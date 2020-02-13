@@ -774,6 +774,16 @@ Vostro 55
 [#<User id: 2, name: "Berta", username: "Berta123", password: [FILTERED], email: "xyz.com", phoneno: "99887766", address: "12www fbd", created_at: "2020-02-10 10:30:08", updated_at: "2020-02-10 10:30:08">, #<User id: 1, name: "john", username: "john123", password: [FILTERED], email: "xyz.com", phoneno: "99887766", address: "12www fbd", created_at: "2020-02-10 10:29:28", updated_at: "2020-02-10 10:29:28">]
 
 
+**********QUERY INTERFACE: reselect************
+
+2.6.3 :045 > Order.select(:id).where("id>101 and id<105").reselect(:id,:user_id)
+[#<Order id: 102, user_id: 1>, 
+#<Order id: 103, user_id: 1>,
+#<Order id: 104, user_id: 2>]
+
+2.6.3 :048 > User.select("id").reselect("id,name")
+[#<User id: 1, name: "john">, 
+#<User id: 2, name: "Berta">]> 
 
 
 
