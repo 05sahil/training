@@ -706,5 +706,52 @@ Vostro 55
 ]
 
 
+**********QUERY INTERFACE: having************
+2.6.3 :019 > ap OrderProduct.select("order_id, count(order_id) as totalproducts").group("order_id").having("totalproducts>1").order("order_id ASC")
+[
+    [0] #<OrderProduct:0x00007f81ccbbab98> {
+                   "id" => nil,
+             "order_id" => 101,
+        "totalproducts" => 2
+    },
+    [1] #<OrderProduct:0x00007f81ccbbaa80> {
+                   "id" => nil,
+             "order_id" => 102,
+        "totalproducts" => 2
+    },
+    [2] #<OrderProduct:0x00007f81ccbba968> {
+                   "id" => nil,
+             "order_id" => 104,
+        "totalproducts" => 2
+    },
+    [3] #<OrderProduct:0x00007f81ccbba8a0> {
+                   "id" => nil,
+             "order_id" => 105,
+        "totalproducts" => 2
+    }
+]
+
+2.6.3 :021 > ap OrderProduct.select("order_id, count(order_id) as totalproducts").group("order_id").having("order_id<=103").order("order_id ASC")
+[
+    [0] #<OrderProduct:0x00005598210436c0> {
+                   "id" => nil,
+             "order_id" => 101,
+        "totalproducts" => 2
+    },
+    [1] #<OrderProduct:0x00005598210434e0> {
+                   "id" => nil,
+             "order_id" => 102,
+        "totalproducts" => 2
+    },
+    [2] #<OrderProduct:0x0000559821043328> {
+                   "id" => nil,
+             "order_id" => 103,
+        "totalproducts" => 1
+    }
+]
+
+
+
+
 
 
