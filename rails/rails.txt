@@ -661,4 +661,50 @@ Vostro 55
 #<Order id: 105, payment_status: "received", created_at: "2020-02-10 12:04:45", updated_at: "2020-02-10 12:04:45", user_id: 2>]
 
 
+**********QUERY INTERFACE: group************
+
+2.6.3 :012 > OrderProduct.select("order_id").group("order_id").order("order_id ASC")
+[#<OrderProduct id: nil, order_id: 101>, 
+#<OrderProduct id: nil, order_id: 102>, 
+#<OrderProduct id: nil, order_id: 103>, 
+#<OrderProduct id: nil, order_id: 104>, 
+#<OrderProduct id: nil, order_id: 105>, 
+#<OrderProduct id: nil, order_id: 106>]
+
+2.6.3 :018 > ap OrderProduct.select("order_id, count(order_id) as totalproducts").group("order_id")
+[
+    [0] #<OrderProduct:0x00007f81ccac7d30> {
+                   "id" => nil,
+             "order_id" => 101,
+        "totalproducts" => 2
+    },
+    [1] #<OrderProduct:0x00007f81ccac7c18> {
+                   "id" => nil,
+             "order_id" => 103,
+        "totalproducts" => 1
+    },
+    [2] #<OrderProduct:0x00007f81ccac7b28> {
+                   "id" => nil,
+             "order_id" => 104,
+        "totalproducts" => 2
+    },
+    [3] #<OrderProduct:0x00007f81ccac7a10> {
+                   "id" => nil,
+             "order_id" => 105,
+        "totalproducts" => 2
+    },
+    [4] #<OrderProduct:0x00007f81ccac7948> {
+                   "id" => nil,
+             "order_id" => 102,
+        "totalproducts" => 2
+    },
+    [5] #<OrderProduct:0x00007f81ccac7880> {
+                   "id" => nil,
+             "order_id" => 106,
+        "totalproducts" => 1
+    }
+]
+
+
+
 
