@@ -786,6 +786,15 @@ Vostro 55
 #<User id: 2, name: "Berta">]> 
 
 
+**********QUERY INTERFACE: readonly objects************
+2.6.3 :071 > x = User.readonly.first
+2.6.3 :072 > x.name = "Mindy"
+ => "Mindy" 
+2.6.3 :073 > x.save
+Traceback (most recent call last):
+        1: from (irb):73
+ActiveRecord::ReadOnlyRecord (User is marked as readonly)
+
 
 
 
