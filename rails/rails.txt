@@ -764,6 +764,14 @@ Vostro 55
 #<Order id: 105, payment_status: "received", created_at: "2020-02-10 12:04:45", updated_at: "2020-02-10 12:04:45", user_id: 2>]> 
 
 
+**********QUERY INTERFACE: reorder and reverse_order************
+
+2.6.3 :035 > User.all.order(id: :desc).reorder("name DESC")
+[#<User id: 1, name: "john", username: "john123", password: [FILTERED], email: "xyz.com", phoneno: "99887766", address: "12www fbd", created_at: "2020-02-10 10:29:28", updated_at: "2020-02-10 10:29:28">, 
+#<User id: 2, name: "Berta", username: "Berta123", password: [FILTERED], email: "xyz.com", phoneno: "99887766", address: "12www fbd", created_at: "2020-02-10 10:30:08", updated_at: "2020-02-10 10:30:08">]
+
+2.6.3 :036 > User.all.order(name: :desc).reverse_order
+[#<User id: 2, name: "Berta", username: "Berta123", password: [FILTERED], email: "xyz.com", phoneno: "99887766", address: "12www fbd", created_at: "2020-02-10 10:30:08", updated_at: "2020-02-10 10:30:08">, #<User id: 1, name: "john", username: "john123", password: [FILTERED], email: "xyz.com", phoneno: "99887766", address: "12www fbd", created_at: "2020-02-10 10:29:28", updated_at: "2020-02-10 10:29:28">]
 
 
 
