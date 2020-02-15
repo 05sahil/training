@@ -818,6 +818,16 @@ ActiveRecord::ReadOnlyRecord (User is marked as readonly)
 #<User id: 2, name: "Berta">]
 
 
+**********QUERY INTERFACE: eager loading associations************
+
+2.7.0 :029 > x = User.includes(:accounts,:histories).order("id ASC")
+2.7.0 :030 > x.each do |a|
+2.7.0 :031 >   puts a.name
+2.7.0 :032 > end
+Mindy
+berta
+james
+
 
 
 
