@@ -921,7 +921,7 @@ class User < ApplicationRecord
   has_many :order_products, through: :orders
   validates :name, length: {minimum: 3, too_short:"must be more than %{count} characters"} 
   validates :phoneno, presence: true, length: {is: 10, message: "must be %{count} characters"}
-  validates :email, presence: true, format: {with: /\w+\.\w+@[a-z]+\.[a-z]+/, message: "Enter valid email address"}
+  validates :email, presence: true, format: {with: /\A\w+\.?\w+@[a-z]+\.[a-z]+/, message: "Enter valid email address"}
 end
 2.6.3 :042 > User.create!(id:6, name:"Addy",email:"123gmail.com",phoneno:"8800596697",address:"k block")
 ActiveRecord::RecordInvalid (Validation failed: Email Enter valid email address)
@@ -957,5 +957,32 @@ end
 
 2.7.0 :035 > x.save!(context: :account_setup)
 ActiveRecord::RecordInvalid (Validation failed: Name name can't be blank)
+
+
+**********VALIDATIONS: conditional validations (if and unless)************
+class User < ApplicationRecord
+  has_many :accounts
+  has_many :histories, through: :accounts
+  validates :name, presence: {message: "name can't be blank"}, if: -> {id>10}
+  
+end
+2.7.0 :038 > User.create!(id:11)
+ActiveRecord::RecordInvalid (Validation failed: Name name can't be blank)
+
+
+class User < ApplicationRecord
+  has_many :orders
+  has_many :order_products, through: :orders
+  validates :name, length: {minimum: 3, too_short:"must be more than %{count} characters"} 
+  validates :email, presence: true, format: {with: /\A\w+\.?\w+@[a-z]+\.[a-z]+/, message: "Enter valid email address"}
+  validates :phoneno, length: {is: 10, message: "must be of 10 digits"}, unless: -> {phoneno.blank?}
+end
+2.6.3 :053 > User.create!(id:7, name:"Jill",email:"123@gmail.com",phoneno:88006678908,address:"k block")
+ActiveRecord::RecordInvalid (Validation failed: Phoneno must be of 10 digits)
+
+2.6.3 :054 > User.create!(id:7, name:"Jill",email:"123@gmail.com",address:"k block")
+=> #<User id: 7, name: "Jill", username: nil, password: nil, email: "123@gmail.com", phoneno: nil, address: "k block", created_at: "2020-02-17 12:15:51", updated_at: "2020-02-17 12:15:51"> 
+
+
 
 
