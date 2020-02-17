@@ -852,4 +852,24 @@ ActiveRecord::RecordInvalid (Validation failed: Email can't be blank, Phoneno ca
 ActiveRecord::RecordInvalid (Validation failed: Username must be blank)
 
 
+**********VALIDATIONS: inclusion and exclusion************
+
+class Laptop < ApplicationRecord
+  has_one :laptop_spec
+  has_many :order_products
+  validates :brand, inclusion: %w(HP Dell Lenovo Acer)
+end
+2.6.3 :019 > Laptop.create!(id:24,brand:'Apple',name:"macbook pro")
+ActiveRecord::RecordInvalid (Validation failed: Brand is not included in the list)
+
+class Laptop < ApplicationRecord
+  has_one :laptop_spec
+  has_many :order_products
+  validates :brand, exclusion: {in: %w(Apple)}
+end
+2.6.3 :021 > Laptop.create!(id:24,brand:'Apple',name:"macbook pro")
+ActiveRecord::RecordInvalid (Validation failed: Brand is reserved)
+
+
+
 
