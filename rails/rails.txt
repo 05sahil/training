@@ -925,3 +925,17 @@ class User < ApplicationRecord
 end
 2.6.3 :042 > User.create!(id:6, name:"Addy",email:"123gmail.com",phoneno:"8800596697",address:"k block")
 ActiveRecord::RecordInvalid (Validation failed: Email Enter valid email address)
+
+
+**********VALIDATIONS: skipping validations using save************
+class User < ApplicationRecord
+  has_many :accounts
+  has_many :histories, through: :accounts
+  validates :name, presence: {message: "name can't be blank", strict: true}
+end
+2.7.0 :018 > y.id = 6
+2.7.0 :019 > y = User.new
+2.7.0 :020 > y.id = 6
+2.7.0 :021 > y.save!(validate: false)
+=> true 
+
