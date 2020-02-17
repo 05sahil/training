@@ -902,4 +902,14 @@ end
 ActiveRecord::RecordInvalid (Validation failed: Price must be greater than 5000)
 
 
+**********VALIDATIONS: uniqueness************
+
+class Laptop < ApplicationRecord
+  has_one :laptop_spec
+  has_many :order_products
+  validates :price, presence: true, numericality: {greater_than_or_equal_to: 5000, message: "must be greater than %{count}"}
+  validates :name, presence: true, uniqueness: true
+end
+2.6.3 :040 > Laptop.create!(id:25,brand:"Lenovo",name:"Thinkpad", price:8455, quantity: 15)
+ActiveRecord::RecordInvalid (Validation failed: Name has already been taken)
 
