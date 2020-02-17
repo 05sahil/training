@@ -871,5 +871,23 @@ end
 ActiveRecord::RecordInvalid (Validation failed: Brand is reserved)
 
 
+**********VALIDATIONS: length************
+
+class User < ApplicationRecord
+  has_many :orders
+  has_many :order_products, through: :orders
+  validates :name, length: {minimum: 3, too_short:"must be more than %{count} characters"} 
+end
+2.6.3 :025 > User.create!(id:6, name:"Ad",email:"123@gmail.com",phoneno:"8899008000",address:"k block")
+ActiveRecord::RecordInvalid (Validation failed: Name must be more than 3 characters)
+
+class User < ApplicationRecord
+  has_many :orders
+  has_many :order_products, through: :orders
+  validates :name, length: {minimum: 3, too_short:"must be more than %{count} characters"} 
+  validates :phoneno, presence: true, length: {is: 10, message: "must be %{count} characters"}
+end
+2.6.3 :029 > User.create!(id:6, name:"Addy",email:"123@gmail.com",phoneno:"880059669777",address:"k block")
+ActiveRecord::RecordInvalid (Validation failed: Phoneno must be 10 characters)
 
 
