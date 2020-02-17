@@ -829,5 +829,27 @@ berta
 james
 
 
+**********VALIDATIONS: presence and absence************
+
+class User < ApplicationRecord
+  has_many :accounts
+  has_many :histories, through: :accounts
+  validates :name, presence: {message: "name can't be blank"}
+end
+2.7.0 :008 > User.create!(id:1)
+ActiveRecord::RecordInvalid (Validation failed: Name name can't be blank)
+
+class User < ApplicationRecord
+  has_many :orders
+  has_many :order_products, through: :orders
+  validates :name, :email, :phoneno, presence: true
+  validates :username, absence: true 
+end
+2.6.3 :011 > User.create!(id:4, name:"Martha")
+ActiveRecord::RecordInvalid (Validation failed: Email can't be blank, Phoneno can't be blank)
+
+2.6.3 :013 > User.create!(id:5, name:"Damon",username:"asdf",email:"123asd@gmail.com",phoneno:"88990088",address:"d block")
+ActiveRecord::RecordInvalid (Validation failed: Username must be blank)
+
 
 
