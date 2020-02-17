@@ -913,3 +913,15 @@ end
 2.6.3 :040 > Laptop.create!(id:25,brand:"Lenovo",name:"Thinkpad", price:8455, quantity: 15)
 ActiveRecord::RecordInvalid (Validation failed: Name has already been taken)
 
+
+**********VALIDATIONS: format************
+
+class User < ApplicationRecord
+  has_many :orders
+  has_many :order_products, through: :orders
+  validates :name, length: {minimum: 3, too_short:"must be more than %{count} characters"} 
+  validates :phoneno, presence: true, length: {is: 10, message: "must be %{count} characters"}
+  validates :email, presence: true, format: {with: /\w+\.\w+@[a-z]+\.[a-z]+/, message: "Enter valid email address"}
+end
+2.6.3 :042 > User.create!(id:6, name:"Addy",email:"123gmail.com",phoneno:"8800596697",address:"k block")
+ActiveRecord::RecordInvalid (Validation failed: Email Enter valid email address)
