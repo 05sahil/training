@@ -939,3 +939,23 @@ end
 2.7.0 :021 > y.save!(validate: false)
 => true 
 
+
+**********VALIDATIONS: on (validation options)************
+class User < ApplicationRecord
+  has_many :accounts
+  has_many :histories, through: :accounts
+  validates :name, presence: {message: "name can't be blank", on: :account_setup}
+  
+end
+
+2.7.0 :028 > x = User.new
+2.7.0 :029 > x.id = 8
+2.7.0 :032 > x.valid?(:account_setup)
+ => false 
+2.7.0 :034 > x.errors.messages
+ => {:name=>["name can't be blank"]} 
+
+2.7.0 :035 > x.save!(context: :account_setup)
+ActiveRecord::RecordInvalid (Validation failed: Name name can't be blank)
+
+
