@@ -891,3 +891,15 @@ end
 ActiveRecord::RecordInvalid (Validation failed: Phoneno must be 10 characters)
 
 
+**********VALIDATIONS: numericality************
+
+class Laptop < ApplicationRecord
+  has_one :laptop_spec
+  has_many :order_products
+  validates :price, presence: true, numericality: {greater_than_or_equal_to: 5000, message: "must be greater than %{count}"}
+end
+2.6.3 :034 > Laptop.create!(id:23,brand:"Lenovo",name:"Thinkpad", price:4999, quantity: 10)
+ActiveRecord::RecordInvalid (Validation failed: Price must be greater than 5000)
+
+
+
