@@ -1053,5 +1053,32 @@ end
 #<Order id: 106, payment_status: "received", created_at: "2020-02-11 05:39:49", updated_at: "2020-02-11 05:39:49", user_id: 2>]> 
 
 
+**********QUERY INTERFACE: default scope and passing arguments************
+
+class Order < ApplicationRecord
+  belongs_to :user
+  has_one :shipment
+  has_many :order_products
+  default_scope {where("user_id=1").order(id: :asc)}
+  scope :paid_orders, -> {where("payment_status = 'received'").order(id: :asc)}
+end
+2.6.3 :049 > Order.all
+[#<Order id: 101, payment_status: "received", created_at: "2020-02-10 12:03:56", updated_at: "2020-02-10 12:03:56", user_id: 1>, 
+#<Order id: 102, payment_status: "pod", created_at: "2020-02-10 12:04:11", updated_at: "2020-02-10 12:04:11", user_id: 1>, 
+#<Order id: 103, payment_status: "pod", created_at: "2020-02-10 12:04:19", updated_at: "2020-02-10 12:04:19", user_id: 1>]
+
+class Order < ApplicationRecord
+  belongs_to :user
+  has_one :shipment
+  has_many :order_products
+  scope :user_orders, ->(uid) {where("user_id = ?",uid)}
+  scope :paid_orders, -> {where("payment_status = 'received'").order(id: :asc)}
+end
+2.6.3 :054 > Order.user_orders(2)
+[#<Order id: 104, payment_status: "received", created_at: "2020-02-10 12:04:37", updated_at: "2020-02-10 12:04:37", user_id: 2>, 
+#<Order id: 105, payment_status: "received", created_at: "2020-02-10 12:04:45", updated_at: "2020-02-10 12:04:45", user_id: 2>, 
+#<Order id: 106, payment_status: "received", created_at: "2020-02-11 05:39:49", updated_at: "2020-02-11 05:39:49", user_id: 2>]
+
+
 
 
