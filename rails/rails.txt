@@ -984,5 +984,26 @@ ActiveRecord::RecordInvalid (Validation failed: Phoneno must be of 10 digits)
 => #<User id: 7, name: "Jill", username: nil, password: nil, email: "123@gmail.com", phoneno: nil, address: "k block", created_at: "2020-02-17 12:15:51", updated_at: "2020-02-17 12:15:51"> 
 
 
+**********VALIDATIONS: custom validator************
+class PasswordValidator < ActiveModel::Validator
+ def validate(record)
+ 	if record.name.match? (/\A[a-z|A-Z]+\w*/)
+ 		return true
+ 	else 
+ 		record.errors[:base] << "Username can't start with numbers"
+ 	end
+ end
+end
+
+class User < ApplicationRecord
+  has_many :accounts
+  has_many :histories, through: :accounts
+  validates :name, presence: {message: "name can't be blank"}
+  validates_with PasswordValidator
+end
+2.7.0 :020 > User.create!(id:8,name:'123sahil')
+ActiveRecord::RecordInvalid (Validation failed: Username can't start with numbers)
+
+
 
 
