@@ -1130,5 +1130,43 @@ end
 ]
 
 
+**********QUERY INTERFACE: ids, pluck and exists?************
+
+2.6.3 :073 > User.pluck(:name,:phoneno)
+ => [["john", "99887766"], ["Berta", "99887766"], ["Amanda", nil], ["Martha", "88990088"], ["Addy", nil], ["Jill", nil]] 
+
+2.6.3 :074 > OrderProduct.where("order_id=101").pluck(:laptop_id,:quantity)
+ => [[21, 2], [22, 2]] 
+
+2.6.3 :080 > User.ids
+ => [1, 2, 3, 4, 6, 7] 
+
+2.6.3 :081 > Order.ids
+ => [101, 102, 103, 104, 105, 106] 
+
+2.6.3 :082 > OrderProduct.ids
+ => [1, 2, 4, 5, 6, 7, 8, 9, 10, 11] 
+
+2.6.3 :083 > Laptop.ids
+ => [22, 21, 23, 24] 
+
+2.6.3 :075 > User.exists?
+ => true 
+
+2.6.3 :076 > Shipment.exists?
+ => true 
+
+2.6.3 :078 > User.exists?(name:"Berta")
+ => true 
+
+2.6.3 :079 > User.exists?(name:"Andy")
+ => false 
+
+
+
+
+
+
+
 
 
