@@ -1216,6 +1216,20 @@ end
 <LaptopSpec id: 1, ram: "4gb", hdd: "1tb", processor: "i5", created_at: "2020-02-10 07:33:24", updated_at: "2020-02-10 07:33:24", laptop_id: 21> 
 
 
+**********Validations: error handling************
+2.7.0 :054 > x = User.new()
+2.7.0 :055 > x.valid?
+ => false 
+
+2.7.0 :056 > x.errors.messages
+ => {:name=>["name can't be blank"], :id=>["id can't be blank"]} 
+
+2.7.0 :059 > x.errors.messages[:id]
+ => ["id can't be blank"] 
+
+2.7.0 :060 > x.errors.messages[:name]
+ => ["name can't be blank"] 
+
 
 
 
