@@ -1163,7 +1163,37 @@ end
  => false 
 
 
+**********ASSOCIATIONS: has_many through (laptop store)************
+class User < ApplicationRecord
+  has_many :orders
+  has_many :order_products, through: :orders
+end
 
+class Order < ApplicationRecord
+  belongs_to :user
+  has_one :shipment
+  has_many :order_products
+  scope :user_orders, ->(uid) {where("user_id = ?",uid)}
+  scope :paid_orders, -> {where("payment_status = 'received'").order(id: :asc)}
+end
+
+class OrderProduct < ApplicationRecord
+   belongs_to :order
+end
+
+2.6.3 :030 > User.first.order_products
+[#<OrderProduct id: 1, quantity: 2, created_at: "2020-02-11 05:56:28", updated_at: "2020-02-11 05:56:28", laptop_id: 21, order_id: 101>, 
+#<OrderProduct id: 4, quantity: 2, created_at: "2020-02-11 05:58:22", updated_at: "2020-02-11 05:58:22", laptop_id: 22, order_id: 101>, 
+#<OrderProduct id: 5, quantity: 1, created_at: "2020-02-11 05:58:33", updated_at: "2020-02-11 05:58:33", laptop_id: 22, order_id: 102>, 
+#<OrderProduct id: 6, quantity: 2, created_at: "2020-02-11 05:58:43", updated_at: "2020-02-11 05:58:43", laptop_id: 21, order_id: 102>, 
+#<OrderProduct id: 7, quantity: 4, created_at: "2020-02-11 05:58:50", updated_at: "2020-02-11 05:58:50", laptop_id: 21, order_id: 103>]
+
+2.6.3 :031 > User.find(2).order_products
+[#<OrderProduct id: 2, quantity: 2, created_at: "2020-02-11 05:56:44", updated_at: "2020-02-11 05:56:44", laptop_id: 21, order_id: 106>, 
+#<OrderProduct id: 8, quantity: 4, created_at: "2020-02-11 05:59:01", updated_at: "2020-02-11 05:59:01", laptop_id: 21, order_id: 104>, 
+#<OrderProduct id: 9, quantity: 2, created_at: "2020-02-11 05:59:07", updated_at: "2020-02-11 05:59:07", laptop_id: 22, order_id: 104>, 
+#<OrderProduct id: 10, quantity: 1, created_at: "2020-02-11 05:59:17", updated_at: "2020-02-11 05:59:17", laptop_id: 21, order_id: 105>, 
+#<OrderProduct id: 11, quantity: 3, created_at: "2020-02-11 05:59:26", updated_at: "2020-02-11 05:59:26", laptop_id: 22, order_id: 105>]
 
 
 
