@@ -1286,3 +1286,21 @@ new.html.erb
   	<%end%>
   </div>
 
+
+**********creating forms (text field and submit button)************
+class UsersController < ApplicationController
+  def new
+  	@user = User.new
+  end
+end
+
+<body>
+  <div class="s1">
+    <%=form_for @user do |user|%>
+      <%=user.label :name%> <br>
+      <%=user.text_field :name%><br>
+      <%=user.submit%>
+    <%end%>
+  </div>
+</body>
+
