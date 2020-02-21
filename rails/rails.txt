@@ -1270,3 +1270,19 @@ new.html.erb
 </html>
 
 
+**********displaying values at view************
+class UsersController < ApplicationController
+  def new
+  	@x = 100
+	@ar = [2,4,6,8,10]
+  end
+end
+
+new.html.erb
+  <div class="s1">
+  	<%=@x%>
+  	<%@ar.each do |x|%>
+  		<%=x%>
+  	<%end%>
+  </div>
+
