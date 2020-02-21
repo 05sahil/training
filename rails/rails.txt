@@ -1231,5 +1231,42 @@ end
  => ["name can't be blank"] 
 
 
+**********Creating views and controllers************
+Rails.application.routes.draw do
+  resource :users
+  get "user/new",to:"users#new"
+end
+
+class UsersController < ApplicationController
+	def new
+		@x = 10
+	end
+end
+
+new.html.erb
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User</title>
+	<style type="text/css">
+		body {background: #000}
+		.s1 {	width: 50%; 
+				height: 200px; 
+				background: #fff; 
+				margin: auto;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 25px;
+				font-weight: bold;
+			}
+	</style>
+</head>
+<body>
+  <div class="s1">
+  	SAMPLE TEXT
+  </div>
+</body>
+</html>
 
 
