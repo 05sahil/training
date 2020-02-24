@@ -1397,3 +1397,30 @@ show.html.erb
 </body>
 </html>
 
+
+**********delete user************
+class UsersController < ApplicationController
+  def destroy
+  	@user = User.find(params[:id])
+  	@user.destroy
+  	redirect_to users_path
+  end
+
+show.html.erb
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>User</h1>
+	<div>
+		<%=@user.id%> <%=@user.name%>
+		<br>
+		<%=link_to "edit",edit_user_path(@user)%>
+		<br>
+		<%=link_to "delete", user_path(@user), :data => {:confirm => "you sure?", :method => "delete"}%>
+	</div>
+</body>
+</html>
+
