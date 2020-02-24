@@ -1323,7 +1323,7 @@ class UsersController < ApplicationController
   end
 end
 
-show.html.erb
+index.html.erb
 <!DOCTYPE html>
 <html>
 <head>
@@ -1335,6 +1335,41 @@ show.html.erb
 	  <%@users.each do |u|%>
 	    <li><%=u.id%> <%=u.name%></li>
 	  <%end%>
+	</div>
+</body>
+</html>
+
+
+**********updating users************
+class UsersController < ApplicationController
+  def edit 
+  	@user = User.find(params[:id])
+  end
+  def update
+  	@user = User.find(params[:id])
+  	if @user.update(user_params)
+  	  redirect_to users_path
+  	else 
+  	  render :edit
+  	end
+  end
+
+edit.html.erb
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>edit <%=@user.id%></h1>
+	<div>
+		<%=form_for @user do |u|%>
+			<%=u.label :name%>
+			<%=u.text_field :name%>
+			<%=u.submit%>
+
+		<%end%>
+
 	</div>
 </body>
 </html>
