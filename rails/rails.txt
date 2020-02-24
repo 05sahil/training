@@ -1373,3 +1373,27 @@ edit.html.erb
 	</div>
 </body>
 </html>
+
+
+**********display each user************
+class UsersController < ApplicationController
+def show
+  	@user = User.find(params[:id])
+  end
+
+show.html.erb
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>User</h1>
+	<div>
+		<%=@user.id%> <%=@user.name%>
+		<br>
+		<%=link_to "edit",edit_user_path(@user)%>
+	</div>
+</body>
+</html>
+
