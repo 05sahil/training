@@ -1609,5 +1609,42 @@ laptops/show.html.erb
 </html>
 
 
+**********laptop store - edit laptop details************
+class LaptopsController < ApplicationController
+  def edit
+    @laptop = Laptop.find(params[:id])
+  end
 
+  def update
+    @laptop = Laptop.find(params[:id])
+    if @laptop.update(laptop_params)
+      redirect_to laptops_path
+    else 
+      render :edit
+    end
+  end
+end
+
+laptops/edit.html.erb
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Laptop</title>
+</head>
+<body>
+  <div>
+  	<h3><%=@laptop.brand%> <%=@laptop.name%></h3>
+  </div>
+  <div>
+  	<%=form_for @laptop do |l|%>
+  	  <%=l.label :price%><br>
+  	  <%=l.text_field :price%><br>
+  	  <%=l.label :quantity%><br>
+  	  <%=l.text_field :quantity%>
+  	  <%=l.submit%>
+  	<%end%>
+  </div>
+
+</body>
+</html>
 
