@@ -1648,3 +1648,53 @@ laptops/edit.html.erb
 </body>
 </html>
 
+
+**********laptop store - add laptop specs************
+class LaptopSpecsController < ApplicationController
+  def new
+  	@laptop = Laptop.find(params[:laptop_id])
+  	@spec = LaptopSpec.new
+  end
+
+  def create
+  	@laptop = Laptop.find(params[:laptop_id])
+  	@spec = LaptopSpec.new(spec_params)
+  	if @spec.save
+  	  redirect_to laptops_path
+  	else 
+  	  render :new
+  	end
+  end
+
+  private 
+   def spec_params
+   	 params.require(:laptop_spec).permit(:ram,:hdd,:processor,:id,:laptop_id)
+   end
+end
+
+laptop_specs/new.html.erb
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Laptop_specs</title>
+</head>
+<body>
+  <div>
+ <%=@laptop[:id]%>
+   	<%=form_for [@laptop,@spec] do |s|%>
+   	  <%=s.label :id%><br>
+  	  <%=s.text_field :id%><br>  
+  	  <%=s.label :laptop_id%><br>
+  	  <%=s.text_field :laptop_id,value:"#{@laptop[:id]}"%><br>  	
+  	  <%=s.label :ram%><br>
+  	  <%=s.text_field :ram%><br>
+  	  <%=s.label :hdd%><br>
+  	  <%=s.text_field :hdd%><br>
+  	  <%=s.label :processor%><br>
+  	  <%=s.text_field :processor%><br>
+  	  <%=s.submit%>
+  	<%end%>
+  </div>
+
+</body>
+</html>
