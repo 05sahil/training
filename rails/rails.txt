@@ -1554,3 +1554,60 @@ laptops/index.html.erb
 	<div><%=link_to "add new laptop", new_laptop_path%></div>
 </body>
 </html>
+
+
+**********laptop store - view a specific available laptop************
+class LaptopsController < ApplicationController
+  def new
+    @laptop = Laptop.new
+  end
+
+  def create
+    @laptop = Laptop.new(laptop_params)
+    if @laptop.save
+      redirect_to laptops_path
+    else
+      render :new
+    end
+  end
+
+  def index
+    @laptops = Laptop.all
+  end
+
+  def show
+    @laptop = Laptop.find(params[:id])
+    @spec = @laptop.laptop_spec
+  end
+
+  private
+    def laptop_params
+      params.require(:laptop).permit(:id,:brand,:name,:price,:quantity)
+    end
+end
+
+laptops/show.html.erb
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%=@laptop.name%></title>
+</head>
+<body>
+	<table>
+		<tr><th>ID</th><th>BRAND</th><th>NAME</th><th>PRICE</th><th>QUANTITY</th></tr>
+		<tr><td><%=@laptop.id%></td><td><%=@laptop.brand%></td><td><%=@laptop.name%></td><td><%=@laptop.price%></td><td><%=@laptop.quantity%></td></tr>
+	</table>
+	<div>
+		<h4>ram: <%=@spec.ram%></h4>
+		<h4>hardisk: <%=@spec.hdd%></h4>
+		<h4>processor: <%=@spec.processor%></h4>
+
+	</div>
+	<div><%=link_to "Edit",edit_laptop_path(@laptop)%></div>
+	<div><%=link_to "Delete",laptop_path(@laptop),:data => {:confirm => "Delete this laptop?",:method => "delete"}%></div>
+</body>
+</html>
+
+
+
+
