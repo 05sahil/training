@@ -1511,4 +1511,46 @@ laptops/new.html.erb
 </html>
 
 
+**********laptop store - view all available laptops************
+class LaptopsController < ApplicationController
+  def new
+    @laptop = Laptop.new
+  end
 
+  def create
+    @laptop = Laptop.new(laptop_params)
+    if @laptop.save
+      redirect_to laptops_path
+    else
+      render :new
+    end
+  end
+
+  def index
+    @laptops = Laptop.all
+  end
+
+  private
+    def laptop_params
+      params.require(:laptop).permit(:id,:brand,:name,:price,:quantity)
+    end
+end
+
+laptops/index.html.erb
+<!DOCTYPE html>
+<html>
+<head>
+	<title>all laptops</title>
+</head>
+<body>
+	<%for i in 0...@laptops.length%>
+	  <ul>
+	  	<ol>
+	      <%=link_to "#{@laptops[i].brand} #{@laptops[i].name}",laptop_path(@laptops[i])%>  
+      	</ol>
+      </ul>
+	<%end%>
+
+	<div><%=link_to "add new laptop", new_laptop_path%></div>
+</body>
+</html>
