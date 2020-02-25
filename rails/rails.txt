@@ -1741,3 +1741,23 @@ laptop_specs/edit.html.erb
 </html>
 
 
+**********laptop store - delete laptop and its associated specs************
+class LaptopsController < ApplicationController
+  def destroy
+    @laptop = Laptop.find(params[:id])
+    @spec = @laptop.laptop_spec
+    if @spec
+      @spec.delete
+    end
+    if @laptop.delete
+      redirect_to laptops_path
+    else 
+      render :show
+    end
+  end
+end
+
+delete option in laptops/show.html.erb
+<div><%=link_to "Delete",laptop_path(@laptop),:data => {:confirm => "Delete this laptop?",:method => "delete"}%></div>
+
+
