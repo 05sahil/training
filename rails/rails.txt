@@ -1462,3 +1462,53 @@ accounts/new.html.erb
 <%end%>
 </div>
 
+
+**********laptop store - adding a new laptop************
+class LaptopsController < ApplicationController
+  def new
+    @laptop = Laptop.new
+  end
+
+  def create
+    @laptop = Laptop.new(laptop_params)
+    if @laptop.save
+      redirect_to laptops_path
+    else
+      render :new
+    end
+  end
+
+  private
+    def laptop_params
+      params.require(:laptop).permit(:id,:brand,:name,:price,:quantity)
+    end
+end
+
+laptops/new.html.erb
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Laptop</title>
+</head>
+<body>
+  <div>
+  	<%=form_for @laptop do |l|%>
+  	  <%=l.label :id%><br>
+  	  <%=l.text_field :id%><br>
+  	  <%=l.label :brand%><br>
+  	  <%=l.text_field :brand%><br>
+  	  <%=l.label :name%><br>
+  	  <%=l.text_field :name%><br>
+  	  <%=l.label :price%><br>
+  	  <%=l.text_field :price%><br>
+  	  <%=l.label :quantity%><br>
+  	  <%=l.text_field :quantity%><br>
+  	  <%=l.submit%>
+  	<%end%>
+  </div>
+
+</body>
+</html>
+
+
+
