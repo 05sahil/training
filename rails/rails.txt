@@ -1916,3 +1916,36 @@ phone.addEventListener('focus',()=>{
 	</script>
 
 
+**********laptop store - user form (validation for non-empty fields)************
+<script type="text/javascript">
+
+		//selectors
+		const form = document.querySelector('#new_user');
+
+form.addEventListener('submit',()=>{
+			let inputs = document.getElementsByTagName('input')
+		  	count = 0
+			for (var i=0;i<inputs.length;++i)
+				{
+					if(inputs[i].value == '')
+					{
+						count += 1;
+					}
+				}
+			if(count > 0)
+				{
+					alert("All fields are mandatory")
+				}
+			else
+				{
+					alert("Form submitted successfully")
+				}
+		});
+
+
+		
+
+</script>
+
+
+
