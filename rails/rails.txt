@@ -1888,3 +1888,31 @@ delete option in laptops/show.html.erb
 		});
 </script>
 
+
+**********laptop store - user form (phonono validation)************
+<script type="text/javascript">
+
+		//selectors
+		const phone = document.querySelector('#user_phoneno');
+		const pm = document.querySelector('#pm');
+
+phone.addEventListener('focus',()=>{
+				pm.style.display = "block";  	
+		});	
+
+		phone.addEventListener('keyup',()=>{
+
+			x = phone.value
+			x.match(/\d{10}/)? pm.style.display="none":pm.style.display="block";
+			  
+		});
+
+		phone.addEventListener('focusout',()=>{	
+			pm.style.display = "none";
+			
+		});
+		
+
+	</script>
+
+
