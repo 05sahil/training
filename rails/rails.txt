@@ -1860,3 +1860,31 @@ delete option in laptops/show.html.erb
 		});
 </script>
 
+
+
+**********laptop store - user form (email validation)************
+<script type="text/javascript">
+
+		//selectors
+		const em = document.querySelector('#em');
+		const mail = document.querySelector('#mail');
+
+		mail.addEventListener('focus',()=>{
+			console.log("hello mail")
+				em.style.display = "block";  	
+		});
+
+
+		mail.addEventListener('keyup',()=>{
+
+			//x = mail.value
+			console.log(x);
+			x.match(/^\w+\.?\w+@[a-z]+\.[a-z]+/)? em.style.display="none":em.style.display="block";
+			  
+		});
+		mail.addEventListener('focusout',()=>{	
+			em.style.display = "none";
+			
+		});
+</script>
+
