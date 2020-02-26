@@ -1804,4 +1804,59 @@ delete option in laptops/show.html.erb
  </div>
 
 
+**********laptop store - user form (password validation)************
+<script type="text/javascript">
+
+		//selectors
+		const psw = document.querySelector('#pword');
+		const vals = document.querySelector('#vals');
+		const m1 = document.querySelector('#m1');
+		const m2 = document.querySelector('#m2');
+		const m3 = document.querySelector('#m3');
+		const m4 = document.querySelector('#m4');
+		const m5 = document.querySelector('#m5');
+		const psw2 = document.querySelector('#user_password_confirm');
+
+		//el for password
+		psw.addEventListener('focus',()=>{
+				
+			vals.style.display = "block";
+			
+		});
+
+		psw.addEventListener('focusout',()=>{
+			console.log('hello');	
+			vals.style.display = "none";
+			
+		});
+
+		psw.addEventListener('keyup',()=>{
+			x = psw.value
+			x.match(/[A-Z]+/)? m1.style.display="none":m1.style.display="block"
+			x.match(/[a-z]+/)? m2.style.display="none":m2.style.display="block"
+			x.match(/[0-9]+/)? m3.style.display="none":m3.style.display="block"
+			x.match(/.{8}/)? m5.style.display="none":m5.style.display="block"
+			  
+		});
+
+
+		//el for confirm password
+		psw2.addEventListener('focus',()=>{
+				m4.style.display = "block";  
+			  
+			
+		});	
+
+		psw2.addEventListener('keyup',()=>{
+			x = psw.value
+			psw.value == psw2.value? m4.style.display = 'none':m4.style.display = 'block'; 
+			  
+		});
+
+		psw2.addEventListener('focusout',()=>{
+			console.log('hello');	
+			m4.style.display = "none";
+			
+		});
+</script>
 
