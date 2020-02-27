@@ -1948,4 +1948,20 @@ form.addEventListener('submit',()=>{
 </script>
 
 
+**********destroy commands************
 
+rails d controller index
+Running via Spring preloader in process 6194
+      remove  app/controllers/index_controller.rb
+      invoke  erb
+      remove    app/views/index
+      invoke  test_unit
+      remove    test/controllers/index_controller_test.rb
+      invoke  helper
+      remove    app/helpers/index_helper.rb
+      invoke    test_unit
+      invoke  assets
+      invoke    scss
+      remove      app/assets/stylesheets/index.scss
+
+rails d model user
