@@ -1965,3 +1965,14 @@ Running via Spring preloader in process 6194
       remove      app/assets/stylesheets/index.scss
 
 rails d model user
+rails d scaffold shipment
+
+
+**********scaffolding************
+generating scaffold:
+rails g scaffold shipment order_id:bigint status:string
+
+removing scaffold:
+rails d scaffold shipment
+ 
+
