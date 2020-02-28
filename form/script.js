@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   allInputs.forEach(el=>{
     el.addEventListener('focus',()=>{
       el.classList.add("input-focus")
+      el.classList.remove("input-error")
 	});
 
 	el.addEventListener('focusout',()=>{
@@ -97,7 +98,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	else
 	{  console.log('no success')
 	   alert("Kindly fill all the fields accordingly")
-	   e.preventDefault() 
+	   e.preventDefault()
+	   checker.forEach((value,key)=>{
+	     if(!value) 
+	     {	x = document.querySelector("#"+key)
+	     	x.classList.add("input-error")
+	     }	
+	   }); 
+	}
+
+  }); 
 	}
 
   });
