@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   const form = document.querySelector('#new_user');
   const allInputs = document.querySelectorAll(".input")
   const submit = document.querySelector("#submit-button") 
+  //map for checking validaiton on submit
   let checker = new Map([['user_name',false],['user_username',false],['user_password',false],['user_password_confirm',false],['user_email',false],['user_phoneno',false]])
 
   //adding-removing shadow
@@ -55,9 +56,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
   focusInOut(emDiv,mail)
   focusInOut(pmDiv,phone)
 
-  //validates password, phoneno and mail using regex
+  //validates password, phoneno and mail using regex and sets respective input field's id value to true in checker
   function validate(element,re,para)
-  {	// element=='psw2'?reg=psw.value:reg=re;
+  {
     element.addEventListener('keyup',()=>{
 	  element.value.match(re)?(para.style.display = "none",checker.set(element.id,true)) : (para.style.display = "block",checker.set(element.id,false));
 	});	
@@ -72,42 +73,41 @@ document.addEventListener("DOMContentLoaded", function(event) {
   validate(psw,/.{8}/,m5);
 
 
-  //validates confirm password field
+  //validates confirm password field and sets respective input field's id value to true in checker
   psw2.addEventListener('keyup',()=>{
     psw.value == psw2.value? (m4.style.display = 'none',checker.set('user_password_confirm',true)):(m4.style.display = 'block', checker.set('user_password_confirm',false));   
   });
 
-  //validation for not allowing empty fields
+  //validation for not allowing empty fields and checking all validations on form submit
   submit.addEventListener('click',(e)=>{
   	console.log('working')
     name.value!=''?checker.set('user_name',true):checker.set('user_name',false)
     username.value!==''?checker.set('user_username',true):checker.set('user_username',false)
     count = 0	
-
+    //loop for counting fields which have passed validations
     checker.forEach((value,key)=>{	
 	  if(value)
 	  {
 	     count += 1;
 	  }
 	 });
-
+        //conditions for alert depending on count
 	if(count == checker.size)
 	{  console.log('success')
 	   alert("Form submitted successfully")
 	}
 	else
 	{  console.log('no success')
-	   alert("Kindly fill all the fields accordingly")
+	   alert("Kindly fill the fields accordingly")
+	   //prevents form reload if validations are not passed
 	   e.preventDefault()
+	   //changes border CSS to red of invalidated fields
 	   checker.forEach((value,key)=>{
 	     if(!value) 
 	     {	x = document.querySelector("#"+key)
 	     	x.classList.add("input-error")
 	     }	
 	   }); 
-	}
-
-  }); 
 	}
 
   });
