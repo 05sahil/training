@@ -1,9 +1,10 @@
-
 document.addEventListener("DOMContentLoaded", function(event) {
   console.log("DOM fully loaded and parsed");
 
   //selectors
-  var psw = document.querySelector('#user_password');
+  const name = document.querySelector('#user_name');
+  const username = document.querySelector('#user_username'); 
+  const psw = document.querySelector('#user_password');
   const vals = document.querySelector('#vals');
   const m1 = document.querySelector('#m1');
   const m2 = document.querySelector('#m2');
@@ -14,12 +15,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
   const psw2Div = document.querySelector('#psw2-div');
   const em = document.querySelector('#em');
   const emDiv = document.querySelector('#em-div');
-  const mail = document.querySelector('#mail');
+  const mail = document.querySelector('#user_email');
   const phone = document.querySelector('#user_phoneno');
   const pm = document.querySelector('#pm');
   const pmDiv = document.querySelector('#pm-div');
   const form = document.querySelector('#new_user');
   const allInputs = document.querySelectorAll(".input")
+  const submit = document.querySelector("#submit-button") 
+  let checker = new Map([['user_name',false],['user_username',false],['user_password',false],['user_password_confirm',false],['user_email',false],['user_phoneno',false]])
 
   //adding-removing shadow
   allInputs.forEach(el=>{
@@ -44,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	  errorDiv.style.display = 'none';
 	});
   }
-  
+
   //focusInOut function calls
   focusInOut(vals,psw)
   focusInOut(psw2Div,psw2)
@@ -55,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   function validate(element,re,para)
   {	// element=='psw2'?reg=psw.value:reg=re;
     element.addEventListener('keyup',()=>{
-	  element.value.match(re)?para.style.display = "none" : para.style.display = "block";
+	  element.value.match(re)?(para.style.display = "none",checker.set(element.id,true)) : (para.style.display = "block",checker.set(element.id,false));
 	});	
   }
 
@@ -70,30 +73,35 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   //validates confirm password field
   psw2.addEventListener('keyup',()=>{
-    psw.value == psw2.value? m4.style.display = 'none':m4.style.display = 'block';   
+    psw.value == psw2.value? (m4.style.display = 'none',checker.set('user_password_confirm',true)):(m4.style.display = 'block', checker.set('user_password_confirm',false));   
   });
 
   //validation for not allowing empty fields
-  form.addEventListener('submit',()=>{
-    count = 0
+  submit.addEventListener('click',(e)=>{
+  	console.log('working')
+    name.value!=''?checker.set('user_name',true):checker.set('user_name',false)
+    username.value!==''?checker.set('user_username',true):checker.set('user_username',false)
+    count = 0	
 
-    allInputs.forEach(el=>{
-	  if(el.value == '')
+    checker.forEach((value,key)=>{	
+	  if(value)
 	  {
 	     count += 1;
 	  }
 	 });
 
-	if(count > 0)
-	{
-	   alert("All fields are mandatory")
-	}
-	else
-	{
+	if(count == checker.size)
+	{  console.log('success')
 	   alert("Form submitted successfully")
 	}
+	else
+	{  console.log('no success')
+	   alert("Kindly fill all the fields accordingly")
+	   e.preventDefault() 
+	}
+
   });
-		
+
 });
 
 
