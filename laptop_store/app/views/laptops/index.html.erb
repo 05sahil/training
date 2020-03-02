@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>all laptops</title>
+	<style type="text/css">
+		body {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		
+	</style>
+</head>
+<body>
+  <div class="d1">
+	<%for i in 0...@laptops.length%>
+	  <ul>
+	  	<ol>
+	      <%=link_to "#{@laptops[i].brand} #{@laptops[i].name}",laptop_path(@laptops[i])%>  
+	      <%if @specs[i] == nil%>
+	      <%=link_to "Add Specs", new_laptop_laptop_spec_path(@laptops[i])%>
+	      <%end%>
+      	</ol>
+      </ul>
+	<%end%>
+
+	<div><%=link_to "add new laptop", new_laptop_path%></div>
+  </div>
+</body>
+</html>

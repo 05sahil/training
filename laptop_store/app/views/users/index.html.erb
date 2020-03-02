@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		table,th,td {border: 1px solid grey;}
+		table {margin: auto; width: 50%;border-collapse: collapse;}
+		th,td {padding:10px; text-align: center; font-size: 20px;}
+		tr:nth-child(even) {background: #f2f2f2}
+		tr:hover {background: black; color:#fff;}
+		
+	</style>
+</head>
+<body>
+	<h1>index</h1>
+    <div>  
+    	<table>
+      <tr><th>id</th><th>name</th><th>options</th></tr>
+      <%@users.each do |u|%>
+	    
+	    <tr><td><%=u.id%></td> <td><%=u.name%></td> <td><%=link_to "show info", user_path(u)%></td></tr>
+	  <%end%>
+	  	</table>
+	</div>
+	<div>
+		<%=link_to "create new user",new_user_path%>
+	</div>
+</body>
+</html>

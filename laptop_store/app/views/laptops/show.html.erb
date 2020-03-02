@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%=@laptop.name%></title>
+</head>
+<body>
+	<table>
+		<tr><th>ID</th><th>BRAND</th><th>NAME</th><th>PRICE</th><th>QUANTITY</th></tr>
+		<tr><td><%=@laptop.id%></td><td><%=@laptop.brand%></td><td><%=@laptop.name%></td><td><%=@laptop.price%></td><td><%=@laptop.quantity%></td></tr>
+	</table>
+	<div>
+	  <%if @spec%>
+		<h4>ram: <%=@spec.ram%></h4>
+		<h4>hardisk: <%=@spec.hdd%></h4>
+		<h4>processor: <%=@spec.processor%></h4>
+		<div><%=link_to "Edit Specs",edit_laptop_laptop_spec_path(@laptop,@spec)%></div>
+	  <%end%>
+	</div>
+	<div><%=link_to "Edit",edit_laptop_path(@laptop)%></div>
+
+	<div><%=link_to "Delete",laptop_path(@laptop),:data => {:confirm => "Delete this laptop?",:method => "delete"}%></div>
+</body>
+</html>
