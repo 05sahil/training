@@ -1974,5 +1974,23 @@ rails g scaffold shipment order_id:bigint status:string
 
 removing scaffold:
 rails d scaffold shipment
+
+
+**********Laptop Store - add server side password confirmation validation (user form)************
+rails g migration AddPasswordConfirmationToUser password_confirmation:text
+
+class AddPasswordConfirmationToUser < ActiveRecord::Migration[6.0]
+  def change
+    add_column :users, :password_confirmation, :text
+  end
+end
+
+rails db:migrate
+
+class User < ApplicationRecord
+  validates :password, presence:true, confirmation: {message: "password didn't match"}
+  validates :password_confirmation, presence: true
+end
+
  
 
