@@ -8,4 +8,16 @@ class User < ApplicationRecord
   validates :password, presence:true, confirmation: {message: "password didn't match"}
   validates :password_confirmation, presence: true
   
+  before_validation :name_modifier
+
+  private
+    def name_modifier
+      final_name = String.new 
+      name.each_char{|x| x.match(/[a-z|A-Z]/)?final_name<<x:final_name<<' '}
+      final_name.squeeze!
+      final_name.rstrip!
+      final_name.lstrip!
+      self.name = final_name
+    end
+
 end
