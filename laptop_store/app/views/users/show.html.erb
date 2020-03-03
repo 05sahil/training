@@ -15,6 +15,7 @@
 		<br>
 		<%=link_to "delete", user_path(@user), :data => {:confirm => "you sure?", :method => "delete"}%>
 		<br>
+		<%=link_to "soft delete",user_soft_delete_path(@user)%>
 		
 	</div>
 </body>

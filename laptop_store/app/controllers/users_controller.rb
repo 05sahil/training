@@ -36,13 +36,12 @@ class UsersController < ApplicationController
   end
   def soft_delete
     @user = User.find(params[:id])
-    
     if (@user.is_deleted)
       @user.update(is_deleted: false)
     else
       @user.update(is_deleted: true)
     end
-    redirect_to users_path
+    redirect_to new_user_path
   end
 
   private 
