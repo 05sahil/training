@@ -31,6 +31,6 @@ class LaptopSpecsController < ApplicationController
 
   private 
    def spec_params
-   	 params.require(:laptop_spec).permit(:ram,:hdd,:processor,:id,:laptop_id)
+   	 params.require(:laptop_spec).permit(:ram,:hdd,:processor,:laptop_id)
    end
 end

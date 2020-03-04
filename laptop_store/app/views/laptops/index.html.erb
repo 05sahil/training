@@ -3,28 +3,33 @@
 <head>
 	<title>all laptops</title>
 	<style type="text/css">
-		body {
-			display: flex;
-			justify-content: center;
-			align-items: center;
+		.d1 {
+
+
 		}
 		
 	</style>
 </head>
 <body>
+  <% if logged_in? %>	
+  <h1>Hello <%= current_user.name %></h1>	
+  <% end %>
+
   <div class="d1">
 	<%for i in 0...@laptops.length%>
 	  <ul>
-	  	<ol>
+	  	<li>
 	      <%=link_to "#{@laptops[i].brand} #{@laptops[i].name}",laptop_path(@laptops[i])%>  
 	      <%if @specs[i] == nil%>
 	      <%=link_to "Add Specs", new_laptop_laptop_spec_path(@laptops[i])%>
 	      <%end%>
-      	</ol>
+      	</li>
       </ul>
 	<%end%>
 
 	<div><%=link_to "add new laptop", new_laptop_path%></div>
   </div>
+  <div><%= link_to "log in", user_login_path %></div>
+  <div><%= link_to "log out", user_logout_path %></div>
 </body>
 </html>

@@ -54,6 +54,6 @@ class LaptopsController < ApplicationController
 
   private
     def laptop_params
-      params.require(:laptop).permit(:id,:brand,:name,:price,:quantity,:laptop_id)
+      params.require(:laptop).permit(:brand,:name,:price,:quantity)
     end
 end
