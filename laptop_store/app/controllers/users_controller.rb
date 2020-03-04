@@ -17,9 +17,16 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to users_path
+    else
+      render :edit
+    end
   end
 
   def show
@@ -41,7 +48,7 @@ class UsersController < ApplicationController
     else
       @user.update(is_deleted: true)
     end
-    redirect_to new_user_path
+    redirect_to users_path
   end
 
   private 
