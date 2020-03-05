@@ -5,7 +5,12 @@ class UsersController < ApplicationController
 
   def index
     if params[:keyword]
-      @users = User.where("name LIKE ?","%#{params[:keyword]}%")
+      if params[:keyword] == "true" or params[:keyword] == "false"
+        @users = User.where("is_deleted = ?",params[:keyword])
+      else
+      #@users = User.where("name LIKE ?","%#{params[:keyword]}%")
+        @users = User.where("name ilike ? or address ilike ? or phoneno ilike ? or username ilike ? or email ilike ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%")
+      end
     else 
       @users = User.all
     end
