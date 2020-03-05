@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html>
+
 <head>
 	<title></title>
 	<style type="text/css">
@@ -12,20 +11,19 @@
 	</style>
 </head>
 <body>
-	<h1>index</h1>
-    <div class="table-div">
-      <%= render "index" %>  
-    	
-	</div>
-	<div>
-		<%=link_to "create new user",new_user_path%>
-	</div>
-	<div class="search-form">
-      <%= form_tag users_path, :method => 'get', :remote => true do %>
+  <h1>index</h1>
+  <div class="search-form">
+    <%= form_tag users_path, :method => 'get', :remote => true do %>
       <%= label_tag :search %>
       <%= text_field_tag :keyword, params[:keyword] %>
       <%= submit_tag "search" %>
-  <% end %>
+    <% end %>
+  </div>
+  <div class="table-div">
+    <%= render "index" %>   	
+  </div>
+  <div>
+  	<%=link_to "create new user",new_user_path%>
   </div>
 </body>
-</html>
+

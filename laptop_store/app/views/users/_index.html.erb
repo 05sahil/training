@@ -1,7 +1,25 @@
 <table>
-  <tr><th>id</th><th>name</th><th>options</th></tr>
-  <%@users.each do |u|%>
-	    
-	 <tr><td><%=u.id%></td> <td><%=u.name%></td> <td><%=link_to "show info", user_path(u)%></td></tr>
-  <%end%>
+  <tr>
+  	<th>id</th>
+  	<th>name</th>
+  	<th>username</th>
+  	<th>email</th>
+  	<th>phoneno</th>
+  	<th>address</th>
+  	<th>options</th>
+
+  </tr>
+  
+  <% @users.each do |u| %>
+    <tr>
+      <td> <%= u.id %> </td> 
+      <td> <%= u.name %> </td>
+      <td> <%= u.username %> </td>
+      <td> <%= u.email %> </td>
+      <td> <%= u.phoneno %> </td>
+      <td> <%= u.address %> </td> 
+      <td> <%= link_to "show options", user_path(u) %> </td>
+    </tr>
+  <% end %>
+
 </table>
