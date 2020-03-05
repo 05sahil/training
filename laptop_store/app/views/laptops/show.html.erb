@@ -16,7 +16,7 @@
 		<div><%=link_to "Edit Specs",edit_laptop_laptop_spec_path(@laptop,@spec)%></div>
 	  <%end%>
 	</div>
-	<div><%=link_to "Edit",edit_laptop_path(@laptop)%></div>
+	<div id="edit_form"><%=link_to "Edit",edit_laptop_path(@laptop), remote: true %></div>
 
 	<div><%=link_to "Delete",laptop_path(@laptop),:data => {:confirm => "Delete this laptop?",:method => "delete"}%></div>
 </body>
