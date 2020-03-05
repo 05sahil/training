@@ -4,7 +4,11 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    if params[:keyword]
+      @users = User.where("name LIKE ?","%#{params[:keyword]}%")
+    else 
+      @users = User.all
+    end
   end
 
   def create
