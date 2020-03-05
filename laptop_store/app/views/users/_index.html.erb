@@ -1,15 +1,22 @@
-<table>
-  <tr>
-  	<th>id</th>
-  	<th>name</th>
-  	<th>username</th>
-  	<th>email</th>
-  	<th>phoneno</th>
-  	<th>address</th>
-  	<th>options</th>
 
-  </tr>
-  
+<table>   
+    <tr>
+
+  	  <th>
+  	  	  <%= link_to "D", users_path(:col => 'id',:order => "D"), :data => {:method => "get"} %>
+  	  	  	
+  	  	  <%= link_to "A",users_path(:col => 'id',:order => "A"), :data => {:method => "get"} %>
+  	  	  
+  	  	<% end %>
+  	  id</th>
+  	  <th>name</th>
+  	  <th>username</th>
+  	  <th>email</th>
+  	  <th>phoneno</th>
+  	  <th>address</th>
+  	  <th>options</th>
+
+    </tr>  
   <% @users.each do |u| %>
     <tr>
       <td> <%= u.id %> </td> 
@@ -21,5 +28,4 @@
       <td> <%= link_to "show options", user_path(u) %> </td>
     </tr>
   <% end %>
-
 </table>
