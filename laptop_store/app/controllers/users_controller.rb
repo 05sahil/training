@@ -1,11 +1,10 @@
 class UsersController < ApplicationController
-
   def new
     @user = User.new
   end
-   
   def index
-    
+    params[:direction] ||= "ASC"
+    params[:sort] ||= "id"
     if params[:keyword]
       if params[:keyword] == "true" or params[:keyword] == "false"
         @users = User.where("is_deleted = ?",params[:keyword])
@@ -16,10 +15,14 @@ class UsersController < ApplicationController
     else 
       @users = User.all
     end
-    param[:order] ||= 'A'
-    #@users = @users.order("id ASC")
-    params[:order]=="A"? @users = @users.order("id ASC"): @users = @users.order("id DESC")
-    #@val = "true"  
+   
+    @users = @users.order("#{params[:sort]} #{params[:direction]}")
+    
+    # if params[:order] == 'A'
+    #   @users = @users.order("id ASC")
+    # else
+    #   @users = @users.order("id DESC")
+    # end 
   end
 
   def create

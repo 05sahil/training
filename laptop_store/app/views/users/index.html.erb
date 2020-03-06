@@ -12,6 +12,7 @@
 </head>
 <body>
   <h1>index</h1>
+  
   <div class="search-form">
     <%= form_tag users_path, :method => 'get', :remote => true do %>
       <%= label_tag :search %>
@@ -20,11 +21,12 @@
     <% end %>
   </div>
   <div class="table-div">
-    <%= render "index" %>   	
+    <%= render "index" %>
   </div>
   
   <div>
   	<%=link_to "create new user",new_user_path%>
   </div>
+
 </body>
 
