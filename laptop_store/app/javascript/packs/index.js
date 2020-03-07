@@ -4,7 +4,7 @@ console.log('hello')
       $('#sd').click(()=>{alert('jquery')})  
     
        
-    
+    let x = '40'
     let countValue = 0
     let userRow = document.querySelectorAll('.user-row') 
     countValue = userRow.length
