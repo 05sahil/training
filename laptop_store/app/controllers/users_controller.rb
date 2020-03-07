@@ -17,6 +17,10 @@ class UsersController < ApplicationController
     end
    
     @users = @users.order("#{params[:sort]} #{params[:direction]}")
+
+    if params[:count]
+      @count = params[:count]
+    end
     
     # if params[:order] == 'A'
     #   @users = @users.order("id ASC")
