@@ -5,6 +5,20 @@ class UsersController < ApplicationController
   def index
     params[:direction] ||= "ASC"
     params[:sort] ||= "id"
+
+    # if !params[:count]
+    #   @users = User.limit(2)
+    # end
+
+    if params[:count]
+      @count = params[:count].to_i
+      if @count < User.all.count 
+        @users = User.limit(@count+1)
+      end
+    else 
+     @users = User.limit(2)
+    end
+
     if params[:keyword]
       if params[:keyword] == "true" or params[:keyword] == "false"
         @users = User.where("is_deleted = ?",params[:keyword])
@@ -12,21 +26,12 @@ class UsersController < ApplicationController
       #@users = User.where("name LIKE ?","%#{params[:keyword]}%")
         @users = User.where("name ilike ? or address ilike ? or phoneno ilike ? or username ilike ? or email ilike ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%")
       end
-    else 
-      @users = User.all
+    # else 
+    #   @users = User.all
     end
    
-    @users = @users.order("#{params[:sort]} #{params[:direction]}")
+    @users = @users.order("#{params[:sort]} #{params[:direction]}")  
     
-     
-    if params[:count]
-      @count = params[:count].to_i
-      if @count < User.all.count 
-        @users = User.limit(@count+1)
-      end
-    else 
-      @users = User.limit(2)
-    end
   end
 
   def create
