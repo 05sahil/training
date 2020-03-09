@@ -18,22 +18,14 @@ class UsersController < ApplicationController
    
     @users = @users.order("#{params[:sort]} #{params[:direction]}")
     
-    # if params[:order] == 'A'
-    #   @users = @users.order("id ASC")
-    # else
-    #   @users = @users.order("id DESC")
-    # end 
-    
-    # if params[:count]
-    #   @count =  params[:count]
-    # end
-    @users = User.limit(2)
      
     if params[:count]
       @count = params[:count].to_i
       if @count < User.all.count 
-        @users = User.limit(@count+2)
+        @users = User.limit(@count+1)
       end
+    else 
+      @users = User.limit(2)
     end
   end
 
