@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   
-  get "login", to:"sessions#new", as: "user_login"
-  post "login", to:"sessions#create"
-  get "users/:id/soft_delete", to:"users#soft_delete", as: "user_soft_delete"
+  get 'user/cart', to: "carts#show", as: "user_cart"
+  get "login", to: "sessions#new", as: "user_login"
+  post "login", to: "sessions#create"
+  get "users/:id/soft_delete", to: "users#soft_delete", as: "user_soft_delete"
   get "logout", to: "sessions#log_out", as: "user_logout"
   resources :laptops do
   	resources :laptop_specs #name of controller

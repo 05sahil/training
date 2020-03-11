@@ -2,13 +2,7 @@
 <html>
 <head>
 	<title>all laptops</title>
-	<style type="text/css">
-		.d1 {
 
-
-		}
-		
-	</style>
 </head>
 <body>
   <% if logged_in? %>	
@@ -27,9 +21,12 @@
       </ul>
 	<%end%>
 
-	<div><%=link_to "add new laptop", new_laptop_path%></div>
+    <div><%=link_to "add new laptop", new_laptop_path%></div>
   </div>
   <div><%= link_to "log in", user_login_path %></div>
   <div><%= link_to "log out", user_logout_path %></div>
+  <div>
+    <%= link_to "cart", user_cart_path %>
+  </div>
 </body>
 </html>
