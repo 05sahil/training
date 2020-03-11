@@ -4,5 +4,13 @@ window.addEventListener('click',(e)=>{
   {
     let x = e.target.parentElement.childNodes[1].innerText
     console.log(x)
+    $.ajax({
+      url: '/user/cart',
+      type: 'delete',
+      data: {
+        product_name: x,
+        },
+      dataType: 'script',
+    });
   }
 })

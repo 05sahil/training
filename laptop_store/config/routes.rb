@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  delete "user/cart", to: "carts#destroy", as: "user_cart_delete_item"
   get 'user/cart', to: "carts#show", as: "user_cart"
   get "login", to: "sessions#new", as: "user_login"
   post "login", to: "sessions#create"
