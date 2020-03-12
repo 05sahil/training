@@ -15,10 +15,11 @@ Rails.application.routes.draw do
   resources :users
 
    namespace 'api' do
-    namespace 'v1' do 
-      resources :users
+     namespace 'v1' do 
+       resources :users
+       resources :laptops
     end
-  end 
+   end 
 =begin
   get 'laptop_specs/new'
   get 'laptop_specs/create'
