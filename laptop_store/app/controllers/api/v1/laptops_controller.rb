@@ -3,12 +3,12 @@ module Api
     class LaptopsController < ApplicationController
       def index
         laptops = Laptop.all
-        render json: {data: laptops, status: 200, message: 'loaded laptops'}
+        render json: {laptops: ActiveModel::Serializer::CollectionSerializer.new(laptops, each_serializer: LaptopSerializer), status: 200, message: 'loaded laptops'}
       end
 
       def show
         laptop = Laptop.find(params[:id])
-        render json: {data: laptop, status: 'SUCCESS', message: 'loaded laptop'}
+        render json: {data: LaptopSerializer.new(laptop), status: 'SUCCESS', message: 'loaded laptop'}
       end
       def update
         laptop = Laptop.find(params[:id])
