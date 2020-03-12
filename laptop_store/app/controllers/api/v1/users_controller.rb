@@ -22,6 +22,15 @@ module Api
   	  	user = User.find(params[:id])
   	  	render json: {status: 'SUCCESS', message: 'user deleted', data: user}, status: 200
   	  end	
+  	  def update
+  	  	user = User.find(params[:id])
+  	  	if user.update(user_params)
+  	  	  render json: {status: 'SUCCESS', message: 'user updated', data: user}, status: 200
+  	  	else 
+  	  	  render json: {status: 'FAILURE', message: 'user not updated', data: user}, status: 422
+  	  	end
+  	  end	
+  	  
   	  private 
 
   	  def user_params
