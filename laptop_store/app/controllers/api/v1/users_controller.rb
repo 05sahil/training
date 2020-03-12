@@ -14,7 +14,10 @@ module Api
   	  	  render json: {status: 'FAILURE', message: 'user not saved', data: user.errors}, status: 422
   	  	end
   	  end
-
+  	  def show 
+  	  	user = User.find(params[:id])
+  	  	render json: {status: 'SUCCESS', message: 'loaded user', data: user}, status: 302 	
+  	  end 
   	  private 
 
   	  def user_params
