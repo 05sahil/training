@@ -18,10 +18,14 @@ module Api
   	  	user = User.find(params[:id])
   	  	render json: {status: 'SUCCESS', message: 'loaded user', data: user}, status: 302 	
   	  end 
+  	  def destroy
+  	  	user = User.find(params[:id])
+  	  	render json: {status: 'SUCCESS', message: 'user deleted', data: user}, status: 200
+  	  end	
   	  private 
 
   	  def user_params
-        	params.require(:user).permit(:name,:username,:password,:email,:phoneno,:address,:password_confirmation)
+        params.require(:user).permit(:name,:username,:password,:email,:phoneno,:address,:password_confirmation)
       end
   	end
   end
