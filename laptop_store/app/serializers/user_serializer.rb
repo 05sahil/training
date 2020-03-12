@@ -7,7 +7,7 @@ class UserSerializer < ActiveModel::Serializer
   	data[:phoneno] = object.phoneno
   	data[:email] = object.email
   	data[:address] = object.address
-  	data[:orders] = object.orders
+  	data[:orders] = ActiveModel::Serializer::CollectionSerializer.new(object.orders, each_serializer: OrderSerializer)
 
   	data 
   end
