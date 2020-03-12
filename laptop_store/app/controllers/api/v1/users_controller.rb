@@ -3,7 +3,7 @@ module Api
   	class UsersController < ApplicationController
   	  def index
   	  	users = User.all
-  	  	render json: users #{status: 'SUCCESS', message: 'loaded all users', data: users}, status: :ok
+  	  	render json: {status: 'SUCCESS', message: 'loaded all users', users: ActiveModel::Serializer::CollectionSerializer.new(users, each_serializer: UserSerializer)}
   	  end  
 
   	  def create
@@ -16,7 +16,7 @@ module Api
   	  end
   	  def show 
   	  	user = User.find(params[:id])
-  	  	render json: {status: 'SUCCESS', message: 'loaded user', data: user}, status: 302
+  	  	render json: {status: 'SUCCESS', message: 'loaded user', data: UserSerializer.new(user)}, status: 302
   	  end 
   	  def destroy
   	  	user = User.find(params[:id])
