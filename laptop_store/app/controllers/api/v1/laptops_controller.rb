@@ -1,6 +1,6 @@
 module Api
   module V1
-    class LaptopsController < ApplicationController
+    class LaptopsController < MainController
       def index
         laptops = Laptop.all
         render json: {laptops: ActiveModel::Serializer::CollectionSerializer.new(laptops, each_serializer: LaptopSerializer), status: 200, message: 'loaded laptops'}

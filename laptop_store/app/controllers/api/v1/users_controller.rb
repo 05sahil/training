@@ -1,6 +1,6 @@
 module Api
   module V1
-  	class UsersController < ApplicationController
+  	class UsersController < MainController
   	  def index
   	  	users = User.all
   	  	render json: {status: 'SUCCESS', message: 'loaded all users', users: ActiveModel::Serializer::CollectionSerializer.new(users, each_serializer: UserSerializer)}
