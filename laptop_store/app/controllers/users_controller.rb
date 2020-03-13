@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :authentication
   def new
     @user = User.new
   end
@@ -7,32 +6,35 @@ class UsersController < ApplicationController
     params[:direction] ||= "ASC"
     params[:sort] ||= "id"
 
-    # if !params[:count]
-    #   @users = User.limit(2)
-    # end
+    if params[:reset] == 'true'
+      session[:keyword] = ''
+    end
 
-    if params[:count]
+    if !params[:count] && session[:keyword] == ''
+      @users = User.limit(2)
+    end
+
+    if params[:count] && session[:keyword] ==''
       @count = params[:count].to_i
       if @count < User.all.count 
         @users = User.limit(@count+1)
       end
-    else 
-     @users = User.limit(2)
     end
 
     if params[:keyword]
+      session[:keyword] = params[:keyword]
       if params[:keyword] == "true" or params[:keyword] == "false"
         @users = User.where("is_deleted = ?",params[:keyword])
       else
-      #@users = User.where("name LIKE ?","%#{params[:keyword]}%")
         @users = User.where("name ilike ? or address ilike ? or phoneno ilike ? or username ilike ? or email ilike ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%")
       end
-    # else 
-    #   @users = User.all
     end
    
-    @users = @users.order("#{params[:sort]} #{params[:direction]}")  
-    
+    if session[:keyword]!=''
+      @users = User.where("name ilike ? or address ilike ? or phoneno ilike ? or username ilike ? or email ilike ?", "%#{session[:keyword]}%", "%#{session[:keyword]}%", "%#{session[:keyword]}%", "%#{session[:keyword]}%", "%#{session[:keyword]}%")  
+    end
+   
+    @users = @users.order("#{params[:sort]} #{params[:direction]}")
   end
 
   def create

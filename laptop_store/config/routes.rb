@@ -14,13 +14,13 @@ Rails.application.routes.draw do
 
   resources :users
 
-   namespace 'api' do
-     namespace 'v1' do 
-       resources :users
-       resources :laptops
-       post "user/login", to: 'sessions#login'
+  namespace 'api' do
+    namespace 'v1' do 
+      resources :users
+      resources :laptops
+      post "user/login", to: 'sessions#login'
     end
-   end 
+  end 
 =begin
   get 'laptop_specs/new'
   get 'laptop_specs/create'
