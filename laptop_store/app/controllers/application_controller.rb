@@ -24,6 +24,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def item_exists?(order_id,laptop_id)
+    if OrderProduct.find_by(order_id: order_id, laptop_id: laptop_id)
+      return true
+    else 
+      return false
+    end
+  end
+
   def find_products(user_id)
     if order_exists?(user_id)
       @products_info = User.find(user_id).orders.find_by("payment_status != 'received'").order_products
