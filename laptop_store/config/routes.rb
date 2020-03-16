@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "user/orders", to: "orders#show", as: "orders"
   post "laptops/:id", to: "carts#add_item", as: "add_item"
   delete "user/cart", to: "carts#destroy", as: "user_cart_delete_item"
   get 'user/cart', to: "carts#show", as: "user_cart"
