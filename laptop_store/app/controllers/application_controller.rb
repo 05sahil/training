@@ -32,6 +32,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def completed_orders_exists?(user_id)
+    if User.find(user_id).orders.find_by("payment_status != 'not received'")
+      return true
+    else 
+      return false
+    end
+  end
+
   def find_products(user_id)
     if order_exists?(user_id)
       @products_info = User.find(user_id).orders.find_by("payment_status != 'received'").order_products
