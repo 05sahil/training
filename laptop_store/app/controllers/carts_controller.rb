@@ -1,4 +1,21 @@
 class CartsController < ApplicationController
+  def add_item
+    if session[:user_id]!=''
+      @laptop_id = params[:id]
+      @user_id = session[:user_id]  
+      if order_exists?(@user_id)
+        @order_id = User.find(@user_id).orders.find_by("payment_status = 'not received'").id
+        OrderProduct.create(order_id: @order_id, laptop_id: @laptop_id, quantity: 1)
+      else
+        Order.create(user_id: @user_id, payment_status: 'not received')
+        @order_id = User.find(@user_id).orders.find_by("payment_status = 'not received'").id 
+        OrderProduct.create(order_id: @order_id, laptop_id: @laptop_id, quantity: 1)
+      end
+      
+    else
+      redirect_to user_login_path
+    end
+  end
   def show
     if session[:user_id]!=''
       @user_id = session[:user_id]	

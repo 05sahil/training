@@ -16,13 +16,23 @@ class ApplicationController < ActionController::Base
     !current_user.nil?
   end
 
+  def order_exists?(user_id)
+    if User.find(user_id).orders.find_by("payment_status != 'received'")
+      return true
+    else 
+      return false
+    end
+  end
+
   def find_products(user_id)
-  	@products_info = User.find(user_id).orders.find_by("payment_status != 'received'").order_products
- 	@products = Array.new(@products_info.length){Hash.new}  #@product_info.length
- 	@products_info.each{|p| 
- 	  @products[@products_info.index(p)]['name'] = Laptop.find(p.laptop_id).name
- 	  @products[@products_info.index(p)]['price'] = Laptop.find(p.laptop_id).price
- 	  @products[@products_info.index(p)]['quantity'] = p.quantity 
- 	}   	
+    if order_exists?(user_id)
+      @products_info = User.find(user_id).orders.find_by("payment_status != 'received'").order_products
+ 	    @products = Array.new(@products_info.length){Hash.new}  #@product_info.length
+ 	    @products_info.each{|p| 
+ 	      @products[@products_info.index(p)]['name'] = Laptop.find(p.laptop_id).name
+ 	      @products[@products_info.index(p)]['price'] = Laptop.find(p.laptop_id).price
+ 	      @products[@products_info.index(p)]['quantity'] = p.quantity 
+ 	    }   
+    end	
   end
 end
