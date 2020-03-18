@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+
+  <style type="text/css">
+    .div-style {
+      margin: 20px auto; 
+      width: 40%; 
+      text-align: center; 
+      border: 1px solid black; 
+      padding: 10px 0;
+      }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="message" class="div-style">
+  	{{ m }}
+
+  	<p>{{ m2 }}</p>
+  </div>
+
+  <script type="text/javascript">
+
+  	var app = new Vue({
+  	  el: '#message',
+  	  data: {
+  	  	m: 'welcome to vue.js',
+  	  	m2: 'this is message 2'
+  	  }
+  	})
+  	
+  </script>
+</body>
+
+</html>
