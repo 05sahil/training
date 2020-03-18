@@ -22,6 +22,10 @@
 
   	<p>{{ m2 }}</p>
   </div>
+  
+  <div id="m2" class="div-style" v-bind:title="title_message">
+    Hover Here!
+  </div>
 
   <script type="text/javascript">
 
@@ -32,6 +36,12 @@
   	  	m2: 'this is message 2'
   	  }
   	})
+    var tm = new Vue({
+      el: '#m2',
+      data: {
+        title_message: 'you hovered this div on' + new Date().toLocaleString() 
+      }
+    })
   	
   </script>
 </body>
