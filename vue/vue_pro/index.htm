@@ -41,6 +41,13 @@
     </ol>
   </div>
 
+  <div id="m5" class="div-style">
+    <p>{{ text }}</p>
+    <button v-on:click='reverse_message'>Reverse the text</button>
+    <br>
+    <input v-model='text'>
+  </div>
+
   <script type="text/javascript">
 
   	var app = new Vue({
@@ -70,6 +77,17 @@
           { text: 'something' },
           { text: 'line3' }, 
         ]
+      }
+    })
+    var m5 = new Vue({
+      el: '#m5',
+      data: {
+        text: 'Hydra Ship' 
+      },
+      methods: {
+        reverse_message: function () {
+          this.text = this.text.split('').reverse().join('')
+        }
       }
     })
   </script>
