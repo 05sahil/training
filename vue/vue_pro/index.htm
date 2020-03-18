@@ -48,6 +48,10 @@
     <input v-model='text'>
   </div>
 
+  <div id="m6" v-on:mouseover="updateXY" class="div-style" style="width: 50%; height: 300px;">
+    {{ x }},{{ y }}
+  </div>
+
   <script type="text/javascript">
 
   	var app = new Vue({
@@ -90,6 +94,21 @@
         }
       }
     })
+
+   var m6 = new Vue({
+    el: '#m6',
+    data: {
+      x: 0,
+      y: 0
+    },
+    methods: {
+      updateXY: function(e){
+        this.x = e.offsetX
+        this.y = e.offsetY
+        console.log(e)
+      }
+    }
+   })
   </script>
 </body>
 
