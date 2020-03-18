@@ -43,13 +43,14 @@
 
   <div id="m5" class="div-style">
     <p>{{ text }}</p>
-    <button v-on:click='reverse_message'>Reverse the text</button>
+    <button v-on:click.once='reverse_message'>Reverse the text</button>
     <br>
     <input v-model='text'>
   </div>
 
   <div id="m6" v-on:mouseover="updateXY" class="div-style" style="width: 50%; height: 300px;">
-    {{ x }},{{ y }}
+    <h3>Mouseover to view coordinates</h3>
+    <p>{{ x }},{{ y }}</p>
   </div>
 
   <script type="text/javascript">
@@ -105,7 +106,6 @@
       updateXY: function(e){
         this.x = e.offsetX
         this.y = e.offsetY
-        console.log(e)
       }
     }
    })
