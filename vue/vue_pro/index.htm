@@ -33,6 +33,14 @@
     </span>
   </div>
 
+  <div id="m4" class="div-style">
+    <ol>
+      <li v-for="line in list">
+        {{ line.text }}
+      </li>
+    </ol>
+  </div>
+
   <script type="text/javascript">
 
   	var app = new Vue({
@@ -54,7 +62,16 @@
         display: true 
       }
     })
-  	
+  	var m4 = new Vue({
+      el: '#m4',
+      data: {
+        list: [
+          { text: 'line1' },
+          { text: 'something' },
+          { text: 'line3' }, 
+        ]
+      }
+    })
   </script>
 </body>
 
