@@ -51,6 +51,7 @@
 
   <div id="m2" class="div-style" v-bind:title="title_message">
     Hover Here!
+    <p v-html="link"></p>
   </div>
 
   <div id="m3" class="div-style" v-if="display">
@@ -69,7 +70,7 @@
 
   <div id="m5" class="div-style bottom-margin">
     <p>{{ text }}</p>
-    <button v-on:click.once='reverse_message'>Reverse the text</button>
+    <button v-on:click='reverse_message'>Reverse the text</button>
     <br>
     <input v-model='text'>
   </div>
@@ -121,7 +122,8 @@
     var tm = new Vue({
       el: '#m2',
       data: {
-        title_message: 'you hovered this div on' + new Date().toLocaleString() 
+        title_message: 'you hovered this div on' + new Date().toLocaleString(),
+        link: "<a href='https://berylsystems.com'>Beryl Systems</a>" 
       }
     })
     var m3 = new Vue({
