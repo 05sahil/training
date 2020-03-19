@@ -11,16 +11,21 @@
       border: 1px solid black; 
       padding: 10px 0;
       }
+
+    .bgcolor {background: dodgerblue}
+
   </style>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body>
-  <div id="message" class="div-style">
+  <div id="message" class="div-style" v-bind:class="{bgcolor:value}">
   	{{ m }}
 
   	<p>{{ m2 }}</p>
+
+    <button v-on:click="value = !value">click to change color</button>
   </div>
 
   <div id="m2" class="div-style" v-bind:title="title_message">
@@ -59,7 +64,8 @@
   	  el: '#message',
   	  data: {
   	  	m: 'welcome to vue.js',
-  	  	m2: 'this is message 2'
+  	  	m2: 'this is message 2',
+        value: false,
   	  }
   	})
     var tm = new Vue({
