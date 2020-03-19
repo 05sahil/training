@@ -13,6 +13,7 @@
       }
 
     .bgcolor {background: dodgerblue}
+    .border{border: 5px solid black}
     .bottom-margin {margin-bottom: 15px;}
 
   </style>
@@ -21,19 +22,19 @@
 </head>
 
 <body>
-  <div id="message" class="div-style" v-bind:class="{bgcolor:value}">
+  <div id="message" class="div-style" :class="classNames()">
   	{{ m }}
 
   	<p>
       {{ m2 }}
     </p>
-    <button v-on:click="value = !value" class="bottom-margin">click to change color</button>
+    <button @click="value = !value" class="bottom-margin">click to change color</button>
     <br>
     <p> Age : {{ age }} </p>
     <p> A : {{ a }} </p>
     <p> B : {{ b }} </p>
-    <button v-on:click='a++'>Add to A</button>
-    <button v-on:click='b++'>Add to B</button>
+    <button @click='a++'>Add to A</button>
+    <button @click='b++'>Add to B</button>
     <p>
       Age + A: {{ addtoA }}
     </p>
@@ -120,19 +121,16 @@
             v.b = 0
           },2000)
         }
+      },
+      methods: {
+       classNames: function(){
+         return {
+           bgcolor: this.value,
+           border: this.value
+         }
+       }
+
       }
-      // methods: {
-      //   addtoA: function(){
-      //     console.log('add to A')
-      //     return this.age+this.a           
-
-      //   },
-      //   addtoB: function(){
-      //     console.log('add to B')
-      //       return this.age+this.b            
-      //   }        
-
-      // }
       
   	})
     var tm = new Vue({
