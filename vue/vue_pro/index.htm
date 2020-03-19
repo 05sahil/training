@@ -105,6 +105,22 @@
         }        
 
       },
+      watch: {
+        a: function(){
+          var v = this
+          console.log('value of "a" changed')
+          setTimeout(function(){
+            v.a = 0
+          },2000)
+        },
+        b: function(){
+          var v = this
+          console.log('value of "a" changed')
+          setTimeout(function(){
+            v.b = 0
+          },2000)
+        }
+      }
       // methods: {
       //   addtoA: function(){
       //     console.log('add to A')
