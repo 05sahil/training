@@ -13,6 +13,7 @@
       }
 
     .bgcolor {background: dodgerblue}
+    .bottom-margin {margin-bottom: 15px;}
 
   </style>
 
@@ -23,9 +24,15 @@
   <div id="message" class="div-style" v-bind:class="{bgcolor:value}">
   	{{ m }}
 
-  	<p>{{ m2 }}</p>
+  	<p>
+      {{ m2 }}
+    </p>
+    <button v-on:click="value = !value" class="bottom-margin">click to change color</button>
+    <br>
+    Enter your age: <input type="number" name="number" v-model="age">
+    <button v-on:click='add'>Add 5 years</button>
+    <button v-on:click='subtract'>Delete 5 years</button>
 
-    <button v-on:click="value = !value">click to change color</button>
   </div>
 
   <div id="m2" class="div-style" v-bind:title="title_message">
@@ -46,7 +53,7 @@
     </ol>
   </div>
 
-  <div id="m5" class="div-style">
+  <div id="m5" class="div-style bottom-margin">
     <p>{{ text }}</p>
     <button v-on:click.once='reverse_message'>Reverse the text</button>
     <br>
@@ -66,7 +73,28 @@
   	  	m: 'welcome to vue.js',
   	  	m2: 'this is message 2',
         value: false,
-  	  }
+        age: '',
+  	  },
+      methods: {
+        add: function(){
+          console.log('add')
+          this.age = parseInt(this.age) + 5
+        },
+        subtract: function(){
+          console.log('subtract')
+          this.age = parseInt(this.age) - 5
+        }
+      }
+      // computed: {
+      //   add: function(){
+      //     console.log('add')
+      //     this.age +=5
+      //   },
+      //   subtract: function(){
+      //     console.log('subtract')
+      //     this.age -=5
+      //   }
+      // }
   	})
     var tm = new Vue({
       el: '#m2',
