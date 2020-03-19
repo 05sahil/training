@@ -29,10 +29,17 @@
     </p>
     <button v-on:click="value = !value" class="bottom-margin">click to change color</button>
     <br>
-    Enter your age: <input type="number" name="number" v-model="age">
-    <button v-on:click='add'>Add 5 years</button>
-    <button v-on:click='subtract'>Delete 5 years</button>
-
+    <p> Age : {{ age }} </p>
+    <p> A : {{ a }} </p>
+    <p> B : {{ b }} </p>
+    <button v-on:click='a++'>Add to A</button>
+    <button v-on:click='b++'>Add to B</button>
+    <p>
+      Age + A: {{ addtoA }}
+    </p>
+    <p>
+      Age - B: {{ addtoB }}
+    </p>
     <div class="div-style" v-on:mouseover='display = !display'>
       <span v-show="display"> 
         MY display prop can be set to none
@@ -80,29 +87,36 @@
   	  	m: 'welcome to vue.js',
   	  	m2: 'this is message 2',
         value: false,
-        age: '',
+        age: 20,
+        a:0,
+        b:0,
         display: true
   	  },
-      methods: {
-        add: function(){
-          console.log('add')
-          this.age = parseInt(this.age) + 5
+      computed: {
+        addtoA: function(){
+          console.log('add to A')
+          return this.age+this.a           
+
         },
-        subtract: function(){
-          console.log('subtract')
-          this.age = parseInt(this.age) - 5
-        }
-      }
-      // computed: {
-      //   add: function(){
-      //     console.log('add')
-      //     this.age +=5
+        addtoB: function(){
+          console.log('add to B')
+            return this.age+this.b            
+        }        
+
+      },
+      // methods: {
+      //   addtoA: function(){
+      //     console.log('add to A')
+      //     return this.age+this.a           
+
       //   },
-      //   subtract: function(){
-      //     console.log('subtract')
-      //     this.age -=5
-      //   }
+      //   addtoB: function(){
+      //     console.log('add to B')
+      //       return this.age+this.b            
+      //   }        
+
       // }
+      
   	})
     var tm = new Vue({
       el: '#m2',
