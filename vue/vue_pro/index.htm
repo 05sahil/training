@@ -53,6 +53,14 @@
   <div id="m2" class="div-style" v-bind:title="title_message">
     Hover Here!
     <p v-html="link"></p>
+    <li v-for='person in persons'>
+      <div v-for='(value,i) in person'>
+        {{ i }}: {{ value }}
+      </div>
+      <!-- <h3>{{ person.name }}</h3>
+      <li> {{person.age}}  </li>
+      <li> {{ person.gender }}</li> -->
+    </li>
   </div>
 
   <div id="m3" class="div-style" v-if="display">
@@ -92,7 +100,7 @@
         age: 20,
         a:0,
         b:0,
-        display: true
+        display: true,
   	  },
       computed: {
         addtoA: function(){
@@ -137,7 +145,12 @@
       el: '#m2',
       data: {
         title_message: 'you hovered this div on' + new Date().toLocaleString(),
-        link: "<a href='https://berylsystems.com'>Beryl Systems</a>" 
+        link: "<a href='https://berylsystems.com'>Beryl Systems</a>",
+        persons: [
+          {name:'John', age:'21', gender:'M'},
+          {name:'Mindy', age:'21', gender:'F'},
+          {name: 'Bing', age:'24', gender:'M'}
+        ],
       }
     })
     var m3 = new Vue({
