@@ -33,6 +33,13 @@
     <button v-on:click='add'>Add 5 years</button>
     <button v-on:click='subtract'>Delete 5 years</button>
 
+    <div class="div-style" v-on:mouseover='display = !display'>
+      <span v-show="display"> 
+        MY display prop can be set to none
+      </span>
+    </div>
+
+
   </div>
 
   <div id="m2" class="div-style" v-bind:title="title_message">
@@ -74,6 +81,7 @@
   	  	m2: 'this is message 2',
         value: false,
         age: '',
+        display: true
   	  },
       methods: {
         add: function(){
