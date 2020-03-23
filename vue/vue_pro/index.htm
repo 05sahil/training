@@ -50,6 +50,7 @@
     <div class="div-style" v-if="false">div 1</div>
     <div v-else class="div-style"> div 2</div>
 
+    <com></com>
 
   </div>
 
@@ -74,6 +75,7 @@
     <span>
       See Mee No More
     </span>
+    <com></com>
   </div>
 
   <div id="m4" class="div-style">
@@ -97,6 +99,10 @@
   </div>
 
   <script type="text/javascript">
+
+    Vue.component("com",{
+     template: "<p>Hello, I am a reusable component</p>"
+    })
 
   	var app = new Vue({
   	  el: '#message',
@@ -214,6 +220,9 @@
        } 
      }  
    })
+
+   
+
   </script>
 </body>
 
