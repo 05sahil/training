@@ -98,6 +98,9 @@
     <p>{{ x }},{{ y }}</p>
   </div>
 
+  <template id="m7">
+    
+  </template>
   <script type="text/javascript">
 
     Vue.component("com",{
@@ -221,8 +224,18 @@
      }  
    })
 
-   
+   var nv = new Vue({
+    template: '<p>A new template is added</p>',
+    methods: {
+      alert: function(){
 
+        alert('template added')
+      }
+    }
+
+   })
+   
+   nv.$mount('#m7')
   </script>
 </body>
 
