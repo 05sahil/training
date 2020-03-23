@@ -47,10 +47,13 @@
       </span>
     </div>
 
+    <div class="div-style" v-if="false">div 1</div>
+    <div v-else class="div-style"> div 2</div>
+
 
   </div>
 
-  <div id="m2" class="div-style" v-bind:title="title_message">
+  <div id="m2" class="div-style" v-bind:title="title_message" :class={bgcolor:value}>
     Hover Here!
     <p v-html="link"></p>
     <li v-for='person in persons'>
@@ -61,6 +64,10 @@
       <li> {{person.age}}  </li>
       <li> {{ person.gender }}</li> -->
     </li>
+  </div>
+
+  <div id="change_button" style="text-align: center">
+    <button @click="change_style"> click to change view of above div </button>
   </div>
 
   <div id="m3" class="div-style" v-if="display">
@@ -151,6 +158,7 @@
           {name:'Mindy', age:'21', gender:'F'},
           {name: 'Bing', age:'24', gender:'M'}
         ],
+        value: false
       }
     })
     var m3 = new Vue({
@@ -193,6 +201,15 @@
         this.y = e.offsetY
       }
     }
+   })
+
+   new Vue({
+     el: '#change_button',
+     methods: {
+       change_style: function(){
+         tm.value = !tm.value
+       } 
+     }  
    })
   </script>
 </body>
