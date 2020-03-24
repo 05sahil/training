@@ -9,17 +9,17 @@
   <div id="app">
   	<div>
   	  <h2>You</h2>
-  	  <h4>100</h4>	
+  	  <h4>{{ you }}</h4>	
   	</div>
   	<div>
   	  <h2>Monster</h2>
-  	  <h4>100</h4>	
+  	  <h4>{{ monster }}</h4>	
   	</div>
 
   	<div>
   	  <button v-if="con_value" @click= "con_value = false" >Start Game</button>
   	  <template v-else>
-  	    <button>Attack</button>
+  	    <button @click="attack()">Attack</button>
   	    <button>Special Attack</button>
   	    <button>Heal</button>
   	    <button @click= "con_value = true">Give Up</button>
