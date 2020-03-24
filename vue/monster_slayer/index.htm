@@ -17,11 +17,13 @@
   	</div>
 
   	<div>
-  	  <button>Start Game</button>
-  	  <button>Attack</button>
-  	  <button>Special Attack</button>
-  	  <button>Heal</button>
-  	  <button>Give Up</button>	
+  	  <button v-if="con_value" @click= "con_value = false" >Start Game</button>
+  	  <template v-else>
+  	    <button>Attack</button>
+  	    <button>Special Attack</button>
+  	    <button>Heal</button>
+  	    <button @click= "con_value = true">Give Up</button>
+  	  </template>	
   	</div>
 
   	<div>
