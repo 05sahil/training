@@ -16,16 +16,19 @@
 <body>
   <div class="div-style" id="app">
   	<my-com></my-com>
+    <hr>
+    <my-com></my-com>
   </div>
-
   
   <script type="text/javascript">
 
+    var data = {
+      status: 'critical'
+    }
+
   	Vue.component("my-com", {
   	  data: function(){
-  	    return {
-  	      status: 'critical'
-  	    }	
+  	    return data
   	  },
   	  methods: {
   	  	change_status: function(){
