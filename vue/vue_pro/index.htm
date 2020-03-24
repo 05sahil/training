@@ -225,11 +225,13 @@
    })
 
    var nv = new Vue({
-    template: '<p>A new template is added</p>',
+    template: '<p>A new template is added {{ alert() }}</p>',
     methods: {
       alert: function(){
 
         alert('template added')
+
+        return "and alert called"
       }
     }
 
