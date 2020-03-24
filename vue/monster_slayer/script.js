@@ -17,7 +17,15 @@ new Vue({
   	  this.m_attack = Math.floor(Math.random()*10)+random_val;
   	  this.you -= this.y_attack;
   	  this.monster -= this.m_attack;
-  	  console.log(Math.floor(Math.random()*10)+10)
-  	}
-  }
+  	  console.log('attack')
+  	},
+  	heal: function(){
+  	var heal_val = 10;
+  	this.you += heal_val;
+  	this.y_attack = Math.floor(Math.random()*10)+5;
+  	this.you -= this.y_attack;
+  	console.log('heal')
+  	},
+  },
+
 })
