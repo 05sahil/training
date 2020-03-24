@@ -4,15 +4,24 @@
 	<title>Monster Slayer</title>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
   <div id="app">
   	<div>
   	  <h2>You</h2>
+  	  <div class="w3-light-grey">
+    	<div id="playerBar" class="w3-container w3-blue w3-center" style="width:100%">100%</div>
+  	  </div>
+  	  <br>
+  	  <!-- <button class="w3-button w3-green" onclick="move()">Click Me</button>  -->
   	  <h4>{{ you }}</h4>	
   	</div>
   	<div>
   	  <h2>Monster</h2>
+  	  <div class="w3-light-grey">
+        <div id="monsterBar" class="w3-container w3-red w3-center" style="width:100%">100%</div>
+  	  </div>
   	  <h4>{{ monster }}</h4>	
   	</div>
 
