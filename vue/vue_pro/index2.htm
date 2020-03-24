@@ -9,15 +9,13 @@
       text-align: center; 
       border: 1px solid black; 
       padding: 10px 0;
-      }
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
   <div class="div-style" id="app">
-  	<my-com></my-com>
-    <hr>
-    <my-com></my-com>
+  	<my_com></my_com>
   </div>
   
   <script type="text/javascript">
@@ -26,7 +24,7 @@
       status: 'critical'
     }
 
-  	Vue.component("my-com", {
+  	var cmp = {
   	  data: function(){
   	    return data
   	  },
@@ -36,10 +34,13 @@
   	  	}
   	  },
   	  template: '<p> Status: {{ status }} <button @click="change_status()">change status </button></p>',
-  	})
+  	}
 
   	new Vue({
-  		el: '#app'
+  		el: '#app',
+      components: {
+        my_com: cmp
+      },
   	})
   </script>  
 </body>
