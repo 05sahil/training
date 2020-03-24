@@ -28,10 +28,6 @@ new Vue({
   	}
   },
   methods: {
-  	// win: function(){
-  	//   console.log(this.you, typeof(this.you))
-  	  
-  	// },
 
   	attack: function(sa=false) {
   	  this.img_val = true
@@ -65,6 +61,13 @@ new Vue({
   	    this.battles.push(heal)
   	  }
   	},
+
+  	giveup: function(){
+  	  con_value = true;
+  	  this.you = 100;
+  	  this.monster = 100;
+  	  this.battles = [];
+  	}
 
   },
 
