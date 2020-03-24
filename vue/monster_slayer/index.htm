@@ -26,8 +26,9 @@
   	  </template>	
   	</div>
 
-  	<div>
-  	  	
+  	<div id="attack_display" v-for="battle in battles">
+  	  <p>{{ battle.you }}</p>
+  	  <p>{{ battle.monster }}</p>  
   	</div>
   </div>
 
