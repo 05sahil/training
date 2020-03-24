@@ -10,11 +10,14 @@ new Vue({
   	m_attack: 0
   },
   methods: {
-  	attack: function() {
+  	attack: function(sa=false) {
+  	  var random_val = 0
+  	  sa?random_val=10:random_val=5;
   	  this.y_attack = Math.floor(Math.random()*10)+5;
-  	  this.m_attack = Math.floor(Math.random()*10)+5;
+  	  this.m_attack = Math.floor(Math.random()*10)+random_val;
   	  this.you -= this.y_attack;
   	  this.monster -= this.m_attack;
+  	  console.log(Math.floor(Math.random()*10)+10)
   	}
   }
 })
