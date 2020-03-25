@@ -9,9 +9,13 @@ new Vue({
   	y_attack: 0,
   	m_attack: 0,
   	battles: [],
+  	playerImg: './assests/player_img.png',
+  	monsterImg: './assests/dragon_img.png',
   },
   watch: {
   	you: function(){
+  	  this.playerImg = './assests/player.gif';
+  	  this.monsterImg = './assests/dragon.gif';
   	  if(this.you<=0)
   	  {
   	  	alert('You Loose!!'+ '\n' + this.battles[this.battles.length-1].you + '\n' + this.battles[this.battles.length-1].monster)
@@ -66,6 +70,8 @@ new Vue({
   	  this.battles = [];
   	  this.player_width = 100;
   	  this.monster_width = 100;
+  	  this.playerImg = './assests/player_img.png';
+  	  this.monsterImg = './assests/dragon_img.png';
   	},
 
   },

@@ -13,12 +13,18 @@
   	  <div class="outerbar">
     	<div id="playerBar" class="innerbar" :style="{width: you + '%', background: 'dodgerblue'}">{{ you }}%</div>
   	  </div>
+  	  <div class="img-div" style="text-align: right">
+  	  	<img :src="playerImg" height="200px">
+  	  </div>
   	  <!-- <h4>{{ you }}</h4> -->	
   	</div>
   	<div class="wrapper">
   	  <h2>Monster</h2>
   	  <div class="outerbar">
         <div id="monsterBar" class="innerbar" :style="{width: monster + '%', background: 'red'}" >{{ monster }}%</div>
+  	  </div>
+  	  <div class="img-div" style="text-align: left">
+  	  	<img :src="monsterImg" height="200px">
   	  </div>
   	  <!-- <h4>{{ monster }}</h4> -->	
   	</div>
