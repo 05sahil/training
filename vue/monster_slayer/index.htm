@@ -11,14 +11,14 @@
   	<div>
   	  <h2>You</h2>
   	  <div class="outerbar">
-    	<div id="playerBar" class="innerbar" style="width:100%; background: dodgerblue">{{ you }}%</div>
+    	<div id="playerBar" class="innerbar" :style="{width: you + '%', background: 'dodgerblue'}">{{ you }}%</div>
   	  </div>
   	  <h4>{{ you }}</h4>	
   	</div>
   	<div>
   	  <h2>Monster</h2>
   	  <div class="outerbar">
-        <div id="monsterBar" class="innerbar" style="width:100%; background: red">{{ monster }}%</div>
+        <div id="monsterBar" class="innerbar" :style="{width: monster + '%', background: 'red'}" >{{ monster }}%</div>
   	  </div>
   	  <h4>{{ monster }}</h4>	
   	</div>
