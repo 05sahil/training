@@ -10,17 +10,15 @@
   <div id="app">
   	<div>
   	  <h2>You</h2>
-  	  <div class="w3-light-grey">
-    	<div id="playerBar" class="w3-container w3-blue w3-center" style="width:100%">100%</div>
+  	  <div class="outerbar">
+    	<div id="playerBar" class="innerbar" style="width:100%; background: dodgerblue">{{ you }}%</div>
   	  </div>
-  	  <br>
-  	  <!-- <button class="w3-button w3-green" onclick="move()">Click Me</button>  -->
   	  <h4>{{ you }}</h4>	
   	</div>
   	<div>
   	  <h2>Monster</h2>
-  	  <div class="w3-light-grey">
-        <div id="monsterBar" class="w3-container w3-red w3-center" style="width:100%">100%</div>
+  	  <div class="outerbar">
+        <div id="monsterBar" class="innerbar" style="width:100%; background: red">{{ monster }}%</div>
   	  </div>
   	  <h4>{{ monster }}</h4>	
   	</div>

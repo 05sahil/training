@@ -1,0 +1,9 @@
+.outerbar {
+  width: 100%;
+  background: lightgrey;
+}
+
+.innerbar {
+	padding: 3px 0;
+	text-align: center;
+}
