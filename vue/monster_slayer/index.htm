@@ -8,34 +8,36 @@
 </head>
 <body>
   <div id="app">
-  	<div>
+  	<div class="wrapper">
   	  <h2>You</h2>
   	  <div class="outerbar">
     	<div id="playerBar" class="innerbar" :style="{width: you + '%', background: 'dodgerblue'}">{{ you }}%</div>
   	  </div>
-  	  <h4>{{ you }}</h4>	
+  	  <!-- <h4>{{ you }}</h4> -->	
   	</div>
-  	<div>
+  	<div class="wrapper">
   	  <h2>Monster</h2>
   	  <div class="outerbar">
         <div id="monsterBar" class="innerbar" :style="{width: monster + '%', background: 'red'}" >{{ monster }}%</div>
   	  </div>
-  	  <h4>{{ monster }}</h4>	
+  	  <!-- <h4>{{ monster }}</h4> -->	
   	</div>
 
-  	<div>
-  	  <button v-if="con_value" @click= "con_value = false" >Start Game</button>
+  	<div class="button-div">
+  	  <button class="button" v-if="con_value" @click= "con_value = false" style="background: black; color: #fff">Start Game</button>
   	  <template v-else>
-  	    <button @click="attack()">Attack</button>
-  	    <button @click="attack(true)">Special Attack</button>
-  	    <button @click="heal()">Heal</button>
-  	    <button @click= "giveup()">Give Up</button>
+  	    <button class="button" @click="attack()" style="background: dodgerblue; color: #fff">Attack</button>
+  	    <button class="button" @click="attack(true)" style="background: blue; color: #fff">Special Attack</button>
+  	    <button class="button" @click="heal()" style="background: green; color: #fff">Heal</button>
+  	    <button class="button" @click= "giveup()" style="background: white; color: black">Give Up</button>
   	  </template>	
   	</div>
 
-  	<div id="attack_display" v-for="battle in battles">
-  	  <p>{{ battle.you }}</p>
-  	  <p>{{ battle.monster }}</p>  
+  	<div id="attack_display" class="battle-list">
+  	  <template v-for="battle in battles">
+  	    <p style="color: blue; background: #b3ccff">{{ battle.you }}</p>
+  	    <p style="color: red; background: #ff9999">{{ battle.monster }}</p>  
+  	  </template>
   	</div>
   </div>
 
