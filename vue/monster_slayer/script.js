@@ -14,14 +14,12 @@ new Vue({
   	you: function(){
   	  if(this.you<=0)
   	  {
-  	  	alert('You Loose!!')
-  	  	console.log('you win')
+  	  	alert('You Loose!!'+ '\n' + this.battles[this.battles.length-1].you + '\n' + this.battles[this.battles.length-1].monster)
   	  	this.giveup()
   	  } 
   	  if(this.monster<=0)
   	  {
-  	  	alert('You Win!!')
-  	  	console.log('you loose')
+  	  	alert('You Win!!' + '\n' + this.battles[this.battles.length-1].you + '\n' + this.battles[this.battles.length-1].monster)
   	  	this.giveup()
   	  }  
   	}
