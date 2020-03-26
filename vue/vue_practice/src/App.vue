@@ -1,5 +1,5 @@
 <template>
-  <h1> Vue JS </h1>
+  <status_comp></status_comp>
 </template>
 
 <script>

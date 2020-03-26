@@ -1,5 +1,5 @@
 <template>
-  <div> 
+  <div class="comp"> 
     <p>status: {{ status }}</p>
     <hr>
     <button @click="change_status">
@@ -23,6 +23,14 @@
   } 
 </script>
 
-<style>
+<style scoped>
+  .comp {
+    width: 50%;
+    margin: 0 auto;
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+  }
 
 </style>
