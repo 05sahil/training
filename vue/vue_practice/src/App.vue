@@ -3,14 +3,11 @@
 </template>
 
 <script>
-export default {
+  export default {
   
-}
+  }
 </script>
 
 <style>
-
-
   /*font-family: 'Avenir', Helvetica, Arial, sans-serif;*/
-
 </style>
