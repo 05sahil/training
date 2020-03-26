@@ -12,13 +12,13 @@
   export default{
     data: function(){
       return {
-        status: normal
+        status: 'normal'
       }
     },
     methods: {
-    change_status() {
-      this.status == 'normal'?'critical':'normal'; 
-    }
+      change_status() {
+      this.status == 'normal'?this.status = 'critical':this.status = 'normal'; 
+      }
     }
   } 
 </script>
