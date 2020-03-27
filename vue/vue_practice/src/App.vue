@@ -1,6 +1,7 @@
 <template>
   <div>
-    <status_comp></status_comp>
+    <status-comp></status-comp>
+    <user-info></user-info>
     <div>
       <button @click="change_name">change name</button> <input v-show="val" v-model="name" type="text">
       {{ name }}  
