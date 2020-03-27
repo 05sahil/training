@@ -1,10 +1,9 @@
 <template>
   <div>
     <status-comp></status-comp>
-    <user-info></user-info>
+    <user-info :name='name'></user-info>
     <div>
       <button @click="change_name">change name</button> <input v-show="val" v-model="name" type="text">
-      {{ name }}  
     </div>
     
   </div>

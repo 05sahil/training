@@ -6,11 +6,7 @@
 
 <script>
   export default{
-    data: function(){
-      return {
-        name: 'John Doe'
-      }
-    }
+    props: ['name'],
   } 
 </script>
 
