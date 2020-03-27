@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <h3>Server Status</h3>
-    <server_status_comp v-for="server in 5"></server_status_comp>
+    <server_status_comp v-for="server in 2"></server_status_comp>
   </div>
 </template>
 

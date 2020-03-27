@@ -1,11 +1,28 @@
 <template>
-  <status_comp></status_comp>
+  <div>
+    <status_comp></status_comp>
+    <div>
+      <button @click="change_name">change name</button> <input v-show="val" v-model="name" type="text">
+      {{ name }}  
+    </div>
+    
+  </div>
 </template>
 
 <script>
-  export default {
-  
-  }
+  export default{
+    data: function(){
+      return {
+        name: 'John Doe',
+        val: false
+      }
+    },
+    methods: {
+      change_name(){
+        this.val = true
+      }
+    }
+  } 
 </script>
 
 <style>
