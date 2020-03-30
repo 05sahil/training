@@ -1,6 +1,6 @@
 <template>
   <div>
-    Name: {{ this.name }}
+    Name: {{ this.info.name }}
     <br>
     <button @click="reverseName">Reverse name</button>
   </div>
@@ -8,11 +8,13 @@
 
 <script>
   export default{
-    props: ['name'],
+    props: {
+      info: Object,
+    },
     methods: {
       reverseName(){
-        this.name = this.name.split('').reverse().join('');
-        console.log(this.name)
+        this.info.name = this.info.name.split('').reverse().join('');
+        console.log(this.info.name)
       }     
     }
   }

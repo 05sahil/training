@@ -1,8 +1,8 @@
 <template>
   <div>
     <status-comp></status-comp>
-    <user-info :name='name'></user-info>
-    <edit-user-info :name='name'></edit-user-info>
+    <user-info :info='info'></user-info>
+    <edit-user-info :info='info'></edit-user-info>
     
   </div>
 </template>
@@ -11,10 +11,14 @@
   export default{
     data: function() {
       return {
-        name: 'Maria'
+        info: {
+          name: 'Maria'
+        }
       }
     }
   } 
+
+
 </script>
 
 <style>

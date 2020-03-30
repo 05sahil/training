@@ -1,18 +1,19 @@
 <template>
   <div>
-  	<button @click="change_name">change name</button> <input v-show="val" v-model="name" type="text">
-      {{ name }}
+  	<button @click="change_name">change name</button> <input v-show="val" v-model="info.name" type="text">
+      {{ info.name }}
   </div>
 </template>
 
 <script>
   export default{
   	props: {
-  	  name: String,
+  	  info: Object,
   	},
     data: function(){
       return {
-        val: false
+        val: false,
+        // name: this.info.name
       }
     },
     methods: {
