@@ -1,7 +1,8 @@
 <template>
   <div>
     <status-comp></status-comp>
-    <user-info :info='info'></user-info>
+    <h2>{{ str }}</h2>
+    <user-info :info='info' @sendQuote="str=$event"></user-info>
     <edit-user-info :info='info'></edit-user-info>
     
   </div>
@@ -13,7 +14,8 @@
       return {
         info: {
           name: 'Maria'
-        }
+        },
+        str: '',
       }
     }
   } 

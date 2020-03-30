@@ -1,6 +1,8 @@
 <template>
   <div>
-    Name: {{ this.info.name }}
+    <h3>User Info:</h3>
+    Name: {{ this.info.name}}
+    {{ this.sendQuote() }} 
     <br>
     <button @click="reverseName">Reverse name</button>
   </div>
@@ -11,10 +13,17 @@
     props: {
       info: Object,
     },
+    data: function(){
+      return{
+        str: 'Have a nice day!'
+      }
+    },
     methods: {
       reverseName(){
         this.info.name = this.info.name.split('').reverse().join('');
-        console.log(this.info.name)
+      },
+      sendQuote(){
+        this.$emit('sendQuote',this.str);
       }     
     }
   }

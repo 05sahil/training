@@ -1,7 +1,8 @@
 <template>
   <div>
-  	<button @click="change_name">change name</button> <input v-show="val" v-model="info.name" type="text">
-      {{ info.name }}
+  	<h3>User Edit</h3>
+  	<button @click="change_name">change name</button> 
+  	<input v-show="val" v-model="info.name" type="text">
   </div>
 </template>
 
