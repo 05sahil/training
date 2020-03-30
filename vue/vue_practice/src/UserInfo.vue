@@ -2,6 +2,8 @@
   <div>
     <h3>User Info:</h3>
     Name: {{ this.info.name}}
+    <hr>
+    Age: {{ this.age }}
     {{ this.sendQuote() }} 
     <br>
     <button @click="reverseName">Reverse name</button>
@@ -9,13 +11,16 @@
 </template>
 
 <script>
+  import {eventBus} from './main'
+
   export default{
     props: {
       info: Object,
     },
     data: function(){
       return{
-        str: 'Have a nice day!'
+        str: 'Have a nice day!',
+        age: ''
       }
     },
     methods: {
@@ -24,6 +29,9 @@
       },
       sendQuote(){
         this.$emit('sendQuote',this.str);
+      },
+      created() {
+        eventBus.$on('passAge',(a)=>{this.age = a})
       }     
     }
   }
