@@ -5,6 +5,7 @@
     <hr>
     Age: {{ this.age }}
     {{ this.sendQuote() }} 
+    {{ this.getAge() }}
     <br>
     <button @click="reverseName">Reverse name</button>
   </div>
@@ -30,8 +31,9 @@
       sendQuote(){
         this.$emit('sendQuote',this.str);
       },
-      created() {
-        eventBus.$on('passAge',(a)=>{this.age = a})
+      getAge() {
+        eventBus.$on('passAge', (a)=>{this.age = a})
+        console.log('i am created')
       }     
     }
   }

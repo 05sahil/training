@@ -1,11 +1,15 @@
 <template>
   <div>
   	<h3>User Edit</h3>
+    <slot name="heading">
+    </slot>
   	<button @click="change_name">change name</button> 
   	<input v-show="val" v-model="info.name" type="text">
     <hr>
     <button @click="editAge">Edit age</button> 
     <input type="text" v-model="age">
+    <slot name="para">
+    </slot>
   </div>
 </template>
 
@@ -34,6 +38,7 @@
   } 
 </script>
 
-<style >
+<style scoped>
+
 	
-</style>
+</style> 
