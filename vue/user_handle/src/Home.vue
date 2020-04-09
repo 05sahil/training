@@ -1,12 +1,12 @@
 <template>
   <div>
-    <router-view></router-view>
+    <h2>This is the home page</h2>
   </div>
 </template>
 
 <script>
 export default {
-  
+
 }
 </script>
 
