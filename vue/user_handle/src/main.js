@@ -3,9 +3,12 @@ import VueRouter from 'vue-router'
 import App from './App.vue'
 import Home from './Home.vue'
 import User from './User.vue'
+import Edit from './Edit.vue'
 
 Vue.use(VueRouter)
-const routes = [{path:'', component: Home}, {path: '/user/:id', component: User}]
+const routes = [{path:'', component: Home}, 
+  {path: '/user/:id', component: User, children: [{path:'/user/:id/edit', component: Edit}] }
+  ]
 const router = new VueRouter({
   routes
 })
