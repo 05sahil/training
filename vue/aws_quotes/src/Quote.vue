@@ -17,6 +17,9 @@ export default {
     padding: 20px;
     width: 15%;
     border: 2px solid dodgerblue;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 16px;
   }
 
 </style>

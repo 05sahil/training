@@ -16,6 +16,7 @@ export default {
   methods: {
     deleteQuote (index) {
       this.quoteData.quotes.splice(index, 1)
+      this.quoteData.count -= 10
     }
   }
 }
@@ -27,6 +28,7 @@ export default {
     padding: 20px;
     justify-content: space-around;
     align-items: center;
+    flex-wrap: wrap;
   }
 
 </style>

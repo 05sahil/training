@@ -24,8 +24,15 @@ export default {
 
   methods: {
   	createquote () {
+      if (this.quoteData.count >= 100)
+      {
+        alert("Too many quotes!! Delete some.")
+      }
+      else {
       this.quoteData.quotes.push(this.value)  
       this.quoteData.count += 10
+      this.value = '' 
+      }
   	}
   }
 }
