@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <create-quote></create-quote>
+    <create-quote :quoteData="quoteData"></create-quote>
   </div>
 </template>
 
@@ -8,7 +8,10 @@
 export default {
   data () {
     return {
-      
+      quoteData: {
+        quotes: [],
+        count: 0
+      }
     }
   }
 }

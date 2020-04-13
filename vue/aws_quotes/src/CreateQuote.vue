@@ -12,7 +12,10 @@
 
 <script>
 export default {
-
+  props: {
+    quoteData: Object
+  },
+  
   data () {
   	return {
   	  value: ''
@@ -21,7 +24,8 @@ export default {
 
   methods: {
   	createquote () {
-
+      this.quoteData.quotes.push(this.value)  
+      this.quoteData.count += 10
   	}
   }
 }
