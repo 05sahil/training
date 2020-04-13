@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <create-quote></create-quote>
   </div>
 </template>
 
