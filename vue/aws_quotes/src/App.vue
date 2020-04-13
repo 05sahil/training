@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <prog-bar></prog-bar>
+    <prog-bar :quoteData="quoteData"></prog-bar>
     <create-quote :quoteData="quoteData"></create-quote>
   </div>
 </template>

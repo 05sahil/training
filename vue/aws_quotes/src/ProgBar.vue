@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="outerbar">
-      <div id="innerBar"></div>
+      <div id="innerBar" :style="{width: quoteData.count + '%', background: 'dodgerblue'}">{{ quoteData.count/10 }}/10</div>
       </div>
   </div>
 </template>
