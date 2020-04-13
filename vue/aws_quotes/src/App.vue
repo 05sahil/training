@@ -2,6 +2,7 @@
   <div id="app">
     <prog-bar :quoteData="quoteData"></prog-bar>
     <create-quote :quoteData="quoteData"></create-quote>
+    <quote-grid :quoteData="quoteData"></quote-grid>
   </div>
 </template>
 
