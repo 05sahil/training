@@ -1,6 +1,6 @@
 <template>
   <div id="grid">
-    <v-quote v-for="(quote, index) in quoteData.quotes">{{ quote }}</v-quote>
+    <v-quote v-for="(quote, index) in quoteData.quotes" @click.native="deleteQuote(index)">{{ quote }}</v-quote>
   </div>
 </template>
 
@@ -14,6 +14,9 @@ export default {
     }
   },
   methods: {
+    deleteQuote (index) {
+      this.quoteData.quotes.splice(index, 1)
+    }
   }
 }
 </script>
