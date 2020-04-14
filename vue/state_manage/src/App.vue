@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h4>Counter: {{ this.$store.state.counter }}</h4>
   </div>
 </template>
 
