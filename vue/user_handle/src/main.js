@@ -4,11 +4,12 @@ import App from './App.vue'
 import Home from './Home.vue'
 import User from './User.vue'
 import Edit from './Edit.vue'
+import Footer from './Footer.vue'
 
 Vue.use(VueRouter)
 
-const routes = [{path:'', component: Home}, 
-  {path: '/user/:id', component: User, children: [{path:'edit', component: Edit}] }
+const routes = [{path:'', components: {default: Home, 'footer': Footer}}, 
+  {path: '/user/:id', component: User, children: [{path:'edit', components: {default: Edit, 'footer': Footer}}] }
   ]
 const router = new VueRouter({
   routes

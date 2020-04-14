@@ -5,6 +5,7 @@
     <hr>
     <router-link :to="'/user/' + $route.params.id + '/edit' +'?name='+name + '&age=' + age" tag="div">Edit user</router-link>
     <router-view></router-view>
+    <router-view name='footer'></router-view>
   </div>
 </template>
 
