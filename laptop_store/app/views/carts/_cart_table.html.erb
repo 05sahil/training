@@ -11,7 +11,7 @@
   	    <tr>
   	      <td><%= product['name'] %></td>
   	      <td><%= product['price'] %></td>
-  	      <td><%= product['quantity'] %></td>
+  	      <td><button class="id-button" value="+">+</button><%= product['quantity'] %><button class="id-button" value="-">-</button></td>
           <td class="delete_button">remove item</td>
   	    </tr>
   	  <% end %>

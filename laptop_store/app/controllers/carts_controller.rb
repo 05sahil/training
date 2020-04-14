@@ -39,4 +39,18 @@ class CartsController < ApplicationController
     User.find(@user_id).orders.find_by("payment_status != 'received'").order_products.find_by(laptop_id: @product_id).delete
     redirect_to user_cart_path
   end
+
+  def change_quantity
+    puts('AT change quantity=========', params[:value], params[:product_name])
+    @name = params[:product_name]
+    @user_id = session[:user_id]
+    @value = params[:value]
+    @product_id = Laptop.find_by(name: @name)
+    if @value == '+'
+      User.find(@user_id).orders.find_by("payment_status != 'received'").order_products.find_by(laptop_id: @product_id).increment!(:quantity)
+    else
+      User.find(@user_id).orders.find_by("payment_status != 'received'").order_products.find_by(laptop_id: @product_id).decrement!(:quantity)
+    end
+    redirect_to user_cart_path
+  end
 end
