@@ -2,10 +2,21 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
 import Home from './Home.vue'
-import User from './User.vue'
-import Edit from './Edit.vue'
 import Footer from './Footer.vue'
 import EnterUser from './EnterUser.vue'
+
+//Lazy loading
+const User = resolve => {
+  require.ensure(['./User.vue'], () => {
+  	resolve(require('./User.vue'))
+  })
+}
+
+const Edit = resolve => {
+  require.ensure(['./Edit.vue'], () => {
+  	resolve(require('./Edit.vue'))
+  })
+}
 
 Vue.use(VueRouter)
 
