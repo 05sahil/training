@@ -6,8 +6,9 @@ import User from './User.vue'
 import Edit from './Edit.vue'
 
 Vue.use(VueRouter)
+
 const routes = [{path:'', component: Home}, 
-  {path: '/user/:id', component: User, children: [{path:'/user/:id/edit', component: Edit}] }
+  {path: '/user/:id', component: User, children: [{path:'edit', component: Edit}] }
   ]
 const router = new VueRouter({
   routes
