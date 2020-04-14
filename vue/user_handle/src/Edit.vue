@@ -11,6 +11,10 @@
 <script>
 export default {
   
+  beforeRouteEnter (to, from, next) {
+    console.log('Entered Details')
+    next()
+  }
 }
 </script>
 
