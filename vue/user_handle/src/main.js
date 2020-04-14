@@ -5,12 +5,16 @@ import Home from './Home.vue'
 import User from './User.vue'
 import Edit from './Edit.vue'
 import Footer from './Footer.vue'
+import EnterUser from './EnterUser.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
-  {path:'', components: {default: Home, 'footer': Footer}}, 
-  {  path: '/user/:id', component: User, 
+  {path:'', components: {default: Home, 'footer': Footer}},
+  {path:'enter', component: EnterUser, name: 'enter'}, 
+  {  path: '/user/:id',
+  	 name: 'user', 
+  	 component: User, 
      children: [
        {path:'edit', 
        components: {default: Edit, 'footer': Footer},
@@ -18,9 +22,10 @@ const routes = [
        }
      ],
      beforeEnter: (to, from, next) => {
-       console.log('Entering user')	
-       next('')
+       console.log('Entering user', to.params.id)	
+       next()
      },
+     
   },
   {path:'something', redirect:''},
   {path:'*', redirect:''},
@@ -34,14 +39,11 @@ const router = new VueRouter({
   	{
   	  return savedPosition
   	}
-  	else if (to.hash)
+  	if (to.hash)
   	{
   	  return {selector: to.hash}
   	}
-  	else
-  	{
-  	  return {x:0, y:0}
-  	}
+  	return {x:0, y:0}
   }
 })
 
