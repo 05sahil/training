@@ -8,9 +8,16 @@ import Footer from './Footer.vue'
 
 Vue.use(VueRouter)
 
-const routes = [{path:'', components: {default: Home, 'footer': Footer}}, 
-  {path: '/user/:id', component: User, children: [{path:'edit', components: {default: Edit, 'footer': Footer}}] }
-  ]
+const routes = [
+  {path:'', components: {default: Home, 'footer': Footer}}, 
+  {path: '/user/:id', component: User, 
+    children: [{path:'edit', 
+      components: {default: Edit, 'footer': Footer}
+    }] 
+  },
+  {path:'something', redirect:''},
+  {path:'*', redirect:''},
+]
 const router = new VueRouter({
   routes
 })
