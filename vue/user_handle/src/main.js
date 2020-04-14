@@ -11,15 +11,26 @@ Vue.use(VueRouter)
 const routes = [
   {path:'', components: {default: Home, 'footer': Footer}}, 
   {path: '/user/:id', component: User, 
-    children: [{path:'edit', 
-      components: {default: Edit, 'footer': Footer}
-    }] 
+    children: [
+      {path:'edit', 
+      components: {default: Edit, 'footer': Footer},
+      name: 'edit'
+      }
+    ] 
   },
   {path:'something', redirect:''},
   {path:'*', redirect:''},
 ]
 const router = new VueRouter({
-  routes
+  routes,
+  mode: 'history',
+  scrollBehavior(to, from, savedPosition)
+  {
+  	if (to.hash)
+  	{
+  	  return {selector: to.hash}
+  	}
+  }
 })
 
 new Vue({
